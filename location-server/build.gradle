@@ -1,5 +1,8 @@
+import org.gradle.api.plugins.tomcat.tasks.TomcatRun
+import org.gradle.api.plugins.tomcat.tasks.TomcatStop
 
 apply plugin: 'tomcat'
+apply plugin: 'tomcat-base'
 
 version = '0.0.1-SNAPSHOT'
 
@@ -9,11 +12,11 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.0'
+        classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.2.4'
     }
 }
 
-dependencies{
+dependencies {
 
     tomcat "org.apache.tomcat.embed:tomcat-embed-core:7.0.11",
             "org.apache.tomcat.embed:tomcat-embed-logging-juli:7.0.11"
@@ -22,11 +25,10 @@ dependencies{
     }
 	
 	testCompile 'com.jayway.restassured:rest-assured:2.3.3'
-	
-	compile 'com.h2database:h2:1.4.181'
 
+    compile 'javax.servlet:servlet-api:2.5'
+    compile 'com.h2database:h2:1.4.181'
     compile 'org.hibernate:hibernate-core:4.3.6.Final'
-
     compile 'org.glassfish.jersey.containers:jersey-container-servlet-core:2.11'
 
 }
@@ -36,4 +38,30 @@ tomcatRunWar {
     ajpPort   = 5566
     httpPort  = 8591
     httpsPort = 5278
+}
+
+ext {
+    tomcatStopPort = 8592
+    tomcatStopKey = 'stopKey'
+}
+
+task integrationTomcatRun( type: TomcatRun ) {
+    stopPort = tomcatStopPort
+    stopKey  = tomcatStopKey
+    daemon = true
+}
+
+task integrationTomcatStop( type: TomcatStop ) {
+    stopPort = tomcatStopPort
+    stopKey  = tomcatStopKey
+}
+
+task integrationTest( type: Test ) {
+    include '**/*IntegrationTest.*'
+    dependsOn   integrationTomcatRun
+    finalizedBy integrationTomcatStop
+}
+
+test {
+    exclude '**/*IntegrationTest.*'
 }
