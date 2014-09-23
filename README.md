@@ -1,4 +1,5 @@
 Service-Location
 ================
 
-A web service for providing location information
+A RESTful web service for providing location information
+
