@@ -16,12 +16,6 @@ public class UnitService {
     }
 
     @GET
-    @Path( "id/{id}" )
-    public String getUnitByID( @PathParam( "id" ) String id ) {
-        return "";
-    }
-
-    @GET
     @Path( "name/{name}" )
     public String getUnitByName( @PathParam( "name" ) String name ) {
         return "";
