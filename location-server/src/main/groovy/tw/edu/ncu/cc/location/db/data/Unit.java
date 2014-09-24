@@ -1,16 +1,15 @@
 package tw.edu.ncu.cc.location.db.data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Unit {
 
     @Id @GeneratedValue
     private Integer id;
-
-    @Enumerated( EnumType.STRING )
-    @Column( nullable = false )
-    private UnitType type;
 
     @Column( length = 80, nullable = false )
     private String name;
@@ -21,20 +20,14 @@ public class Unit {
     @Column( nullable = false )
     private Double latitude;
 
-    @Column( length = 25 )
-    private String telephone;
-
     private String url;
 
     public Unit() {}
-    public Unit( String name, UnitType type,
-                 Double longitude, Double latitude ) {
+    public Unit( String name, Double longitude, Double latitude ) {
         this.name = name;
-        this.type = type;
         this.longitude = longitude;
         this.latitude  = latitude;
     }
-
 
     public Integer getId() {
         return id;
@@ -42,14 +35,6 @@ public class Unit {
 
     public void setId( Integer id ) {
         this.id = id;
-    }
-
-    public UnitType getType() {
-        return type;
-    }
-
-    public void setType( UnitType type ) {
-        this.type = type;
     }
 
     public String getName() {
@@ -74,14 +59,6 @@ public class Unit {
 
     public void setLatitude( Double latitude ) {
         this.latitude = latitude;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone( String telephone ) {
-        this.telephone = telephone;
     }
 
     public String getUrl() {

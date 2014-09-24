@@ -9,7 +9,7 @@ public class Person {
     @Id @GeneratedValue
     private Integer id;
 
-    @OneToMany( fetch = FetchType.LAZY )
+    @ManyToMany( fetch = FetchType.LAZY )
     private Set<Unit> units;
 
     @Column( length = 80, nullable = false )

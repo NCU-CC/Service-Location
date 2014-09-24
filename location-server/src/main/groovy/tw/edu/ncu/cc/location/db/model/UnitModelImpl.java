@@ -1,7 +1,6 @@
 package tw.edu.ncu.cc.location.db.model;
 
 import tw.edu.ncu.cc.location.db.data.Unit;
-import tw.edu.ncu.cc.location.db.data.UnitType;
 import tw.edu.ncu.cc.location.db.model.abstracts.UnitModel;
 import tw.edu.ncu.cc.location.db.model.base.HibernateAccessTool;
 
@@ -21,14 +20,9 @@ public class UnitModelImpl extends HibernateAccessTool implements UnitModel {
     }
 
     @Override
-    public Unit getUnit( String name ) {
-        return getObject( Unit.class, String.format( "name = '%s'", name ) );
-    }
-
-    @Override
-    public Set<Unit> getUnits( UnitType type ) {
+    public Set<Unit> getUnits( String name ) {
         return new HashSet<>(
-                getObjects( Unit.class, String.format( "type = '%s'", type.toString() )  )
+            getObjects( Unit.class, String.format( "name = '%s'", name ) )
         );
     }
 

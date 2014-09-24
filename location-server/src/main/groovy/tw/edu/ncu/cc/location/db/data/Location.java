@@ -26,7 +26,12 @@ public class Location {
 
     public Location() {}
     public Location( LocationType type, Double longitude, Double latitude ) {
+        this( type, longitude, latitude, null );
+    }
+
+    public Location( LocationType type, Double longitude, Double latitude, String name ) {
         this.type = type;
+        this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
     }

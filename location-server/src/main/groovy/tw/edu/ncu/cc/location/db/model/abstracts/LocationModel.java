@@ -8,5 +8,6 @@ import java.util.Set;
 public interface LocationModel {
     public void persistLocation( Location...locations );
     public Location getLocation( Integer id );
+    public Set<Location> getLocations( String name );
     public Set<Location> getLocations( LocationType type );
 }

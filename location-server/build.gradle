@@ -26,18 +26,23 @@ dependencies {
 	
 	testCompile 'com.jayway.restassured:rest-assured:2.3.3'
 
-    compile 'javax.servlet:servlet-api:2.5'
+    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+
     compile 'com.h2database:h2:1.4.181'
     compile 'org.hibernate:hibernate-core:4.3.6.Final'
     compile 'org.glassfish.jersey.containers:jersey-container-servlet-core:2.11'
 
 }
 
-tomcatRunWar {
+tomcatRun{
     enableSSL = true
     ajpPort   = 5566
     httpPort  = 8591
-    httpsPort = 5278
+}
+
+tomcatRunWar {
+    ajpPort   = 5566
+    httpPort  = 8591
 }
 
 ext {

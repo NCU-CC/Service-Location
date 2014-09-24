@@ -59,8 +59,23 @@ class LocationModelImplTest extends Specification {
 
     def "it can get location by location name"() {
         given:
-            Location location1 = new Location( LocationType.RESTAURANT , 1, 1 )
-            Location location2 = new Location( LocationType.RESTAURANT , 1, 1 )
+            Location location1 = new Location( LocationType.SCENE, 1, 1, "toilet" )
+            Location location2 = new Location( LocationType.SCENE, 1, 1, "toilet" )
+            Location location3 = new Location( LocationType.SCENE, 1, 1, "school" )
+        when:
+            locationModel.persistLocation( location1, location2, location3 )
+        and:
+            def locations = locationModel.getLocations( "toilet" )
+        then:
+            locations.contains( location1 )
+            locations.contains( location2 )
+            ! locations.contains( location3 )
+    }
+
+    def "it can get location by location type"() {
+        given:
+            Location location1 = new Location( LocationType.RESTAURANT, 1, 1 )
+            Location location2 = new Location( LocationType.RESTAURANT, 1, 1 )
             Location location3 = new Location( LocationType.WHEELCHAIR_RAMP, 1, 1 )
         when:
             locationModel.persistLocation( location1, location2, location3 )
@@ -70,7 +85,6 @@ class LocationModelImplTest extends Specification {
             locations.contains( location1 )
             locations.contains( location2 )
             ! locations.contains( location3 )
-
     }
 
 

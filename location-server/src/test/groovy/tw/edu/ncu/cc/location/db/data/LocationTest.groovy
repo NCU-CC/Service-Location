@@ -53,7 +53,7 @@ class LocationTest extends Specification {
             location.getPictureName() == "123.jpg"
     }
 
-    def "it can init by other constructor"() {
+    def "it can init by other constructor1"() {
         when:
             Location newLocation = new Location( LocationType.SCENE, 1, 2 )
         then:
@@ -62,4 +62,13 @@ class LocationTest extends Specification {
             newLocation.getLatitude()  == 2
     }
 
+    def "it can init by other constructor2"() {
+        when:
+            Location newLocation = new Location( LocationType.SCENE, 1, 2, "tree" )
+        then:
+            newLocation.getType() == LocationType.SCENE
+            newLocation.getName() == "tree"
+            newLocation.getLongitude() == 1
+            newLocation.getLatitude()  == 2
+    }
 }

@@ -21,6 +21,13 @@ public class LocationModelImpl extends HibernateAccessTool implements LocationMo
     }
 
     @Override
+    public Set<Location> getLocations( String name ) {
+        return new HashSet<>(
+                getObjects( Location.class, String.format( "name = '%s'", name ) )
+        );
+    }
+
+    @Override
     public Set<Location> getLocations( LocationType type ) {
         return new HashSet<>(
                 getObjects( Location.class, String.format( "type = '%s'", type.toString() )  )
