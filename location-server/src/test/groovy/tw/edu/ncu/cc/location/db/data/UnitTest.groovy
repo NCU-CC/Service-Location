@@ -55,17 +55,17 @@ class UnitTest extends Specification {
 
     def "has property of type in UnitType(enum)"() {
         when:
-            unit.setType( UnitType.SCENE )
+            unit.setType( UnitType.TEACHING )
         then:
-            unit.getType() == UnitType.SCENE
+            unit.getType() == UnitType.TEACHING
     }
 
     def "can init by other constructor"() {
         when:
-            Unit newUnit = new Unit( "name", UnitType.SCENE, 1, 2 );
+            Unit newUnit = new Unit( "name", UnitType.TEACHING, 1, 2 );
         then:
             newUnit.getName() == "name"
-            newUnit.getType() == UnitType.SCENE
+            newUnit.getType() == UnitType.TEACHING
             newUnit.getLongitude() == 1
             newUnit.getLatitude()  == 2
     }

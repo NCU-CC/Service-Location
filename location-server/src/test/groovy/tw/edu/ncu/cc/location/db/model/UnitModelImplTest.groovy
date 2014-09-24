@@ -31,13 +31,13 @@ class UnitModelImplTest extends Specification {
         given:
             Unit unit = new Unit()
             unit.setName( "unit" )
-            unit.setType( UnitType.SCENE )
-            unit.setLatitude( 50 )
+            unit.setType( UnitType.TEACHING )
+            unit.setLatitude ( 50 )
             unit.setLongitude( 50 )
         when:
             unitModel.persistUnits( unit )
         then:
-            notThrown( Exception )
+            notThrown( PropertyValueException )
     }
 
     def "thrown exception when some fields is null"() {
@@ -51,7 +51,7 @@ class UnitModelImplTest extends Specification {
 
     def "it can get unit by id"() {
         given:
-            Unit unit = new Unit( "none", UnitType.SCENE, 1, 1 )
+            Unit unit = new Unit( "none", UnitType.TEACHING, 1, 1 )
         when:
             unitModel.persistUnits( unit )
         then:
@@ -60,7 +60,7 @@ class UnitModelImplTest extends Specification {
 
     def "it can get unit by name"() {
         given:
-            Unit unit = new Unit( "SCHOOL", UnitType.SCENE, 1, 1 )
+            Unit unit = new Unit( "SCHOOL", UnitType.TEACHING, 1, 1 )
         when:
             unitModel.persistUnits( unit )
         then:
@@ -69,13 +69,13 @@ class UnitModelImplTest extends Specification {
 
     def "it can get units by type"() {
         given:
-            Unit unit1 = new Unit( "none", UnitType.SCENE, 1, 1 )
-            Unit unit2 = new Unit( "none", UnitType.SCENE, 1, 1 )
+            Unit unit1 = new Unit( "none", UnitType.TEACHING, 1, 1 )
+            Unit unit2 = new Unit( "none", UnitType.TEACHING, 1, 1 )
             Unit unit3 = new Unit( "none", UnitType.ADMINISTRATIVE, 1, 1 )
         when:
             unitModel.persistUnits( unit1, unit2, unit3 )
         and:
-            def units = unitModel.getUnits( UnitType.SCENE )
+            def units = unitModel.getUnits( UnitType.TEACHING )
         then:
             units.contains( unit1 )
             units.contains( unit2 )
