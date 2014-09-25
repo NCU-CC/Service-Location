@@ -41,4 +41,15 @@ class PersonTest extends Specification {
             newPerson.getName() == "name"
     }
 
+    def "can init by other contructor 2"() {
+        given:
+            Unit unit = new Unit()
+        when:
+            Person newPerson = new Person( "name", unit )
+        then:
+            newPerson.getName() == "name"
+            newPerson.getUnits().contains( unit )
+    }
+
+
 }

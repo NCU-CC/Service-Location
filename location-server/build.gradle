@@ -24,7 +24,9 @@ dependencies {
         exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
     }
 	
-	testCompile 'com.jayway.restassured:rest-assured:2.3.3'
+	testCompile ( 'com.jayway.restassured:rest-assured:2.3.3' ){
+        exclude module: 'groovy'
+    }
 
     providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
 
@@ -34,26 +36,17 @@ dependencies {
 
 }
 
-tomcatRun{
-    enableSSL = true
-    ajpPort   = 5566
-    httpPort  = 8591
-}
-
-tomcatRunWar {
-    ajpPort   = 5566
-    httpPort  = 8591
-}
-
 ext {
     tomcatStopPort = 8592
-    tomcatStopKey = 'stopKey'
+    tomcatStopKey  = 'stopKey'
 }
 
 task integrationTomcatRun( type: TomcatRun ) {
+    ajpPort  = 5566
+    httpPort = 8591
+    daemon = true
     stopPort = tomcatStopPort
     stopKey  = tomcatStopKey
-    daemon = true
 }
 
 task integrationTomcatStop( type: TomcatStop ) {

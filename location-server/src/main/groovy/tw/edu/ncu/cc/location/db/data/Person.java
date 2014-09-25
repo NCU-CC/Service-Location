@@ -1,6 +1,8 @@
 package tw.edu.ncu.cc.location.db.data;
 
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,6 +20,14 @@ public class Person {
     public Person() {}
     public Person( String name ) {
         this.name = name;
+    }
+
+    public Person( String name, Unit...unitArr ) {
+        this.name = name;
+        if( unitArr != null ) {
+            units = new HashSet<>();
+            units.addAll( Arrays.asList( unitArr ) );
+        }
     }
 
     public Integer getId() {

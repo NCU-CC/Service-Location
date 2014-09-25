@@ -25,7 +25,7 @@ public class HibernateUtil {
         Session session = localSession.get();
         if (session != null)
             session.close();
-        localSession.set( null );
+        localSession.remove();
     }
 
 
