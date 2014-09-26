@@ -13,7 +13,6 @@ import tw.edu.ncu.cc.location.server.db.model.abstracts.PlaceModel;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.UnitModel;
 import tw.edu.ncu.cc.location.server.factory.HibernateSessionFactory;
 import tw.edu.ncu.cc.location.server.factory.HibernateUtilFactory;
-import tw.edu.ncu.cc.location.server.provider.EnumParamProvider;
 
 import javax.inject.Singleton;
 
@@ -24,7 +23,6 @@ public class LocationApplication extends ResourceConfig {
         packages( "tw.edu.ncu.cc" );
 
         register( JacksonFeature.class );
-        register( EnumParamProvider.class );
 //        register( SchedulerInitListener.class );
 
         register( new AbstractBinder() {

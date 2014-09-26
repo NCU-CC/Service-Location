@@ -68,4 +68,12 @@ class PersonServiceIntegrationTest extends Specification {
                     '''
             ) )
     }
+
+    def "server can return all units of a person by person name 2"() {
+        when:
+            def response = RestAssured.get( "/person/name/personNotExist" ).asString()
+        then:
+            response == '{"result":null}'
+    }
+
 }

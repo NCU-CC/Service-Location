@@ -74,5 +74,12 @@ class UnitServiceIntegrationTest extends Specification {
             ) )
     }
 
+    def "server can return all units by name 3"() {
+        when:
+            def response = RestAssured.get( "/unit/name/NameNotExist" ).asString()
+        then:
+            response == '{"result":null}'
+    }
+
 
 }

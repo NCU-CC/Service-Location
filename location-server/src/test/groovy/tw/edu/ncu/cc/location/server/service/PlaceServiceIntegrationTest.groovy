@@ -77,8 +77,14 @@ class PlaceServiceIntegrationTest extends Specification {
             ))
     }
 
+    def "server can return all places by type 3"() {
+        when:
+            def response = RestAssured.get( "/place/type/TypeNotExist" ).asString()
+        then:
+            response == '{"result":null}'
+    }
 
-    def "server can return all units by name"() {
+    def "server can return all units by name 1"() {
         when:
             def response = new JsonSlurper().parseText(
                     RestAssured.get( "/place/name/scene1" ).asString()
@@ -105,6 +111,13 @@ class PlaceServiceIntegrationTest extends Specification {
                     }
                     '''
             ) )
+    }
+
+    def "server can return all places by name 2"() {
+        when:
+            def response = RestAssured.get( "/place/name/NameNotExist" ).asString()
+        then:
+            response == '{"result":null}'
     }
 
 }
