@@ -10,12 +10,14 @@ import java.util.Set;
 public class ServerPlaceNoTypeWrapper extends PlaceNoTypeWrapper {
 
     public ServerPlaceNoTypeWrapper( Set<Place> places ) {
-        PlaceNoType[] result = new PlaceNoType[ places.size() ];
-        int i = 0;
-        for( Place place : places ) {
-            result[ i++ ] = build( place );
+        if( places.size() > 0 ) {
+            PlaceNoType[] result = new PlaceNoType[ places.size() ];
+            int i = 0;
+            for( Place place : places ) {
+                result[ i++ ] = build( place );
+            }
+            setResult( result );
         }
-        setResult( result );
     }
 
     private PlaceNoType build( Place place ) {

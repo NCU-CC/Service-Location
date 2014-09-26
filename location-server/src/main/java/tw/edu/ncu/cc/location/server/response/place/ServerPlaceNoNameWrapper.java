@@ -10,12 +10,14 @@ import java.util.Set;
 public class ServerPlaceNoNameWrapper extends PlaceNoNameWrapper {
 
     public ServerPlaceNoNameWrapper( Set<Place> places ) {
-        PlaceNoName[] result = new PlaceNoName[ places.size() ];
-        int i = 0;
-        for( Place place : places ) {
-            result[ i++ ] = build( place );
+        if( places.size() > 0 ) {
+            PlaceNoName[] result = new PlaceNoName[ places.size() ];
+            int i = 0;
+            for( Place place : places ) {
+                result[ i++ ] = build( place );
+            }
+            setResult( result );
         }
-        setResult( result );
     }
 
     private PlaceNoName build( Place place ) {

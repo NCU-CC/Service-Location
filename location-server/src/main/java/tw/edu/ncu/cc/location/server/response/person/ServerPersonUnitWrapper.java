@@ -11,13 +11,15 @@ import java.util.Set;
 public class ServerPersonUnitWrapper extends PersonUnitWrapper {
 
     public ServerPersonUnitWrapper( Person person ) {
-        Set<Unit> units = person.getUnits();
-        UnitNoID[] result = new UnitNoID[ units.size() ];
-        int i = 0;
-        for( Unit unit : units ) {
-            result[ i++ ] = build( unit );
+        if( person != null ) {
+            Set<Unit> units = person.getUnits();
+            UnitNoID[] result = new UnitNoID[ units.size() ];
+            int i = 0;
+            for( Unit unit : units ) {
+                result[ i++ ] = build( unit );
+            }
+            setResult( result );
         }
-        setResult( result );
     }
 
     private UnitNoID build( Unit unit ) {

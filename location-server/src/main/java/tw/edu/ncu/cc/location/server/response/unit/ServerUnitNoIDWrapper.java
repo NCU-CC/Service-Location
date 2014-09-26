@@ -10,12 +10,14 @@ import java.util.Set;
 public class ServerUnitNoIDWrapper extends UnitNoIDWrapper {
 
     public ServerUnitNoIDWrapper( Set<Unit> units ) {
-        UnitNoID[] result = new UnitNoID[ units.size() ];
-        int i = 0;
-        for( Unit unit : units ) {
-            result[ i++ ] = build( unit );
+        if( units.size() > 0 ) {
+            UnitNoID[] result = new UnitNoID[ units.size() ];
+            int i = 0;
+            for( Unit unit : units ) {
+                result[ i++ ] = build( unit );
+            }
+            setResult( result );
         }
-        setResult( result );
     }
 
     private UnitNoID build( Unit unit ) {
