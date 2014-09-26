@@ -1,4 +1,4 @@
-package tool;
+package tw.edu.ncu.cc.location.server.factory;
 
 import org.glassfish.hk2.api.Factory;
 import org.hibernate.SessionFactory;
@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import tw.edu.ncu.cc.location.server.db.HibernateUtil;
 
-public class HibernateUtilTestFactory implements Factory<HibernateUtil> {
+public class HibernateUtilFactory implements Factory<HibernateUtil> {
 
     private static SessionFactory sessionFactory;
 
@@ -22,11 +22,7 @@ public class HibernateUtilTestFactory implements Factory<HibernateUtil> {
     private SessionFactory initSessionFactory() {
         try {
 
-            Configuration conf = new Configuration()
-                    .configure() //TODO READ FROM OUTER FILE
-                    .setProperty( "hibernate.connection.driver_class", "org.h2.Driver" )
-                    .setProperty( "hibernate.connection.url", "jdbc:h2:mem:test" )
-                    .setProperty( "hibernate.hbm2ddl.auto", "create" );
+            Configuration conf = new Configuration() .configure();
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings( conf.getProperties() ).build();
 
