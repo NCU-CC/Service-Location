@@ -1,7 +1,7 @@
 package tw.edu.ncu.cc.location.server.service;
 
 import tw.edu.ncu.cc.location.server.db.model.abstracts.PersonModel;
-import tw.edu.ncu.cc.location.server.response.person.PersonLocationWrapper;
+import tw.edu.ncu.cc.location.server.response.person.ServerPersonLocationWrapper;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -17,8 +17,8 @@ public class PersonService {
     @GET
     @Path( "name/{name}" )
     @Produces("application/json")
-    public PersonLocationWrapper getPersonLocationByName( @PathParam( "name" ) String name ) {
-        return new PersonLocationWrapper( personModel.getPerson( name ) );
+    public ServerPersonLocationWrapper getPersonLocationByName( @PathParam( "name" ) String name ) {
+        return new ServerPersonLocationWrapper( personModel.getPerson( name ) );
     }
 
 }

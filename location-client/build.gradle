@@ -4,14 +4,11 @@ version = '0.0.1-SNAPSHOT'
 buildscript {
     repositories {
         mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.0'
     }
 }
 
 dependencies {
 
+    compile project(":location-data")
 
 }

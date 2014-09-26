@@ -1,6 +1,5 @@
-package tw.edu.ncu.cc.location.server.response.place;
+package tw.edu.ncu.cc.location.data.place;
 
-import tw.edu.ncu.cc.location.server.db.data.Place;
 
 @SuppressWarnings( "unused" )
 public class PlaceBase {
@@ -8,12 +7,6 @@ public class PlaceBase {
     private Double lng;
     private Double lat;
     private String picName;
-
-    public PlaceBase( Place place ) {
-        setLng( place.getLongitude() );
-        setLat( place.getLatitude() );
-        setPicName( place.getPictureName() );
-    }
 
     public Double getLng() {
         return lng;

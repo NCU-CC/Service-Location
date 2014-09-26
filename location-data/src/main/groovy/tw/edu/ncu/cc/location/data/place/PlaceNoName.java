@@ -1,16 +1,10 @@
-package tw.edu.ncu.cc.location.server.response.place;
+package tw.edu.ncu.cc.location.data.place;
 
-import tw.edu.ncu.cc.location.server.db.data.Place;
 
 @SuppressWarnings( "unused" )
 public class PlaceNoName extends PlaceBase {
 
     private String type;
-
-    public PlaceNoName( Place place ) {
-        super( place );
-        setType( place.getType().toString() );
-    }
 
     public String getType() {
         return type;

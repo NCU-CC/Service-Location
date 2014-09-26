@@ -6,12 +6,12 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
     <context-param>
         <param-name>db.url</param-name>
-        <param-value>jdbc:h2:mem:test</param-value>
+        <param-value>jdbc:h2:tcp://localhost:25490/mem:test</param-value>
     </context-param>
 
     <context-param>
         <param-name>db.tcpServer</param-name>
-        <param-value>-tcpAllowOthers</param-value>
+        <param-value>-tcpAllowOthers -tcpPort 25490</param-value>
     </context-param>
 
     <listener>

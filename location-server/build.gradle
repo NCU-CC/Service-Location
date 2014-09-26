@@ -18,6 +18,8 @@ buildscript {
 
 dependencies {
 
+    compile project(":location-data")
+
     tomcat "org.apache.tomcat.embed:tomcat-embed-core:7.0.11",
             "org.apache.tomcat.embed:tomcat-embed-logging-juli:7.0.11"
     tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:7.0.11") {

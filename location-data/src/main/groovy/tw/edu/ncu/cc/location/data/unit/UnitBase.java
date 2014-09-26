@@ -1,6 +1,5 @@
-package tw.edu.ncu.cc.location.server.response.unit;
+package tw.edu.ncu.cc.location.data.unit;
 
-import tw.edu.ncu.cc.location.server.db.data.Unit;
 
 @SuppressWarnings( "unused" )
 public class UnitBase {
@@ -8,12 +7,6 @@ public class UnitBase {
     private Double lng;
     private Double lat;
     private String url;
-
-    public UnitBase( Unit unit ) {
-        lng = unit.getLongitude();
-        lat = unit.getLatitude();
-        url = unit.getUrl();
-    }
 
     public Double getLng() {
         return lng;
