@@ -25,6 +25,7 @@ public class LocationApplication extends ResourceConfig {
 
         register( JacksonFeature.class );
         register( EnumParamProvider.class );
+//        register( SchedulerInitListener.class );
 
         register( new AbstractBinder() {
             @Override

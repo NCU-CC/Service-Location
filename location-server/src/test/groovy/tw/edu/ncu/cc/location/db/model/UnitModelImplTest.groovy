@@ -3,9 +3,9 @@ package tw.edu.ncu.cc.location.db.model
 import org.hibernate.PropertyValueException
 import spock.lang.Shared
 import spock.lang.Specification
+import tool.HibernateUtilTestFactory
 import tw.edu.ncu.cc.location.db.HibernateUtil
 import tw.edu.ncu.cc.location.db.data.Unit
-import tw.edu.ncu.cc.location.factory.HibernateUtilFactory
 
 class UnitModelImplTest extends Specification {
 
@@ -13,7 +13,7 @@ class UnitModelImplTest extends Specification {
     private UnitModelImpl unitModel
 
     def setupSpec() {
-        hibernateUtil = new HibernateUtilFactory().provide()
+        hibernateUtil = new HibernateUtilTestFactory().provide()
     }
 
     def setup() {

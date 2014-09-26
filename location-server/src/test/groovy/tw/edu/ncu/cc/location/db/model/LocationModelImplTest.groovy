@@ -3,10 +3,10 @@ package tw.edu.ncu.cc.location.db.model
 import org.hibernate.PropertyValueException
 import spock.lang.Shared
 import spock.lang.Specification
+import tool.HibernateUtilTestFactory
 import tw.edu.ncu.cc.location.db.HibernateUtil
 import tw.edu.ncu.cc.location.db.data.Location
 import tw.edu.ncu.cc.location.db.data.LocationType
-import tw.edu.ncu.cc.location.factory.HibernateUtilFactory
 
 
 class LocationModelImplTest extends Specification {
@@ -15,7 +15,7 @@ class LocationModelImplTest extends Specification {
     private LocationModelImpl locationModel
 
     def setupSpec() {
-        hibernateUtil = new HibernateUtilFactory().provide()
+        hibernateUtil = new HibernateUtilTestFactory().provide()
     }
 
     def setup() {
