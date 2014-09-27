@@ -18,7 +18,7 @@ LocationClient client = new NCULocationClient( config )
 ```
 
 ### Call methods on *LocationClient* to fetch data from server
-- ``` Set<Place> places =  getPlaces( "placeName" ) ```
-- ``` Set<Place> places =  getPlaces( PlaceType.SCENE ) ```
-- ``` Set<Unit>  units  =  getUnits( "unitName" ) ```
-- ``` Set<Unit>  units  =  getPersonUnits( "personName" ) ```
+- ``` Set<Place> places =  client.getPlaces( "placeName" ) ```
+- ``` Set<Place> places =  client.getPlaces( PlaceType.SCENE ) ```
+- ``` Set<Unit>  units  =  client.getUnits( "unitName" ) ```
+- ``` Set<Unit>  units  =  client.getPersonUnits( "personName" ) ```
