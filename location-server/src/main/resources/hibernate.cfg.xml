@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <mapping class="tw.edu.ncu.cc.location.server.db.data.Person"/>
+        <mapping class="tw.edu.ncu.cc.location.server.db.data.Unit"/>
+        <mapping class="tw.edu.ncu.cc.location.server.db.data.Place"/>
+
+    </session-factory>
+</hibernate-configuration>
