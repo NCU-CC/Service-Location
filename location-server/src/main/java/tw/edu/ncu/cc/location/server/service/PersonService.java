@@ -17,7 +17,7 @@ public class PersonService {
 
     @GET
     @Path( "name/{name}" )
-    @Produces("application/json")
+    @Produces("application/json;charset=utf-8")
     public PersonUnitWrapper getPersonLocationByName( @PathParam( "name" ) String name ) {
         return new ServerPersonUnitWrapper( personModel.getPerson( name ) );
     }

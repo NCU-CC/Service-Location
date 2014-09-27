@@ -22,7 +22,7 @@ public class PlaceService {
 
     @GET
     @Path( "type/{type}" )
-    @Produces("application/json")
+    @Produces("application/json;charset=utf-8")
     public PlaceNoTypeWrapper getPlaceByType( @PathParam("type") String type ) {
         try{
             return new ServerPlaceNoTypeWrapper( placeModel.getPlaces( PlaceType.fromValue( type ) ) );
@@ -33,7 +33,7 @@ public class PlaceService {
 
     @GET
     @Path( "name/{name}" )
-    @Produces("application/json")
+    @Produces("application/json;charset=utf-8")
     public PlaceNoNameWrapper getPlaceByName( @PathParam("name") String name ) {
         return new ServerPlaceNoNameWrapper( placeModel.getPlaces( name ) );
     }
