@@ -18,7 +18,7 @@ public class UnitService {
 
     @GET
     @Path( "name/{name}" )
-    @Produces("application/json")
+    @Produces("application/json;charset=utf-8")
     public UnitBaseWrapper getUnitByName( @PathParam( "name" ) String name ) {
         return new ServerUnitBaseWrapper( unitModel.getUnits( name ) );
     }

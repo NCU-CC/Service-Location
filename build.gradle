@@ -8,6 +8,10 @@ subprojects{
     apply plugin: 'groovy'
     sourceCompatibility = 1.7
 
+    tasks.withType( JavaCompile ) {
+        options.encoding = "UTF-8"
+    }
+
     repositories {
         mavenCentral()
         maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }

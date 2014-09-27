@@ -10,7 +10,7 @@ public class KeyWordService {
 
     @GET
     @Path( "{word}" )
-    @Produces("application/json")
+    @Produces("application/json;charset=utf-8")
     public String getKeyWord( @PathParam( "word" ) String word ) {
         return "You have entered:" + word;
     }
