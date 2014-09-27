@@ -2,8 +2,8 @@ package tw.edu.ncu.cc.location.server.service;
 
 import tw.edu.ncu.cc.location.data.place.PlaceNoNameWrapper;
 import tw.edu.ncu.cc.location.data.place.PlaceNoTypeWrapper;
+import tw.edu.ncu.cc.location.data.place.PlaceType;
 import tw.edu.ncu.cc.location.server.db.data.Place;
-import tw.edu.ncu.cc.location.server.db.data.PlaceType;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.PlaceModel;
 import tw.edu.ncu.cc.location.server.response.place.ServerPlaceNoNameWrapper;
 import tw.edu.ncu.cc.location.server.response.place.ServerPlaceNoTypeWrapper;

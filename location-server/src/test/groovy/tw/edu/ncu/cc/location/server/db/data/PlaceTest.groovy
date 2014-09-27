@@ -1,6 +1,7 @@
 package tw.edu.ncu.cc.location.server.db.data
 
 import spock.lang.Specification
+import tw.edu.ncu.cc.location.data.place.PlaceType
 
 
 class PlaceTest extends Specification {

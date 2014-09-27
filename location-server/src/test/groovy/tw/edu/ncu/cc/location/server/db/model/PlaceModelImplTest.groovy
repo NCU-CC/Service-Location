@@ -4,10 +4,9 @@ import org.hibernate.PropertyValueException
 import spock.lang.Shared
 import spock.lang.Specification
 import tool.HibernateUtilTestFactory
+import tw.edu.ncu.cc.location.data.place.PlaceType
 import tw.edu.ncu.cc.location.server.db.HibernateUtil
 import tw.edu.ncu.cc.location.server.db.data.Place
-import tw.edu.ncu.cc.location.server.db.data.PlaceType
-
 
 class PlaceModelImplTest extends Specification {
 

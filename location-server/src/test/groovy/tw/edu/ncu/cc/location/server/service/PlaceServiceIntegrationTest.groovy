@@ -4,9 +4,9 @@ import com.jayway.restassured.RestAssured
 import groovy.json.JsonSlurper
 import spock.lang.Specification
 import tool.RestAssuredTestConfiguer
+import tw.edu.ncu.cc.location.data.place.PlaceType
 import tw.edu.ncu.cc.location.server.db.HibernateUtil
 import tw.edu.ncu.cc.location.server.db.data.Place
-import tw.edu.ncu.cc.location.server.db.data.PlaceType
 import tw.edu.ncu.cc.location.server.db.model.PlaceModelImpl
 import tw.edu.ncu.cc.location.server.db.model.abstracts.PlaceModel
 import tw.edu.ncu.cc.location.server.factory.HibernateUtilFactory

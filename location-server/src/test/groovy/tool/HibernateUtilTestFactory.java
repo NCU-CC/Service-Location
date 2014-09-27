@@ -23,7 +23,7 @@ public class HibernateUtilTestFactory implements Factory<HibernateUtil> {
         try {
 
             Configuration conf = new Configuration()
-                    .configure() //TODO READ FROM OUTER FILE
+                    .configure()
                     .setProperty( "hibernate.connection.driver_class", "org.h2.Driver" )
                     .setProperty( "hibernate.connection.url", "jdbc:h2:mem:test" )
                     .setProperty( "hibernate.hbm2ddl.auto", "create" );

@@ -23,4 +23,14 @@ class UnitTest extends Specification {
             unit instanceof Location
     }
 
+    def "it can init by other constructor"() {
+        when:
+            def newUnit = new Unit( "name", "url", 1.0, 2.0 )
+        then:
+            newUnit.getName() == "name"
+            newUnit.getUrl()  == "url"
+            newUnit.getLatitude()  == 1.0
+            newUnit.getLongitude() == 2.0
+    }
+
 }

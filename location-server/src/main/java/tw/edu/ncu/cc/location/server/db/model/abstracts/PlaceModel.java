@@ -1,7 +1,7 @@
 package tw.edu.ncu.cc.location.server.db.model.abstracts;
 
+import tw.edu.ncu.cc.location.data.place.PlaceType;
 import tw.edu.ncu.cc.location.server.db.data.Place;
-import tw.edu.ncu.cc.location.server.db.data.PlaceType;
 
 import java.util.Set;
 

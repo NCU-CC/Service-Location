@@ -1,5 +1,7 @@
 package tw.edu.ncu.cc.location.server.db.data;
 
+import tw.edu.ncu.cc.location.data.place.PlaceType;
+
 import javax.persistence.*;
 
 @Entity

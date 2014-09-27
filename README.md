@@ -7,4 +7,4 @@ A web service for providing location information
 ## Module
 - location-server : location provider
 - location-client : location consumer
-- location-data   : data mapping classes
+- location-data   : location data

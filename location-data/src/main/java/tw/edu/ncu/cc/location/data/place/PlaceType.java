@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.db.data;
+package tw.edu.ncu.cc.location.data.place;
 
 public enum PlaceType {
 

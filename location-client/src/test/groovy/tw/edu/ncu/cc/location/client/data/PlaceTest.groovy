@@ -1,6 +1,7 @@
 package tw.edu.ncu.cc.location.client.data
 
 import spock.lang.Specification
+import tw.edu.ncu.cc.location.data.place.PlaceType
 
 
 class PlaceTest extends Specification {
@@ -29,4 +30,16 @@ class PlaceTest extends Specification {
         expect:
             place instanceof Location
     }
+
+    def "it can init by other constructor"() {
+        when:
+            def newPlace = new Place( "name", PlaceType.SCENE, 1.0, 2.0, "pic.png" )
+        then:
+            newPlace.getName() == "name"
+            newPlace.getType() == PlaceType.SCENE
+            newPlace.getLatitude()  == 1.0
+            newPlace.getLongitude() == 2.0
+            newPlace.getPictureName() == "pic.png"
+    }
+
 }
