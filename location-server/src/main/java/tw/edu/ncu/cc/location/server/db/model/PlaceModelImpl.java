@@ -30,7 +30,7 @@ public class PlaceModelImpl extends HibernateAccessTool implements PlaceModel {
     @Override
     public Set<Place> getPlaces( PlaceType type ) {
         return new HashSet<>(
-                getObjects( Place.class, String.format( "type = '%s'", type.toString() )  )
+                getObjects( Place.class, String.format( "type = '%d'", type.ordinal() )  )
         );
     }
 

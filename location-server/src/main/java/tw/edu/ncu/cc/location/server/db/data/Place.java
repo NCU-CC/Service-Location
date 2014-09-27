@@ -10,7 +10,7 @@ public class Place {
     @Id @GeneratedValue
     private Integer id;
 
-    @Enumerated( EnumType.STRING )
+    @Enumerated( EnumType.ORDINAL )
     @Column( nullable = false )
     private PlaceType type;
 
