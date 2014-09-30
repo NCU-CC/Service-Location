@@ -1,15 +1,15 @@
 package tw.edu.ncu.cc.location.data.keyword;
 
 @SuppressWarnings( "unused" )
-public class KeywordWrapper {
+public class WordWrapper {
 
-    private Keywords[] result;
+    private Word[] result;
 
-    public Keywords[] getResult() {
+    public Word[] getResult() {
         return result;
     }
 
-    public void setResult( Keywords[] result ) {
+    public void setResult( Word[] result ) {
         this.result = result;
     }
 
