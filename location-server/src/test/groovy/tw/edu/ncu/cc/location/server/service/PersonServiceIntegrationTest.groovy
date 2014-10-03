@@ -2,7 +2,6 @@ package tw.edu.ncu.cc.location.server.service
 
 import com.jayway.restassured.RestAssured
 import groovy.json.JsonSlurper
-import spock.lang.IgnoreRest
 import spock.lang.Specification
 import tool.RestAssuredTestConfiguer
 import tw.edu.ncu.cc.location.server.db.HibernateUtil
@@ -13,7 +12,6 @@ import tw.edu.ncu.cc.location.server.db.model.UnitModelImpl
 import tw.edu.ncu.cc.location.server.db.model.abstracts.PersonModel
 import tw.edu.ncu.cc.location.server.db.model.abstracts.UnitModel
 import tw.edu.ncu.cc.location.server.factory.HibernateUtilFactory
-
 
 class PersonServiceIntegrationTest extends Specification {
 
@@ -31,8 +29,8 @@ class PersonServiceIntegrationTest extends Specification {
         UnitModel unitModel = new UnitModelImpl()
         unitModel.setSession( hibernateUtil.currentSession() )
 
-        UnitEntity unit1 = new UnitEntity( "code1", "cname1", "sname1", "fname1" )
-        UnitEntity unit2 = new UnitEntity( "code2", "cname2", "sname2", "fname2" )
+        UnitEntity unit1 = new UnitEntity( "upcode1", "cname1", "sname1", "fname1" )
+        UnitEntity unit2 = new UnitEntity( "upcode2", "cname2", "sname2", "fname2" )
         unitModel.persistUnits( unit1, unit2 )
 
         personModel.persistPersons(
@@ -51,7 +49,7 @@ class PersonServiceIntegrationTest extends Specification {
             response.result.contains( new JsonSlurper().parseText(
                     '''
                      {
-                        "unitCode"   : "code1",
+                        "unitCode"   : "upcode1",
                         "chineseName": "cname1",
                         "englishName":  null,
                         "shortName"  : "sname1",
@@ -65,7 +63,7 @@ class PersonServiceIntegrationTest extends Specification {
             response.result.contains( new JsonSlurper().parseText(
                     '''
                      {
-                        "unitCode"   : "code2",
+                        "unitCode"   : "upcode2",
                         "chineseName": "cname2",
                         "englishName":  null,
                         "shortName"  : "sname2",
@@ -77,7 +75,6 @@ class PersonServiceIntegrationTest extends Specification {
             ) )
     }
 
-    @IgnoreRest
     def "server can return all units of a person by person name 2"() {
         when:
             def response = RestAssured.get( "/person/name/personNotExist" ).asString()
