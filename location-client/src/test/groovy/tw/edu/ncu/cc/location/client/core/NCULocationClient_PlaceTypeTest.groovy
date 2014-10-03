@@ -8,7 +8,7 @@ import spock.lang.Shared
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.client.TestServerSetting
 import tw.edu.ncu.cc.location.client.core.abstracts.LocationConfig
-import tw.edu.ncu.cc.location.client.data.Place
+import tw.edu.ncu.cc.location.data.place.Place
 import tw.edu.ncu.cc.location.data.place.PlaceType
 
 
@@ -29,7 +29,13 @@ class NCULocationClient_PlaceTypeTest extends Specification {
                         .withHeaders(
                             new Header( "Content-Type", "application/json" )
                         )
-                        .withBody('{"result":[{"name":"tree","lat":3.3,"lng":6.6,"picName":"tree.jpg"}]}')
+                        .withBody('{"result":[{' +
+                        '"chineseName":"home",' +
+                        '"englishName":"home",' +
+                        '"pictureName":"tree.jpg",' +
+                        '"type":"SCENE",' +
+                        '"location":{"lat":2,"lng":4}' +
+                        '}]}')
         )
     }
 
@@ -49,11 +55,12 @@ class NCULocationClient_PlaceTypeTest extends Specification {
         then:
             def placeArr = places.toArray( new Place[ places.size() ] )
         and:
-            placeArr[0].getName() == "tree"
-            placeArr[0].getType() == null
-            placeArr[0].getLatitude()  == 3.3
-            placeArr[0].getLongitude() == 6.6
+            placeArr[0].getChineseName() == "home"
+            placeArr[0].getEnglishName() == "home"
             placeArr[0].getPictureName() == "tree.jpg"
+            placeArr[0].getType() == PlaceType.SCENE
+            placeArr[0].getLocation().getLat() == 2
+            placeArr[0].getLocation().getLng() == 4
     }
 
 }

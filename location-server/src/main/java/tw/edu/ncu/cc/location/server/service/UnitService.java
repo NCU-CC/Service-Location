@@ -1,9 +1,9 @@
 package tw.edu.ncu.cc.location.server.service;
 
 
-import tw.edu.ncu.cc.location.data.unit.UnitBaseWrapper;
+import tw.edu.ncu.cc.location.data.unit.UnitWrapper;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.UnitModel;
-import tw.edu.ncu.cc.location.server.response.unit.ServerUnitBaseWrapper;
+import tw.edu.ncu.cc.location.server.response.ServerUnitWrapper;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -19,8 +19,8 @@ public class UnitService {
     @GET
     @Path( "name/{name}" )
     @Produces("application/json;charset=utf-8")
-    public UnitBaseWrapper getUnitByName( @PathParam( "name" ) String name ) {
-        return new ServerUnitBaseWrapper( unitModel.getUnits( name ) );
+    public UnitWrapper getUnitByName( @PathParam( "name" ) String name ) {
+        return new ServerUnitWrapper( unitModel.getUnits( name ) );
     }
 
 }

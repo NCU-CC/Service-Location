@@ -1,6 +1,6 @@
 package tw.edu.ncu.cc.location.server.db.model;
 
-import tw.edu.ncu.cc.location.server.db.data.Unit;
+import tw.edu.ncu.cc.location.server.db.data.UnitEntity;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.UnitModel;
 import tw.edu.ncu.cc.location.server.db.model.base.HibernateAccessTool;
 
@@ -10,19 +10,19 @@ import java.util.Set;
 public class UnitModelImpl extends HibernateAccessTool implements UnitModel {
 
     @Override
-    public void persistUnits( Unit... units ) {
-        persistObjects( ( Object[] ) units );
+    public void persistUnits( UnitEntity... unitEntities ) {
+        persistObjects( ( Object[] ) unitEntities );
     }
 
     @Override
-    public Unit getUnit( Integer id ) {
-        return ( Unit ) getObject( id, Unit.class );
+    public UnitEntity getUnit( Integer id ) {
+        return ( UnitEntity ) getObject( id, UnitEntity.class );
     }
 
     @Override
-    public Set<Unit> getUnits( String name ) {
+    public Set<UnitEntity> getUnits( String chineseName ) {
         return new HashSet<>(
-            getObjects( Unit.class, String.format( "name = '%s'", name ) )
+            getObjects( UnitEntity.class, String.format( "cname = '%s'", chineseName ) )
         );
     }
 
