@@ -1,8 +1,8 @@
 package tw.edu.ncu.cc.location.server.service;
 
-import tw.edu.ncu.cc.location.data.person.PersonUnitWrapper;
+import tw.edu.ncu.cc.location.data.unit.UnitWrapper;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.PersonModel;
-import tw.edu.ncu.cc.location.server.response.person.ServerPersonUnitWrapper;
+import tw.edu.ncu.cc.location.server.response.ServerPersonWrapper;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -18,8 +18,8 @@ public class PersonService {
     @GET
     @Path( "name/{name}" )
     @Produces("application/json;charset=utf-8")
-    public PersonUnitWrapper getPersonLocationByName( @PathParam( "name" ) String name ) {
-        return new ServerPersonUnitWrapper( personModel.getPerson( name ) );
+    public UnitWrapper getPersonLocationByName( @PathParam( "name" ) String name ) {
+        return new ServerPersonWrapper( personModel.getPerson( name ) );
     }
 
 }

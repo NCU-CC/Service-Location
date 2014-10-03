@@ -1,13 +1,13 @@
 package tw.edu.ncu.cc.location.server.db.model.abstracts;
 
 import tw.edu.ncu.cc.location.data.place.PlaceType;
-import tw.edu.ncu.cc.location.server.db.data.Place;
+import tw.edu.ncu.cc.location.server.db.data.PlaceEntity;
 
 import java.util.Set;
 
 public interface PlaceModel {
-    public void persistPlace( Place... places );
-    public Place getPlace( Integer id );
-    public Set<Place> getPlaces( String name );
-    public Set<Place> getPlaces( PlaceType type );
+    public void persistPlace( PlaceEntity... placeEntities );
+    public PlaceEntity getPlace( Integer id );
+    public Set<PlaceEntity> getPlaces( String chineseName );
+    public Set<PlaceEntity> getPlaces( PlaceType type );
 }

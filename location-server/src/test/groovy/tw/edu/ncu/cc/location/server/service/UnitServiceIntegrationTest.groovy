@@ -1,11 +1,13 @@
 package tw.edu.ncu.cc.location.server.service
 
 import com.jayway.restassured.RestAssured
+import com.vividsolutions.jts.geom.Coordinate
+import com.vividsolutions.jts.geom.GeometryFactory
 import groovy.json.JsonSlurper
 import spock.lang.Specification
 import tool.RestAssuredTestConfiguer
 import tw.edu.ncu.cc.location.server.db.HibernateUtil
-import tw.edu.ncu.cc.location.server.db.data.Unit
+import tw.edu.ncu.cc.location.server.db.data.UnitEntity
 import tw.edu.ncu.cc.location.server.db.model.UnitModelImpl
 import tw.edu.ncu.cc.location.server.factory.HibernateUtilFactory
 
@@ -18,14 +20,17 @@ class UnitServiceIntegrationTest extends Specification {
     }
 
     private static void initData() {
+        GeometryFactory geometryFactory = new GeometryFactory()
         HibernateUtil hibernateUtil = new HibernateUtilFactory().provide()
         UnitModelImpl unitModel     = new UnitModelImpl()
         unitModel.setSession( hibernateUtil.currentSession() )
         unitModel.persistUnits(
-                new Unit( "integration1", 1.0, 1.0 ),
-                new Unit( "integration2", 2.0, 2.0 ),
-                new Unit( "integration3", 3.0, 3.0 ),
-                new Unit( "integration3", 4.0, 4.0 )
+                new UnitEntity( "code1", "cname1", "sname1", "fname1" ),
+                new UnitEntity( "code2", "cname2", "sname2", "fname2" ),
+                new UnitEntity( "code4", "cname4", "sname4", "fname4" ),
+                new UnitEntity( "code5", "cname4", "sname4", "fname4",
+                        geometryFactory.createPoint( new Coordinate(1.0,1.0) )
+                )
         )
         hibernateUtil.closeSession()
     }
@@ -33,15 +38,19 @@ class UnitServiceIntegrationTest extends Specification {
     def "server can return all units by name 1"() {
         when:
             def response = new JsonSlurper().parseText(
-                    RestAssured.get( "/unit/name/integration1" ).asString()
+                    RestAssured.get( "/unit/name/cname1" ).asString()
             )
         then:
             response.result.contains( new JsonSlurper().parseText(
                     '''
                     {
-                        "lng" : 1.0,
-                        "lat" : 1.0,
-                        "url" : null
+                        "unitCode"   : "code1",
+                        "chineseName": "cname1",
+                        "englishName":  null,
+                        "shortName"  : "sname1",
+                        "fullName"   : "fname1",
+                        "url" : null,
+                        "location" : null
                     }
                     '''
             ) )
@@ -50,15 +59,19 @@ class UnitServiceIntegrationTest extends Specification {
     def "server can return all units by name 2"() {
         when:
             def response = new JsonSlurper().parseText(
-                    RestAssured.get( "/unit/name/integration3" ).asString()
+                    RestAssured.get( "/unit/name/cname4" ).asString()
             )
         then:
             response.result.contains( new JsonSlurper().parseText(
                     '''
                     {
-                        "lng" : 3.0,
-                        "lat" : 3.0,
-                        "url" : null
+                        "unitCode"   : "code4",
+                        "chineseName": "cname4",
+                        "englishName":  null,
+                        "shortName"  : "sname4",
+                        "fullName"   : "fname4",
+                        "url" : null,
+                        "location" : null
                     }
                     '''
             ) )
@@ -66,9 +79,16 @@ class UnitServiceIntegrationTest extends Specification {
             response.result.contains( new JsonSlurper().parseText(
                     '''
                     {
-                        "lng" : 4.0,
-                        "lat" : 4.0,
-                        "url" : null
+                         "unitCode"   : "code5",
+                        "chineseName": "cname4",
+                        "englishName":  null,
+                        "shortName"  : "sname4",
+                        "fullName"   : "fname4",
+                        "url" : null,
+                        "location" : {
+                            "lat" : 1.0,
+                            "lng" : 1.0
+                        }
                     }
                     '''
             ) )

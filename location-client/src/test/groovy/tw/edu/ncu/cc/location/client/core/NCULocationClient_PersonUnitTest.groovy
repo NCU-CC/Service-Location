@@ -8,9 +8,9 @@ import spock.lang.Shared
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.client.TestServerSetting
 import tw.edu.ncu.cc.location.client.core.abstracts.LocationConfig
-import tw.edu.ncu.cc.location.client.data.Unit
+import tw.edu.ncu.cc.location.data.unit.Unit
 
-class NCULocationClient_PersonPlaceTest extends Specification {
+class NCULocationClient_PersonUnitTest extends Specification {
 
     @Shared private ClientAndServer  mockServer = ClientAndServer.startClientAndServer( TestServerSetting.port )
 
@@ -27,7 +27,15 @@ class NCULocationClient_PersonPlaceTest extends Specification {
                         .withHeaders(
                             new Header( "Content-Type", "application/json" )
                         )
-                        .withBody('{"result":[{"name":"cc","lat":2.0,"lng":4.0,"url":"http://cc.com"}]}')
+                        .withBody('{"result":[{' +
+                        '"unitCode":"code",' +
+                        '"chineseName":"jason",' +
+                        '"englishName":"jason",' +
+                        '"shortName":"jj",' +
+                        '"fullName":"jasonChiu",' +
+                        '"url":"gamer.com",' +
+                        '"location":{"lat":1,"lng":2}' +
+                        '}]}')
         )
     }
 
@@ -47,10 +55,14 @@ class NCULocationClient_PersonPlaceTest extends Specification {
         then:
             def unitArr = units.toArray( new Unit[ units.size() ] )
         and:
-            unitArr[0].getName() == "cc"
-            unitArr[0].getLatitude()  == 2.0
-            unitArr[0].getLongitude() == 4.0
-            unitArr[0].getUrl() == "http://cc.com"
+            unitArr[0].getUnitCode()    == "code"
+            unitArr[0].getChineseName() == "jason"
+            unitArr[0].getEnglishName() == "jason"
+            unitArr[0].getShortName()   == "jj"
+            unitArr[0].getFullName()    == "jasonChiu"
+            unitArr[0].getUrl() == "gamer.com"
+            unitArr[0].getLocation().getLat() == 1
+            unitArr[0].getLocation().getLng() == 2
     }
 
 

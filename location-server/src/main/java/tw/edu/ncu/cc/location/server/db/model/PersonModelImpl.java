@@ -1,24 +1,24 @@
 package tw.edu.ncu.cc.location.server.db.model;
 
-import tw.edu.ncu.cc.location.server.db.data.Person;
+import tw.edu.ncu.cc.location.server.db.data.PersonEntity;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.PersonModel;
 import tw.edu.ncu.cc.location.server.db.model.base.HibernateAccessTool;
 
 public class PersonModelImpl extends HibernateAccessTool implements PersonModel {
 
     @Override
-    public void persistPersons( Person... persons ) {
-        persistObjects( ( Object[] ) persons );
+    public void persistPersons( PersonEntity... personEntities ) {
+        persistObjects( ( Object[] ) personEntities );
     }
 
     @Override
-    public Person getPerson( Integer id ) {
-        return ( Person ) getObject( id, Person.class );
+    public PersonEntity getPerson( Integer id ) {
+        return ( PersonEntity ) getObject( id, PersonEntity.class );
     }
 
     @Override
-    public Person getPerson( String name ) {
-        return getObject( Person.class, String.format( "name = '%s'", name ) );
+    public PersonEntity getPerson( String chineseName ) {
+        return getObject( PersonEntity.class, String.format( "cname = '%s'", chineseName ) );
     }
 
 }

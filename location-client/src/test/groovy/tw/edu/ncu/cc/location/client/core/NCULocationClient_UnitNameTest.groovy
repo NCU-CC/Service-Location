@@ -8,7 +8,7 @@ import spock.lang.Shared
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.client.TestServerSetting
 import tw.edu.ncu.cc.location.client.core.abstracts.LocationConfig
-import tw.edu.ncu.cc.location.client.data.Unit
+import tw.edu.ncu.cc.location.data.unit.Unit
 
 class NCULocationClient_UnitNameTest extends Specification {
 
@@ -27,7 +27,15 @@ class NCULocationClient_UnitNameTest extends Specification {
                         .withHeaders(
                             new Header( "Content-Type", "application/json" )
                         )
-                        .withBody('{"result":[{"lat":5.0,"lng":10.0,"url":"http://cc.com"}]}')
+                        .withBody('{"result":[{' +
+                        '"unitCode":"code",' +
+                        '"chineseName":"cc",' +
+                        '"englishName":"cc",' +
+                        '"shortName":"c",' +
+                        '"fullName":"ncucc",' +
+                        '"url":"gamer.com",' +
+                        '"location":{"lat":5,"lng":10}' +
+                        '}]}')
         )
     }
 
@@ -47,10 +55,14 @@ class NCULocationClient_UnitNameTest extends Specification {
         then:
             def unitArr = units.toArray( new Unit[ units.size() ] )
         and:
-            unitArr[0].getName() == null
-            unitArr[0].getLatitude()  == 5.0
-            unitArr[0].getLongitude() == 10.0
-            unitArr[0].getUrl() == "http://cc.com"
+            unitArr[0].getUnitCode()    == "code"
+            unitArr[0].getChineseName() == "cc"
+            unitArr[0].getEnglishName() == "cc"
+            unitArr[0].getShortName()   == "c"
+            unitArr[0].getFullName()    == "ncucc"
+            unitArr[0].getUrl() == "gamer.com"
+            unitArr[0].getLocation().getLat() == 5
+            unitArr[0].getLocation().getLng() == 10
     }
 
 

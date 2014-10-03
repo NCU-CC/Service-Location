@@ -1,7 +1,7 @@
 package tw.edu.ncu.cc.location.server.db.model;
 
 import tw.edu.ncu.cc.location.data.place.PlaceType;
-import tw.edu.ncu.cc.location.server.db.data.Place;
+import tw.edu.ncu.cc.location.server.db.data.PlaceEntity;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.PlaceModel;
 import tw.edu.ncu.cc.location.server.db.model.base.HibernateAccessTool;
 
@@ -11,26 +11,26 @@ import java.util.Set;
 public class PlaceModelImpl extends HibernateAccessTool implements PlaceModel {
 
     @Override
-    public void persistPlace( Place... places ) {
-        persistObjects( ( Object[] ) places );
+    public void persistPlace( PlaceEntity... placeEntities ) {
+        persistObjects( ( Object[] ) placeEntities );
     }
 
     @Override
-    public Place getPlace( Integer id ) {
-        return ( Place ) getObject( id, Place.class );
+    public PlaceEntity getPlace( Integer id ) {
+        return ( PlaceEntity ) getObject( id, PlaceEntity.class );
     }
 
     @Override
-    public Set<Place> getPlaces( String name ) {
+    public Set<PlaceEntity> getPlaces( String chineseName ) {
         return new HashSet<>(
-                getObjects( Place.class, String.format( "name = '%s'", name ) )
+                getObjects( PlaceEntity.class, String.format( "cname = '%s'", chineseName ) )
         );
     }
 
     @Override
-    public Set<Place> getPlaces( PlaceType type ) {
+    public Set<PlaceEntity> getPlaces( PlaceType type ) {
         return new HashSet<>(
-                getObjects( Place.class, String.format( "type = '%d'", type.ordinal() )  )
+                getObjects( PlaceEntity.class, String.format( "type = '%d'", type.ordinal() )  )
         );
     }
 

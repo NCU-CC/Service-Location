@@ -1,8 +1,8 @@
 package tw.edu.ncu.cc.location.client.core.abstracts;
 
-import tw.edu.ncu.cc.location.client.data.Place;
-import tw.edu.ncu.cc.location.client.data.Unit;
+import tw.edu.ncu.cc.location.data.place.Place;
 import tw.edu.ncu.cc.location.data.place.PlaceType;
+import tw.edu.ncu.cc.location.data.unit.Unit;
 
 import java.util.Set;
 

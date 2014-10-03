@@ -1,12 +1,10 @@
 package tw.edu.ncu.cc.location.server.service;
 
-import tw.edu.ncu.cc.location.data.place.PlaceNoNameWrapper;
-import tw.edu.ncu.cc.location.data.place.PlaceNoTypeWrapper;
 import tw.edu.ncu.cc.location.data.place.PlaceType;
-import tw.edu.ncu.cc.location.server.db.data.Place;
+import tw.edu.ncu.cc.location.data.place.PlaceWrapper;
+import tw.edu.ncu.cc.location.server.db.data.PlaceEntity;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.PlaceModel;
-import tw.edu.ncu.cc.location.server.response.place.ServerPlaceNoNameWrapper;
-import tw.edu.ncu.cc.location.server.response.place.ServerPlaceNoTypeWrapper;
+import tw.edu.ncu.cc.location.server.response.ServerPlaceWrapper;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -23,19 +21,19 @@ public class PlaceService {
     @GET
     @Path( "type/{type}" )
     @Produces("application/json;charset=utf-8")
-    public PlaceNoTypeWrapper getPlaceByType( @PathParam("type") String type ) {
+    public PlaceWrapper getPlaceByType( @PathParam("type") String type ) {
         try{
-            return new ServerPlaceNoTypeWrapper( placeModel.getPlaces( PlaceType.fromValue( type ) ) );
+            return new ServerPlaceWrapper( placeModel.getPlaces( PlaceType.fromValue( type ) ) );
         } catch ( IllegalArgumentException ignore ) {
-            return new ServerPlaceNoTypeWrapper( new HashSet<Place>() );
+            return new ServerPlaceWrapper( new HashSet<PlaceEntity>() );
         }
     }
 
     @GET
     @Path( "name/{name}" )
     @Produces("application/json;charset=utf-8")
-    public PlaceNoNameWrapper getPlaceByName( @PathParam("name") String name ) {
-        return new ServerPlaceNoNameWrapper( placeModel.getPlaces( name ) );
+    public PlaceWrapper getPlaceByName( @PathParam("name") String name ) {
+        return new ServerPlaceWrapper( placeModel.getPlaces( name ) );
     }
 
 }
