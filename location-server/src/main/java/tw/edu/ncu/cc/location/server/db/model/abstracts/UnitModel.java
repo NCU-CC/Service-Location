@@ -7,5 +7,5 @@ import java.util.Set;
 public interface UnitModel {
     public void persistUnits( UnitEntity... unitEntities );
     public UnitEntity getUnit( Integer id );
-    public Set<UnitEntity> getUnits( String chineseName );
+    public Set<UnitEntity> getUnits( String fullName );
 }

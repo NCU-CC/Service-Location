@@ -1,5 +1,6 @@
 package tw.edu.ncu.cc.location.server.db.model.base;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -31,8 +32,8 @@ public abstract class HibernateAccessTool {
         return getSession().get( objectType, id );
     }
 
-    protected <T> T getObject( Class<T> clazz, String condition ) {
-        List<T> list = getObjects( clazz, condition );
+    protected <T> T getObject( Class<T> clazz, Query query ) {
+        List<T> list = getObjects( clazz, query );
         if( list.size() != 1 ) {
             return null;
         }else {
@@ -41,11 +42,8 @@ public abstract class HibernateAccessTool {
     }
 
     @SuppressWarnings( "unchecked" )
-    protected <T> List<T> getObjects( Class<T> clazz, String condition ) {
-        List list = getSession()
-                .createQuery( "from " + clazz.getSimpleName() + " where " + condition )
-                .list();
-        return ( List<T> ) list;
+    protected <T> List<T> getObjects( Class<T> clazz, Query query ) {
+        return ( List<T> ) query.list();
     }
 
 }

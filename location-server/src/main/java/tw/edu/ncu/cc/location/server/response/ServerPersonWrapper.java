@@ -1,21 +1,24 @@
 package tw.edu.ncu.cc.location.server.response;
 
-import tw.edu.ncu.cc.location.data.unit.Unit;
-import tw.edu.ncu.cc.location.data.unit.UnitWrapper;
+import tw.edu.ncu.cc.location.data.person.Person;
+import tw.edu.ncu.cc.location.data.person.PersonWrapper;
 import tw.edu.ncu.cc.location.server.db.data.PersonEntity;
 import tw.edu.ncu.cc.location.server.tool.Type;
-import tw.edu.ncu.cc.location.server.tool.convert.UnitEntity_UnitConverter;
+import tw.edu.ncu.cc.location.server.tool.convert.PersonEntity_PersonConverter;
+
+import java.util.Set;
 
 
-public class ServerPersonWrapper extends UnitWrapper {
+public class ServerPersonWrapper extends PersonWrapper {
 
-    public ServerPersonWrapper( PersonEntity personEntity ) {
-        if( personEntity != null ) {
-            Unit[] units = new Unit[2];
-            UnitEntity_UnitConverter converter = new UnitEntity_UnitConverter();
-            units[0] = Type.convert( personEntity.getPrimaryUnit(),   converter );
-            units[1] = Type.convert( personEntity.getSecondaryUnit(), converter );
-            setResult( units );
+    public ServerPersonWrapper( Set<PersonEntity> personEntitys ) { //TODO SIMPLIFY
+        if( personEntitys != null && personEntitys.size() > 0 ) {
+            Person[] result = new Person[ personEntitys.size() ];
+            int i = 0;
+            for( PersonEntity personEntity : personEntitys ) {
+                result[ i++ ] = Type.convert( personEntity, new PersonEntity_PersonConverter() );
+            }
+            setResult( result );
         }
     }
 

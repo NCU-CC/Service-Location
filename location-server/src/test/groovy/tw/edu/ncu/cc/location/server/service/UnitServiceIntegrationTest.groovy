@@ -38,7 +38,7 @@ class UnitServiceIntegrationTest extends Specification {
     def "server can return all units by name 1"() {
         when:
             def response = new JsonSlurper().parseText(
-                    RestAssured.get( "/unit/name/cname1" ).asString()
+                    RestAssured.get( "/unit/name/fname1" ).asString()
             )
         then:
             response.result.contains( new JsonSlurper().parseText(
@@ -59,7 +59,7 @@ class UnitServiceIntegrationTest extends Specification {
     def "server can return all units by name 2"() {
         when:
             def response = new JsonSlurper().parseText(
-                    RestAssured.get( "/unit/name/cname4" ).asString()
+                    RestAssured.get( "/unit/name/fname4" ).asString()
             )
         then:
             response.result.contains( new JsonSlurper().parseText(
@@ -79,7 +79,7 @@ class UnitServiceIntegrationTest extends Specification {
             response.result.contains( new JsonSlurper().parseText(
                     '''
                     {
-                         "unitCode"   : "code5",
+                        "unitCode"   : "code5",
                         "chineseName": "cname4",
                         "englishName":  null,
                         "shortName"  : "sname4",

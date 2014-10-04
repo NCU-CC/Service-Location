@@ -23,14 +23,24 @@ public class PlaceModelImpl extends HibernateAccessTool implements PlaceModel {
     @Override
     public Set<PlaceEntity> getPlaces( String chineseName ) {
         return new HashSet<>(
-                getObjects( PlaceEntity.class, String.format( "cname = '%s'", chineseName ) )
+                getObjects(
+                        PlaceEntity.class,
+                        getSession()
+                                .createQuery( "from PlaceEntity where chineseName = :cname" )
+                                .setString( "cname", chineseName )
+                )
         );
     }
 
     @Override
     public Set<PlaceEntity> getPlaces( PlaceType type ) {
         return new HashSet<>(
-                getObjects( PlaceEntity.class, String.format( "type = '%d'", type.ordinal() )  )
+                getObjects(
+                        PlaceEntity.class,
+                        getSession()
+                                .createQuery( "from PlaceEntity where type = :typeOrdinal" )
+                                .setInteger( "typeOrdinal", type.ordinal() )
+                )
         );
     }
 
