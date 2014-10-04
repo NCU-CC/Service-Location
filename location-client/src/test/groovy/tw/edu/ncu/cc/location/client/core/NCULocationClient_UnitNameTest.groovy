@@ -20,7 +20,7 @@ class NCULocationClient_UnitNameTest extends Specification {
         mockServer.when(
                 HttpRequest.request()
                         .withMethod("GET")
-                        .withPath("/unit/name/cc")
+                        .withPath("/unit/name/ncucc")
         ).respond(
                 HttpResponse.response()
                         .withStatusCode( 200 )
@@ -51,7 +51,7 @@ class NCULocationClient_UnitNameTest extends Specification {
 
     def "it can fetch places information from server"() {
         when:
-            Set<Unit> units = locationClient.getUnits( "cc" )
+            Set<Unit> units = locationClient.getUnits( "ncucc" )
         then:
             def unitArr = units.toArray( new Unit[ units.size() ] )
         and:

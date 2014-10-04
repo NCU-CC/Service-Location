@@ -1,5 +1,7 @@
 package tw.edu.ncu.cc.location.client.converter;
 
+import tw.edu.ncu.cc.location.data.person.Person;
+import tw.edu.ncu.cc.location.data.person.PersonWrapper;
 import tw.edu.ncu.cc.location.data.place.Place;
 import tw.edu.ncu.cc.location.data.place.PlaceWrapper;
 import tw.edu.ncu.cc.location.data.unit.Unit;
@@ -24,6 +26,14 @@ public class ResponseConverter {
             return new HashSet<>();
         } else {
             return new HashSet<>( Arrays.asList( unitWrapper.getResult() ) );
+        }
+    }
+
+    public static Set<Person> convert( PersonWrapper personWrapper ) {
+        if( personWrapper.getResult() == null ) {
+            return new HashSet<>();
+        } else {
+            return new HashSet<>( Arrays.asList( personWrapper.getResult() ) );
         }
     }
 

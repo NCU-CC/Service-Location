@@ -3,6 +3,8 @@ package tw.edu.ncu.cc.location.client.core;
 import tw.edu.ncu.cc.location.client.converter.ResponseConverter;
 import tw.edu.ncu.cc.location.client.core.abstracts.LocationClient;
 import tw.edu.ncu.cc.location.client.core.abstracts.LocationConfig;
+import tw.edu.ncu.cc.location.data.person.Person;
+import tw.edu.ncu.cc.location.data.person.PersonWrapper;
 import tw.edu.ncu.cc.location.data.place.Place;
 import tw.edu.ncu.cc.location.data.place.PlaceType;
 import tw.edu.ncu.cc.location.data.place.PlaceWrapper;
@@ -41,10 +43,10 @@ public class NCULocationClient implements LocationClient {
     }
 
     @Override
-    public Set<Unit> getPersonUnits( String personName ) {
-        UnitWrapper response = target.path( "/person/name/" + personName )
+    public Set<Person> getPeople( String peopleName ) {
+        PersonWrapper response = target.path( "/person/name/" + peopleName )
                 .request( MediaType.APPLICATION_JSON_TYPE )
-                .get( UnitWrapper.class );
+                .get( PersonWrapper.class );
 
         return ResponseConverter.convert( response );
     }
