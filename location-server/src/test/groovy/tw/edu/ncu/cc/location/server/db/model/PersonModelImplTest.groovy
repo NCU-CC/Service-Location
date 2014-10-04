@@ -37,7 +37,7 @@ class PersonModelImplTest extends Specification {
         and:
             PersonEntity person = new PersonEntity( "code1", "john", "title1", unit1, unit2 )
         when:
-            personModel.persistPersons( person )
+            personModel.persistPeople( person )
         then:
             personModel.getPerson( 1 ) == person
     }
@@ -50,7 +50,7 @@ class PersonModelImplTest extends Specification {
         and:
             PersonEntity person = new PersonEntity( "code2", "jason", "title2", unit1, unit2 )
         when:
-            personModel.persistPersons( person )
+            personModel.persistPeople( person )
         then:
             personModel.getPerson( "jason" ) == person
     }

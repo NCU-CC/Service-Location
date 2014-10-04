@@ -20,9 +20,14 @@ public class UnitModelImpl extends HibernateAccessTool implements UnitModel {
     }
 
     @Override
-    public Set<UnitEntity> getUnits( String chineseName ) {
+    public Set<UnitEntity> getUnits( String fullName ) {
         return new HashSet<>(
-            getObjects( UnitEntity.class, String.format( "cname = '%s'", chineseName ) )
+            getObjects(
+                    UnitEntity.class,
+                    getSession()
+                            .createQuery( "from UnitEntity where fullName = :fname" )
+                            .setString( "fname", fullName )
+            )
         );
     }
 

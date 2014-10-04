@@ -33,7 +33,7 @@ class PersonServiceIntegrationTest extends Specification {
         UnitEntity unit2 = new UnitEntity( "upcode2", "cname2", "sname2", "fname2" )
         unitModel.persistUnits( unit1, unit2 )
 
-        personModel.persistPersons(
+        personModel.persistPeople(
             new PersonEntity( "code", "name1", "title", unit1, unit2 )
         )
 
@@ -48,28 +48,29 @@ class PersonServiceIntegrationTest extends Specification {
         then:
             response.result.contains( new JsonSlurper().parseText(
                     '''
-                     {
-                        "unitCode"   : "upcode1",
-                        "chineseName": "cname1",
-                        "englishName":  null,
-                        "shortName"  : "sname1",
-                        "fullName"   : "fname1",
-                        "url" : null,
-                        "location" : null
-                    }
-                    '''
-            ) )
-        and:
-            response.result.contains( new JsonSlurper().parseText(
-                    '''
-                     {
-                        "unitCode"   : "upcode2",
-                        "chineseName": "cname2",
-                        "englishName":  null,
-                        "shortName"  : "sname2",
-                        "fullName"   : "fname2",
-                        "url" : null,
-                        "location" : null
+                    {
+                        "chineseName" : "name1",
+                        "englishName" : null,
+                        "title" : "title",
+                        "primaryUnit" : {
+                            "unitCode"   : "upcode1",
+                            "chineseName": "cname1",
+                            "englishName":  null,
+                            "shortName"  : "sname1",
+                            "fullName"   : "fname1",
+                            "url" : null,
+                            "location" : null
+                        },
+                        "secondaryUnit" : {
+                            "unitCode"   : "upcode2",
+                            "chineseName": "cname2",
+                            "englishName":  null,
+                            "shortName"  : "sname2",
+                            "fullName"   : "fname2",
+                            "url" : null,
+                            "location" : null
+                        },
+                        "officePhone" : null
                     }
                     '''
             ) )
