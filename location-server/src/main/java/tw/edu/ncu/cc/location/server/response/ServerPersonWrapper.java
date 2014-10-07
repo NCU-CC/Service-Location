@@ -11,15 +11,14 @@ import java.util.Set;
 
 public class ServerPersonWrapper extends PersonWrapper {
 
-    public ServerPersonWrapper( Set<PersonEntity> personEntitys ) { //TODO SIMPLIFY
-        if( personEntitys != null && personEntitys.size() > 0 ) {
-            Person[] result = new Person[ personEntitys.size() ];
-            int i = 0;
-            for( PersonEntity personEntity : personEntitys ) {
-                result[ i++ ] = Type.convert( personEntity, new PersonEntity_PersonConverter() );
-            }
-            setResult( result );
-        }
+    public ServerPersonWrapper( Set<PersonEntity> personEntitys ) {
+        setResult(
+               Type.convert(
+                   personEntitys,
+                   Person.class,
+                   new PersonEntity_PersonConverter()
+               )
+        );
     }
-
 }
+

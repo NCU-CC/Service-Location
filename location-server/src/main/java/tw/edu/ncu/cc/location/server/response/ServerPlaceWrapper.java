@@ -11,14 +11,13 @@ import java.util.Set;
 public class ServerPlaceWrapper extends PlaceWrapper {
 
     public ServerPlaceWrapper( Set<PlaceEntity> placeEntities ) {
-        if( placeEntities != null && placeEntities.size() > 0 ) {
-            Place[] result = new Place[ placeEntities.size() ];
-            int i = 0;
-            for( PlaceEntity placeEntity : placeEntities ) {
-                result[ i++ ] = Type.convert( placeEntity, new PlaceEntity_PlaceConverter() );
-            }
-            setResult( result );
-        }
+        setResult(
+                Type.convert(
+                        placeEntities,
+                        Place.class,
+                        new PlaceEntity_PlaceConverter()
+                )
+        );
     }
 
 }
