@@ -3,18 +3,13 @@ package tw.edu.ncu.cc.location.server.db.model;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
-import org.apache.lucene.queryparser.classic.ParseException;
-import tw.edu.ncu.cc.location.data.keyword.Word;
-import tw.edu.ncu.cc.location.data.keyword.WordType;
-import tw.edu.ncu.cc.location.server.db.model.abstracts.WordModel;
-import tw.edu.ncu.cc.location.server.db.model.base.LuceneAccessTool;
+import tw.edu.ncu.cc.location.server.db.model.abstracts.WordPersistModel;
+import tw.edu.ncu.cc.location.server.db.model.base.LuceneWriteTool;
 import tw.edu.ncu.cc.location.server.lucene.LuceneWord;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
-public class WordModelImpl extends LuceneAccessTool implements WordModel {
+public class WordPersistModelImpl extends LuceneWriteTool implements WordPersistModel {
 
     @Override
     public void persistWords( LuceneWord... words ) {
@@ -33,18 +28,11 @@ public class WordModelImpl extends LuceneAccessTool implements WordModel {
     }
 
     @Override
-    public Set<Word> getWords( String keyword ) {
+    public void clearAllWords() {
         try {
-            Set<Word> words = new HashSet<>();
-            for( Document document : searchDocuments( "index", keyword, 3 ) ) {
-                Word word = new Word();
-                word.setWord( document.get( "word" ) );
-                word.setType( WordType.valueOf( document.get( "type" ) ) );
-                words.add( word );
-            }
-            return words;
-        } catch ( IOException | ParseException e ) {
-            throw new RuntimeException( "read keyword error", e );
+            deleteAll();
+        } catch ( IOException e ) {
+            throw new RuntimeException( "cannot delete all indexes", e );
         }
     }
 
