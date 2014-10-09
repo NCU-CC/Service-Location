@@ -7,9 +7,12 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public abstract class LuceneReadTool {
 
@@ -26,12 +29,23 @@ public abstract class LuceneReadTool {
 
     protected Document[] searchDocuments( String key, String value, int limit ) throws IOException, ParseException {
         IndexSearcher searcher = getIndexSearcher();
-        ScoreDoc[] scoreDocs = searcher.search( buildQuery( key, value ), limit ).scoreDocs;
+        ScoreDoc[] scoreDocs = sortDocs( searcher.search( buildQuery( key, value ), limit ) );
         Document[] documents = new Document[ scoreDocs.length ];
         for( int i = 0; i < documents.length; i ++ ) {
             documents[ i ] = searcher.doc( scoreDocs[ i ].doc );
         }
         return documents;
+    }
+
+    private ScoreDoc[] sortDocs( TopDocs topDocs ) {
+        ScoreDoc[] scoreDocs = topDocs.scoreDocs;
+        Arrays.sort( scoreDocs, new Comparator<ScoreDoc>() {
+            @Override
+            public int compare( ScoreDoc scoreDoc1, ScoreDoc scoreDoc2 ) {
+                return ( int ) ( scoreDoc2.score - scoreDoc1.score );
+            }
+        } );
+        return scoreDocs;
     }
 
     private Query buildQuery( String key, String value ) throws ParseException {
