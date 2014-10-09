@@ -11,17 +11,18 @@ import tw.edu.ncu.cc.location.client.core.abstracts.LocationConfig
 import tw.edu.ncu.cc.location.data.place.Place
 import tw.edu.ncu.cc.location.data.place.PlaceType
 
-class NCULocationClient_PlaceNameTest extends Specification {
+
+class NCUSynLocationClient_PlaceTypeTest extends Specification {
 
     @Shared private ClientAndServer  mockServer = ClientAndServer.startClientAndServer( TestServerSetting.port )
 
-    private NCULocationClient locationClient
+    private NCUSynLocationClient locationClient
 
     def setupSpec() {
         mockServer.when(
                 HttpRequest.request()
                         .withMethod("GET")
-                        .withPath("/place/name/home")
+                        .withPath("/place/type/SCENE")
         ).respond(
                 HttpResponse.response()
                         .withStatusCode( 200 )
@@ -31,9 +32,9 @@ class NCULocationClient_PlaceNameTest extends Specification {
                         .withBody('{"result":[{' +
                         '"chineseName":"home",' +
                         '"englishName":"home",' +
-                        '"pictureName":"123.png",' +
+                        '"pictureName":"tree.jpg",' +
                         '"type":"SCENE",' +
-                        '"location":{"lat":1,"lng":2}' +
+                        '"location":{"lat":2,"lng":4}' +
                         '}]}')
         )
     }
@@ -43,23 +44,23 @@ class NCULocationClient_PlaceNameTest extends Specification {
     }
 
     def setup() {
-        locationClient = new NCULocationClient( Mock( LocationConfig ){
+        locationClient = new NCUSynLocationClient( Mock( LocationConfig ){
             getServerAddress() >> "http://127.0.0.1:" + TestServerSetting.port
         } )
     }
 
     def "it can fetch places information from server"() {
         when:
-            Set<Place> places = locationClient.getPlaces( "home" )
+            Set<Place> places = locationClient.getPlaces( PlaceType.SCENE )
         then:
             def placeArr = places.toArray( new Place[ places.size() ] )
         and:
             placeArr[0].getChineseName() == "home"
             placeArr[0].getEnglishName() == "home"
-            placeArr[0].getPictureName() == "123.png"
+            placeArr[0].getPictureName() == "tree.jpg"
             placeArr[0].getType() == PlaceType.SCENE
-            placeArr[0].getLocation().getLat() == 1
-            placeArr[0].getLocation().getLng() == 2
+            placeArr[0].getLocation().getLat() == 2
+            placeArr[0].getLocation().getLng() == 4
     }
 
 }

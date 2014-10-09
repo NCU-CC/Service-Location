@@ -10,11 +10,11 @@ import tw.edu.ncu.cc.location.client.TestServerSetting
 import tw.edu.ncu.cc.location.client.core.abstracts.LocationConfig
 import tw.edu.ncu.cc.location.data.person.Person
 
-class NCULocationClient_PersonNameTest extends Specification {
+class NCUSynLocationClient_PersonNameTest extends Specification {
 
     @Shared private ClientAndServer  mockServer = ClientAndServer.startClientAndServer( TestServerSetting.port )
 
-    private NCULocationClient locationClient
+    private NCUSynLocationClient locationClient
 
     def setupSpec() {
         mockServer.when(
@@ -67,7 +67,7 @@ class NCULocationClient_PersonNameTest extends Specification {
     }
 
     def setup() {
-        locationClient = new NCULocationClient( Mock( LocationConfig ){
+        locationClient = new NCUSynLocationClient( Mock( LocationConfig ){
             getServerAddress() >> "http://127.0.0.1:" + TestServerSetting.port
         } )
     }

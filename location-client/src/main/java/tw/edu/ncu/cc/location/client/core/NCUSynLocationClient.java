@@ -1,8 +1,10 @@
 package tw.edu.ncu.cc.location.client.core;
 
 import tw.edu.ncu.cc.location.client.converter.ResponseConverter;
-import tw.edu.ncu.cc.location.client.core.abstracts.LocationClient;
 import tw.edu.ncu.cc.location.client.core.abstracts.LocationConfig;
+import tw.edu.ncu.cc.location.client.core.abstracts.SyncLocationClient;
+import tw.edu.ncu.cc.location.data.keyword.Word;
+import tw.edu.ncu.cc.location.data.keyword.WordWrapper;
 import tw.edu.ncu.cc.location.data.person.Person;
 import tw.edu.ncu.cc.location.data.person.PersonWrapper;
 import tw.edu.ncu.cc.location.data.place.Place;
@@ -16,11 +18,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import java.util.Set;
 
-public class NCULocationClient implements LocationClient {
+public class NCUSynLocationClient implements SyncLocationClient {
 
     private WebTarget target;
 
-    public NCULocationClient( LocationConfig config ) {
+    public NCUSynLocationClient( LocationConfig config ) {
         target = ClientBuilder.newClient().target( config.getServerAddress() );
     }
 
@@ -56,6 +58,15 @@ public class NCULocationClient implements LocationClient {
         UnitWrapper response = target.path( "/unit/name/" + unitName )
                 .request( MediaType.APPLICATION_JSON_TYPE )
                 .get( UnitWrapper.class );
+
+        return ResponseConverter.convert( response );
+    }
+
+    @Override
+    public Set<Word> getWords( String keyword ) {
+        WordWrapper response = target.path( "/keyword/" + keyword )
+                .request( MediaType.APPLICATION_JSON_TYPE )
+                .get( WordWrapper.class );
 
         return ResponseConverter.convert( response );
     }
