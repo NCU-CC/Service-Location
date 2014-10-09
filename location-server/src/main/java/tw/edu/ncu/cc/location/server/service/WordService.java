@@ -1,6 +1,7 @@
 package tw.edu.ncu.cc.location.server.service;
 
-import tw.edu.ncu.cc.location.data.keyword.WordWrapper;
+import tw.edu.ncu.cc.location.data.keyword.Word;
+import tw.edu.ncu.cc.location.data.wrapper.ResultWrapper;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.WordRetriveModel;
 import tw.edu.ncu.cc.location.server.response.ServerWordWrapper;
 
@@ -11,14 +12,14 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 @Path( "keyword" )
-public class KeyWordService {
+public class WordService {
 
     @Inject WordRetriveModel wordRetriveModel;
 
     @GET
     @Path( "{word}" )
     @Produces("application/json;charset=utf-8")
-    public WordWrapper getKeyWord( @PathParam( "word" ) String word ) {
+    public ResultWrapper<Word> getKeyWord( @PathParam( "word" ) String word ) {
         return new ServerWordWrapper( wordRetriveModel.getWords( word ) );
     }
 
