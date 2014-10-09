@@ -9,4 +9,5 @@ public interface PersonModel {
     public PersonEntity getPerson( Integer id );
     public PersonEntity getPerson( String chineseName );
     public Set<PersonEntity> getPeople( String chineseName );
+    public Set<PersonEntity> getAllPeople();
 }

@@ -10,4 +10,5 @@ public interface PlaceModel {
     public PlaceEntity getPlace( Integer id );
     public Set<PlaceEntity> getPlaces( String chineseName );
     public Set<PlaceEntity> getPlaces( PlaceType type );
+    public Set<PlaceEntity> getAllPlaces();
 }

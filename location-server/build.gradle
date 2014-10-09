@@ -48,6 +48,10 @@ dependencies {
 
 }
 
+war{
+    archiveName = 'location-server.war'
+}
+
 ext {
     tomcatStopPort = 8592
     tomcatStopKey  = 'stopKey'

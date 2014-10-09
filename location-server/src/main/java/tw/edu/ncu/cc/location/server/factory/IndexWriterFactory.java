@@ -8,6 +8,7 @@ import org.apache.lucene.util.Version;
 import org.glassfish.hk2.api.Factory;
 import tw.edu.ncu.cc.location.server.lucene.LuceneConfig;
 
+import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 
@@ -15,6 +16,7 @@ public class IndexWriterFactory implements Factory<IndexWriter> {
 
     private LuceneConfig config;
 
+    @Inject
     public IndexWriterFactory( LuceneConfig config ) {
         this.config = config;
     }
