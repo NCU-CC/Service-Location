@@ -57,10 +57,7 @@ class NCUSynLocationClient_KeywordTest extends Specification {
         when:
             Set<Word> words = locationClient.getWords( "CC" )
         then:
-            def wordArr = words.toArray( new Word[ words.size() ] )
-        and:
-            wordArr[0].getWord() == "computer center"
-            wordArr[0].getType() == WordType.UNIT
+            words.contains( new Word( "computer center", WordType.UNIT ) )
     }
 
 }

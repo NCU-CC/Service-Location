@@ -26,3 +26,4 @@ LocationClient client = new NCULocationClient( config )
 - ``` Set<Place>  places =  client.getPlaces( PlaceType.SCENE ) ```
 - ``` Set<Unit>   units  =  client.getUnits( "fullName" ) ```
 - ``` Set<Person> people =  client.getPeople( "chineseName" ) ```
+- ``` Set<Word>   words  =  client.getWords( "keyword" ) ```

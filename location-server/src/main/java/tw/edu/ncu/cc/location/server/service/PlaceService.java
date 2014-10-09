@@ -1,7 +1,8 @@
 package tw.edu.ncu.cc.location.server.service;
 
+import tw.edu.ncu.cc.location.data.place.Place;
 import tw.edu.ncu.cc.location.data.place.PlaceType;
-import tw.edu.ncu.cc.location.data.place.PlaceWrapper;
+import tw.edu.ncu.cc.location.data.wrapper.ResultWrapper;
 import tw.edu.ncu.cc.location.server.db.data.PlaceEntity;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.PlaceModel;
 import tw.edu.ncu.cc.location.server.response.ServerPlaceWrapper;
@@ -21,7 +22,7 @@ public class PlaceService {
     @GET
     @Path( "type/{type}" )
     @Produces("application/json;charset=utf-8")
-    public PlaceWrapper getPlaceByType( @PathParam("type") String type ) {
+    public ResultWrapper<Place> getPlaceByType( @PathParam("type") String type ) {
         try{
             return new ServerPlaceWrapper( placeModel.getPlaces( PlaceType.fromValue( type ) ) );
         } catch ( IllegalArgumentException ignore ) {
@@ -32,7 +33,7 @@ public class PlaceService {
     @GET
     @Path( "name/{name}" )
     @Produces("application/json;charset=utf-8")
-    public PlaceWrapper getPlaceByName( @PathParam("name") String name ) {
+    public ResultWrapper<Place> getPlaceByName( @PathParam("name") String name ) {
         return new ServerPlaceWrapper( placeModel.getPlaces( name ) );
     }
 

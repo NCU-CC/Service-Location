@@ -1,7 +1,8 @@
 package tw.edu.ncu.cc.location.server.service;
 
 
-import tw.edu.ncu.cc.location.data.unit.UnitWrapper;
+import tw.edu.ncu.cc.location.data.unit.Unit;
+import tw.edu.ncu.cc.location.data.wrapper.ResultWrapper;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.UnitModel;
 import tw.edu.ncu.cc.location.server.response.ServerUnitWrapper;
 
@@ -19,7 +20,7 @@ public class UnitService {
     @GET
     @Path( "name/{name}" )
     @Produces("application/json;charset=utf-8")
-    public UnitWrapper getUnitByName( @PathParam( "name" ) String name ) {
+    public ResultWrapper<Unit> getUnitByName( @PathParam( "name" ) String name ) {
         return new ServerUnitWrapper( unitModel.getUnits( name ) );
     }
 

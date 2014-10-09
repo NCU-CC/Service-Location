@@ -4,17 +4,15 @@ import tw.edu.ncu.cc.location.client.converter.ResponseConverter;
 import tw.edu.ncu.cc.location.client.core.abstracts.LocationConfig;
 import tw.edu.ncu.cc.location.client.core.abstracts.SyncLocationClient;
 import tw.edu.ncu.cc.location.data.keyword.Word;
-import tw.edu.ncu.cc.location.data.keyword.WordWrapper;
 import tw.edu.ncu.cc.location.data.person.Person;
-import tw.edu.ncu.cc.location.data.person.PersonWrapper;
 import tw.edu.ncu.cc.location.data.place.Place;
 import tw.edu.ncu.cc.location.data.place.PlaceType;
-import tw.edu.ncu.cc.location.data.place.PlaceWrapper;
 import tw.edu.ncu.cc.location.data.unit.Unit;
-import tw.edu.ncu.cc.location.data.unit.UnitWrapper;
+import tw.edu.ncu.cc.location.data.wrapper.ResultWrapper;
 
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import java.util.Set;
 
@@ -28,47 +26,47 @@ public class NCUSynLocationClient implements SyncLocationClient {
 
     @Override
     public Set<Place> getPlaces( String placeName ) {
-        PlaceWrapper response = target.path( "/place/name/" + placeName )
-                .request( MediaType.APPLICATION_JSON_TYPE )
-                .get( PlaceWrapper.class );
-
-        return ResponseConverter.convert( response );
+        return ResponseConverter.convert(
+                target.path( "/place/name/" + placeName )
+                        .request( MediaType.APPLICATION_JSON_TYPE )
+                        .get( new GenericType< ResultWrapper<Place> >() {} )
+        );
     }
 
     @Override
     public Set<Place> getPlaces( PlaceType placeType ) {
-        PlaceWrapper response = target.path( "/place/type/" + placeType.value() )
-                .request( MediaType.APPLICATION_JSON_TYPE )
-                .get( PlaceWrapper.class );
-
-        return ResponseConverter.convert( response );
+        return ResponseConverter.convert(
+                target.path( "/place/type/" + placeType.value() )
+                        .request( MediaType.APPLICATION_JSON_TYPE )
+                        .get( new GenericType< ResultWrapper<Place> >() {} )
+        );
     }
 
     @Override
     public Set<Person> getPeople( String peopleName ) {
-        PersonWrapper response = target.path( "/person/name/" + peopleName )
-                .request( MediaType.APPLICATION_JSON_TYPE )
-                .get( PersonWrapper.class );
-
-        return ResponseConverter.convert( response );
+        return ResponseConverter.convert(
+                target.path( "/person/name/" + peopleName )
+                        .request( MediaType.APPLICATION_JSON_TYPE )
+                        .get( new GenericType< ResultWrapper<Person> >() {} )
+        );
     }
 
     @Override
     public Set<Unit> getUnits( String unitName ) {
-        UnitWrapper response = target.path( "/unit/name/" + unitName )
-                .request( MediaType.APPLICATION_JSON_TYPE )
-                .get( UnitWrapper.class );
-
-        return ResponseConverter.convert( response );
+        return ResponseConverter.convert(
+                target.path( "/unit/name/" + unitName )
+                        .request( MediaType.APPLICATION_JSON_TYPE )
+                        .get( new GenericType< ResultWrapper<Unit> >() {} )
+        );
     }
 
     @Override
     public Set<Word> getWords( String keyword ) {
-        WordWrapper response = target.path( "/keyword/" + keyword )
-                .request( MediaType.APPLICATION_JSON_TYPE )
-                .get( WordWrapper.class );
-
-        return ResponseConverter.convert( response );
+        return ResponseConverter.convert(
+                target.path( "/keyword/" + keyword )
+                    .request( MediaType.APPLICATION_JSON_TYPE )
+                    .get( new GenericType< ResultWrapper<Word> >() {} )
+        );
     }
 
 }
