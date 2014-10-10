@@ -1,0 +1,14 @@
+
+description = "location client module based on android volley"
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+dependencies {
+    compile project(":location-client-tool")
+    testCompile 'org.mock-server:mockserver-netty:3.6.2'
+}

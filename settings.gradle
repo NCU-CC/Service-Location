@@ -1,3 +1,5 @@
 include 'location-server'
-include 'location-client'
+include 'location-client-tool'
+include 'location-client-jersey'
+include 'location-client-volley'
 include 'location-data'
