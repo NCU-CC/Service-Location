@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.client.core
+package tw.edu.ncu.cc.location.client.jersey
 
 import org.mockserver.integration.ClientAndServer
 import org.mockserver.model.Header

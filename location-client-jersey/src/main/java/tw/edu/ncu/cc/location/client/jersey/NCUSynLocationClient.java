@@ -1,6 +1,6 @@
-package tw.edu.ncu.cc.location.client.core;
+package tw.edu.ncu.cc.location.client.jersey;
 
-import tw.edu.ncu.cc.location.client.core.abstracts.SyncLocationClient;
+import tw.edu.ncu.cc.location.client.jersey.abstracts.SyncLocationClient;
 import tw.edu.ncu.cc.location.client.tool.config.LocationConfig;
 import tw.edu.ncu.cc.location.client.tool.converter.ResponseConverter;
 import tw.edu.ncu.cc.location.data.keyword.Word;

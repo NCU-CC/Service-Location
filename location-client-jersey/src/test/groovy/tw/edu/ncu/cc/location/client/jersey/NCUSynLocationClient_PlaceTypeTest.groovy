@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.client.core
+package tw.edu.ncu.cc.location.client.jersey
 
 import org.mockserver.integration.ClientAndServer
 import org.mockserver.model.Header
@@ -8,10 +8,11 @@ import spock.lang.Shared
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.client.TestServerSetting
 import tw.edu.ncu.cc.location.client.tool.config.LocationConfig
-import tw.edu.ncu.cc.location.data.keyword.Word
-import tw.edu.ncu.cc.location.data.keyword.WordType
+import tw.edu.ncu.cc.location.data.place.Place
+import tw.edu.ncu.cc.location.data.place.PlaceType
 
-class NCUSynLocationClient_KeywordTest extends Specification {
+
+class NCUSynLocationClient_PlaceTypeTest extends Specification {
 
     @Shared private ClientAndServer  mockServer = ClientAndServer.startClientAndServer( TestServerSetting.port )
 
@@ -21,25 +22,20 @@ class NCUSynLocationClient_KeywordTest extends Specification {
         mockServer.when(
                 HttpRequest.request()
                         .withMethod("GET")
-                        .withPath("/keyword/CC")
+                        .withPath("/place/type/SCENE")
         ).respond(
                 HttpResponse.response()
                         .withStatusCode( 200 )
                         .withHeaders(
                             new Header( "Content-Type", "application/json" )
                         )
-                        .withBody(
-                        '''
-                        {
-                            "result" : [
-                                {
-                                    "word" : "computer center",
-                                    "type" : "UNIT"
-                                }
-                            ]
-                        }
-                        '''
-                        )
+                        .withBody('{"result":[{' +
+                        '"chineseName":"home",' +
+                        '"englishName":"home",' +
+                        '"pictureName":"tree.jpg",' +
+                        '"type":"SCENE",' +
+                        '"location":{"lat":2,"lng":4}' +
+                        '}]}')
         )
     }
 
@@ -53,11 +49,18 @@ class NCUSynLocationClient_KeywordTest extends Specification {
         } )
     }
 
-    def "it can fetch keyword information from server"() {
+    def "it can fetch places information from server"() {
         when:
-            Set<Word> words = locationClient.getWords( "CC" )
+            Set<Place> places = locationClient.getPlaces( PlaceType.SCENE )
         then:
-            words.contains( new Word( "computer center", WordType.UNIT ) )
+            def placeArr = places.toArray( new Place[ places.size() ] )
+        and:
+            placeArr[0].getChineseName() == "home"
+            placeArr[0].getEnglishName() == "home"
+            placeArr[0].getPictureName() == "tree.jpg"
+            placeArr[0].getType() == PlaceType.SCENE
+            placeArr[0].getLocation().getLat() == 2
+            placeArr[0].getLocation().getLng() == 4
     }
 
 }
