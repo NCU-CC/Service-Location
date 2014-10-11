@@ -6,7 +6,7 @@ import tw.edu.ncu.cc.location.data.keyword.WordType
 
 class LuceneWordTest extends Specification {
 
-    private LuceneWord luceneWord
+    LuceneWord luceneWord
 
     def setup() {
         luceneWord = new LuceneWord()

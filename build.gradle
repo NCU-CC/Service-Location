@@ -5,7 +5,9 @@ allprojects{
 }
 
 subprojects{
+
     apply plugin: 'groovy'
+
     sourceCompatibility = 1.7
 
     tasks.withType( JavaCompile ) {
@@ -23,13 +25,3 @@ subprojects{
     }
 
 }
-
-
-
-
-
-
-
-
-
-

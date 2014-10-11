@@ -1,45 +1,46 @@
 package tw.edu.ncu.cc.location.server.service
 
-import com.jayway.restassured.RestAssured
 import com.vividsolutions.jts.geom.Coordinate
 import com.vividsolutions.jts.geom.GeometryFactory
 import groovy.json.JsonSlurper
+import org.junit.ClassRule
+import spock.lang.Shared
 import spock.lang.Specification
-import tool.RestAssuredTestConfiguer
-import tw.edu.ncu.cc.location.server.db.HibernateUtil
 import tw.edu.ncu.cc.location.server.db.data.UnitEntity
 import tw.edu.ncu.cc.location.server.db.model.UnitModelImpl
-import tw.edu.ncu.cc.location.server.factory.HibernateUtilFactory
+import tw.edu.ncu.cc.location.server.resource.HttpResource
+import tw.edu.ncu.cc.location.server.resource.PersistSessionResource
+import tw.edu.ncu.cc.location.server.resource.SessionResource
 
+import static HttpResource.requestJSON
+import static HttpResource.requestString
 
 class UnitServiceIntegrationTest extends Specification {
 
-    def setupSpec() {
-        RestAssuredTestConfiguer.configure()
-        initData();
-    }
+    @Shared @ClassRule
+    HttpResource httpResource = new HttpResource()
 
-    private static void initData() {
+    @Shared @ClassRule
+    SessionResource sessionResource = new PersistSessionResource()
+
+    def setupSpec() {
         GeometryFactory geometryFactory = new GeometryFactory()
-        HibernateUtil hibernateUtil = new HibernateUtilFactory().provide()
+
         UnitModelImpl unitModel     = new UnitModelImpl()
-        unitModel.setSession( hibernateUtil.currentSession() )
+        unitModel.setSession( sessionResource.getSession() )
         unitModel.persistUnits(
                 new UnitEntity( "code1", "cname1", "sname1", "fname1" ),
                 new UnitEntity( "code2", "cname2", "sname2", "fname2" ),
                 new UnitEntity( "code4", "cname4", "sname4", "fname4" ),
                 new UnitEntity( "code5", "cname4", "sname4", "fname4",
-                        geometryFactory.createPoint( new Coordinate(1.0,1.0) )
+                        geometryFactory.createPoint( new Coordinate( 1.0, 1.0 ) )
                 )
         )
-        hibernateUtil.closeSession()
     }
 
     def "server can return all units by name 1"() {
         when:
-            def response = new JsonSlurper().parseText(
-                    RestAssured.get( "/unit/name/fname1" ).asString()
-            )
+            def response = requestJSON( "/unit/name/fname1" )
         then:
             response.result.contains( new JsonSlurper().parseText(
                     '''
@@ -58,9 +59,7 @@ class UnitServiceIntegrationTest extends Specification {
 
     def "server can return all units by name 2"() {
         when:
-            def response = new JsonSlurper().parseText(
-                    RestAssured.get( "/unit/name/fname4" ).asString()
-            )
+            def response = requestJSON( "/unit/name/fname4" )
         then:
             response.result.contains( new JsonSlurper().parseText(
                     '''
@@ -96,7 +95,7 @@ class UnitServiceIntegrationTest extends Specification {
 
     def "server can return all units by name 3"() {
         when:
-            def response = RestAssured.get( "/unit/name/NameNotExist" ).asString()
+            def response = requestString( "/unit/name/NameNotExist" )
         then:
             response == '{"result":null}'
     }

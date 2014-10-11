@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.client.jersey.abstracts;
+package tw.edu.ncu.cc.location.client.tool;
 
 import tw.edu.ncu.cc.location.data.keyword.Word;
 import tw.edu.ncu.cc.location.data.person.Person;

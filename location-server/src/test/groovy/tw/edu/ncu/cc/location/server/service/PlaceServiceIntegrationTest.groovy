@@ -1,45 +1,45 @@
 package tw.edu.ncu.cc.location.server.service
 
-import com.jayway.restassured.RestAssured
 import com.vividsolutions.jts.geom.Coordinate
 import com.vividsolutions.jts.geom.GeometryFactory
 import groovy.json.JsonSlurper
+import org.junit.ClassRule
+import spock.lang.Shared
 import spock.lang.Specification
-import tool.RestAssuredTestConfiguer
 import tw.edu.ncu.cc.location.data.place.PlaceType
-import tw.edu.ncu.cc.location.server.db.HibernateUtil
 import tw.edu.ncu.cc.location.server.db.data.PlaceEntity
 import tw.edu.ncu.cc.location.server.db.model.PlaceModelImpl
 import tw.edu.ncu.cc.location.server.db.model.abstracts.PlaceModel
-import tw.edu.ncu.cc.location.server.factory.HibernateUtilFactory
+import tw.edu.ncu.cc.location.server.resource.HttpResource
+import tw.edu.ncu.cc.location.server.resource.PersistSessionResource
+import tw.edu.ncu.cc.location.server.resource.SessionResource
+
+import static HttpResource.requestJSON
+import static HttpResource.requestString
 
 class PlaceServiceIntegrationTest extends Specification {
 
-    def setupSpec() {
-        RestAssuredTestConfiguer.configure()
-        initData();
-    }
+    @Shared @ClassRule
+    HttpResource httpResource = new HttpResource()
 
-    private static void initData() {
+    @Shared @ClassRule
+    SessionResource sessionResource = new PersistSessionResource()
+
+    def setupSpec() {
         GeometryFactory geometryFactory = new GeometryFactory()
-        HibernateUtil hibernateUtil = new HibernateUtilFactory().provide()
 
         PlaceModel placeModel = new PlaceModelImpl()
-        placeModel.setSession( hibernateUtil.currentSession() )
+        placeModel.setSession( sessionResource.getSession() )
         placeModel.persistPlace(
-            new PlaceEntity( PlaceType.SCENE, "scene2", geometryFactory.createPoint( new Coordinate( 1.0, 1.0 ) )),
-            new PlaceEntity( PlaceType.SCENE, "scene2", geometryFactory.createPoint( new Coordinate( 2.0, 2.0 ) )),
-            new PlaceEntity( PlaceType.EMERGENCY_TEL, "tel1" )
+                new PlaceEntity( PlaceType.SCENE, "scene2", geometryFactory.createPoint( new Coordinate( 1.0, 1.0 ) )),
+                new PlaceEntity( PlaceType.SCENE, "scene2", geometryFactory.createPoint( new Coordinate( 2.0, 2.0 ) )),
+                new PlaceEntity( PlaceType.EMERGENCY_TEL, "tel1" )
         )
-
-        hibernateUtil.closeSession()
     }
 
     def "server can return all places by type 1"() {
         when:
-            def response = new JsonSlurper().parseText(
-                    RestAssured.get( "/place/type/EMERGENCY_TEL" ).asString()
-            )
+            def response = requestJSON( "/place/type/EMERGENCY_TEL" )
         then:
             response.result.contains( new JsonSlurper().parseText(
                     '''
@@ -56,9 +56,7 @@ class PlaceServiceIntegrationTest extends Specification {
 
     def "server can return all places by type 2"() {
         when:
-            def response = new JsonSlurper().parseText(
-                    RestAssured.get( "/place/type/SCENE" ).asString()
-            )
+            def response = requestJSON( "/place/type/SCENE" )
         then:
             response.result.contains( new JsonSlurper().parseText(
                     '''
@@ -93,16 +91,14 @@ class PlaceServiceIntegrationTest extends Specification {
 
     def "server can return all places by type 3"() {
         when:
-            def response = RestAssured.get( "/place/type/TypeNotExist" ).asString()
+            def response = requestString( "/place/type/TypeNotExist" )
         then:
             response == '{"result":null}'
     }
 
     def "server can return all units by name 1"() {
         when:
-            def response = new JsonSlurper().parseText(
-                    RestAssured.get( "/place/name/scene2" ).asString()
-            )
+            def response = requestJSON( "/place/name/scene2" )
         then:
             response.result.contains( new JsonSlurper().parseText(
                     '''
@@ -137,7 +133,7 @@ class PlaceServiceIntegrationTest extends Specification {
 
     def "server can return all places by name 2"() {
         when:
-            def response = RestAssured.get( "/place/name/NameNotExist" ).asString()
+            def response = requestString( "/place/name/NameNotExist" )
         then:
             response == '{"result":null}'
     }

@@ -1,33 +1,36 @@
 package tw.edu.ncu.cc.location.client.jersey
 
-import org.mockserver.integration.ClientAndServer
+import org.junit.ClassRule
+import org.junit.Rule
 import org.mockserver.model.Header
 import org.mockserver.model.HttpRequest
 import org.mockserver.model.HttpResponse
 import spock.lang.Shared
 import spock.lang.Specification
-import tw.edu.ncu.cc.location.client.TestServerSetting
-import tw.edu.ncu.cc.location.client.tool.config.LocationConfig
+import tw.edu.ncu.cc.location.client.resource.LocationClientResource
+import tw.edu.ncu.cc.location.client.resource.MockServerResource
 import tw.edu.ncu.cc.location.data.keyword.Word
 import tw.edu.ncu.cc.location.data.keyword.WordType
 
 class NCUSynLocationClient_KeywordTest extends Specification {
 
-    @Shared private ClientAndServer  mockServer = ClientAndServer.startClientAndServer( TestServerSetting.port )
+    @Shared @ClassRule
+    MockServerResource serverResource = new MockServerResource()
 
-    private NCUSynLocationClient locationClient
+    @Rule
+    LocationClientResource clientResource = new LocationClientResource()
 
     def setupSpec() {
-        mockServer.when(
+        serverResource.getMockServer().when(
                 HttpRequest.request()
-                        .withMethod("GET")
-                        .withPath("/keyword/CC")
+                        .withMethod( "GET" )
+                        .withPath( "/keyword/CC" )
         ).respond(
                 HttpResponse.response()
                         .withStatusCode( 200 )
                         .withHeaders(
-                            new Header( "Content-Type", "application/json" )
-                        )
+                        new Header( "Content-Type", "application/json" )
+                )
                         .withBody(
                         '''
                         {
@@ -39,21 +42,13 @@ class NCUSynLocationClient_KeywordTest extends Specification {
                             ]
                         }
                         '''
-                        )
+                )
         )
     }
 
-    def cleanupSpec() {
-        mockServer.stop()
-    }
-
-    def setup() {
-        locationClient = new NCUSynLocationClient( Mock( LocationConfig ){
-            getServerAddress() >> "http://127.0.0.1:" + TestServerSetting.port
-        } )
-    }
-
     def "it can fetch keyword information from server"() {
+        given:
+            def locationClient = clientResource.getClient()
         when:
             Set<Word> words = locationClient.getWords( "CC" )
         then:
