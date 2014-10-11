@@ -5,6 +5,7 @@ import org.apache.lucene.search.IndexSearcher;
 import org.junit.rules.ExternalResource;
 import tw.edu.ncu.cc.location.server.factory.IndexSearcherFactory;
 import tw.edu.ncu.cc.location.server.factory.IndexWriterFactory;
+import tw.edu.ncu.cc.location.server.factory.LuceneConfigFactory;
 import tw.edu.ncu.cc.location.server.lucene.LuceneConfig;
 
 import java.io.IOException;
@@ -15,8 +16,8 @@ public class IndexResource extends ExternalResource {
     private IndexWriterFactory writerFactory;
     private IndexSearcherFactory searcherFactory;
 
-    public IndexResource( String indexPath ) {
-        LuceneConfig config = new LuceneConfig( indexPath );
+    public IndexResource() {
+        LuceneConfig config = new LuceneConfigFactory().provide();
         writerFactory   = new IndexWriterFactory  ( config );
         searcherFactory = new IndexSearcherFactory( config );
     }

@@ -10,7 +10,7 @@ import tw.edu.ncu.cc.location.server.resource.IndexResource
 class WordModelImplTest extends Specification {
 
     @Rule
-    IndexResource indexResource = new IndexResource( "lucene/index/" )
+    IndexResource indexResource = new IndexResource()
 
     WordPersistModelImpl wordPersistModel
     WordRetriveModelImpl wordRetriveModel

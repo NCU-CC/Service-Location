@@ -27,7 +27,7 @@ class WordServiceIntegrationTest extends Specification {
     SessionResource sessionResource = new PersistSessionResource()
 
     @Shared @ClassRule
-    IndexResource indexResource = new IndexResource( "lucene/index/" )
+    IndexResource indexResource = new IndexResource()
 
     def setupSpec() {
         PlaceModel placeModel = new PlaceModelImpl()
