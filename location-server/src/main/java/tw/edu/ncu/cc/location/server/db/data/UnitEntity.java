@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 @Entity
 @Table( name = "Unit" )
-//@Table( name = "Unit", schema = "", catalog = "location" )
 public class UnitEntity {
 
     private String unitCode;

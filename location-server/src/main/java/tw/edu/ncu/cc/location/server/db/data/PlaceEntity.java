@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 @Entity
 @Table( name = "Place" )
-//@Table( name = "Place", schema = "", catalog = "location" )
 public class PlaceEntity {
 
     private int id;
@@ -73,7 +72,7 @@ public class PlaceEntity {
 
     @Basic
     @Column( name = "type" )
-    @Enumerated( EnumType.ORDINAL )
+    @Enumerated( EnumType.STRING )
     public PlaceType getType() {
         return type;
     }

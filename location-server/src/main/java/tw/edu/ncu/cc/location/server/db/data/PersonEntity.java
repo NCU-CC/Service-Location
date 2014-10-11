@@ -3,7 +3,6 @@ package tw.edu.ncu.cc.location.server.db.data;
 import javax.persistence.*;
 
 @Entity
-//@Table( name = "Person", schema = "", catalog = "location" )
 @Table( name = "Person" )
 public class PersonEntity {
 
