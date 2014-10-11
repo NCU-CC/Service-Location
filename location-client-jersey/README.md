@@ -1,5 +1,5 @@
 ## Location-Client-Jersey
-location data consumer for java
+location data consumer on java jersey
 
 ### Build a *LocationConfig*
 - build by yourself
@@ -21,7 +21,7 @@ location.server_address = http://127.0.0.1:8080/location-Service
 SyncLocationClient client = new NCULocationClient( config )
 ```
 
-### Call methods on *LocationClient* to fetch data from server
+### Call methods on *SyncLocationClient* to fetch data from server
 - ``` Set<Place>  places =  client.getPlaces( "chineseName" ) ```
 - ``` Set<Place>  places =  client.getPlaces( PlaceType.SCENE ) ```
 - ``` Set<Unit>   units  =  client.getUnits( "fullName" ) ```
