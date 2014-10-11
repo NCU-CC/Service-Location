@@ -14,7 +14,8 @@ import tw.edu.ncu.cc.location.data.keyword.WordType
 
 class NCUSynLocationClient_KeywordTest extends Specification {
 
-    @Shared @ClassRule
+    @Shared
+    @ClassRule
     MockServerResource serverResource = new MockServerResource()
 
     @Rule
@@ -50,9 +51,14 @@ class NCUSynLocationClient_KeywordTest extends Specification {
         given:
             def locationClient = clientResource.getClient()
         when:
-            Set<Word> words = locationClient.getWords( "CC" )
+            def words = locationClient.getWords( "CC" )
         then:
-            words.contains( new Word( "computer center", WordType.UNIT ) )
+            words.contains(
+                    new Word(
+                            word: "computer center",
+                            type: WordType.UNIT
+                    )
+            )
     }
 
 }

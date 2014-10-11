@@ -1,6 +1,6 @@
 package tw.edu.ncu.cc.location.data.place;
 
-import tw.edu.ncu.cc.location.data.location.Position;
+import tw.edu.ncu.cc.location.data.location.Location;
 
 public class Place {
 
@@ -8,7 +8,7 @@ public class Place {
     private String englishName;
     private String pictureName;
     private PlaceType type;
-    private Position location;
+    private Location location;
 
     public String getChineseName() {
         return chineseName;
@@ -42,11 +42,38 @@ public class Place {
         this.type = type;
     }
 
-    public Position getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation( Position location ) {
+    public void setLocation( Location location ) {
         this.location = location;
     }
+
+    @Override
+    public boolean equals( Object o ) {
+        if ( this == o ) return true;
+        if ( o == null || getClass() != o.getClass() ) return false;
+
+        Place place = ( Place ) o;
+
+        if ( chineseName != null ? !chineseName.equals( place.chineseName ) : place.chineseName != null ) return false;
+        if ( englishName != null ? !englishName.equals( place.englishName ) : place.englishName != null ) return false;
+        if ( location != null ? !location.equals( place.location ) : place.location != null ) return false;
+        if ( pictureName != null ? !pictureName.equals( place.pictureName ) : place.pictureName != null ) return false;
+        if ( type != place.type ) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = chineseName != null ? chineseName.hashCode() : 0;
+        result = 31 * result + ( englishName != null ? englishName.hashCode() : 0 );
+        result = 31 * result + ( pictureName != null ? pictureName.hashCode() : 0 );
+        result = 31 * result + ( type != null ? type.hashCode() : 0 );
+        result = 31 * result + ( location != null ? location.hashCode() : 0 );
+        return result;
+    }
+
 }

@@ -18,10 +18,12 @@ public class HttpResource extends ExternalResource {
         super.after();
     }
 
+    public static Object JSON( String body ) {
+        return new JsonSlurper().parseText( body );
+    }
+
     public static Object requestJSON( String path ) {
-        return new JsonSlurper().parseText(
-                requestString( path )
-        );
+        return JSON( requestString( path ) );
     }
 
     public static String requestString( String path ) {

@@ -2,7 +2,6 @@ package tw.edu.ncu.cc.location.server.service
 
 import com.vividsolutions.jts.geom.Coordinate
 import com.vividsolutions.jts.geom.GeometryFactory
-import groovy.json.JsonSlurper
 import org.junit.ClassRule
 import spock.lang.Shared
 import spock.lang.Specification
@@ -12,8 +11,7 @@ import tw.edu.ncu.cc.location.server.resource.HttpResource
 import tw.edu.ncu.cc.location.server.resource.PersistSessionResource
 import tw.edu.ncu.cc.location.server.resource.SessionResource
 
-import static HttpResource.requestJSON
-import static HttpResource.requestString
+import static tw.edu.ncu.cc.location.server.resource.HttpResource.*
 
 class UnitServiceIntegrationTest extends Specification {
 
@@ -42,7 +40,7 @@ class UnitServiceIntegrationTest extends Specification {
         when:
             def response = requestJSON( "/unit/name/fname1" )
         then:
-            response.result.contains( new JsonSlurper().parseText(
+            response.result.contains( JSON(
                     '''
                     {
                         "unitCode"   : "code1",
@@ -61,7 +59,7 @@ class UnitServiceIntegrationTest extends Specification {
         when:
             def response = requestJSON( "/unit/name/fname4" )
         then:
-            response.result.contains( new JsonSlurper().parseText(
+            response.result.contains( JSON(
                     '''
                     {
                         "unitCode"   : "code4",
@@ -75,7 +73,7 @@ class UnitServiceIntegrationTest extends Specification {
                     '''
             ) )
         and:
-            response.result.contains( new JsonSlurper().parseText(
+            response.result.contains( JSON(
                     '''
                     {
                         "unitCode"   : "code5",

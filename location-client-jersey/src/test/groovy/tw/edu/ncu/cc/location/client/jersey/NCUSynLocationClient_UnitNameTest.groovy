@@ -9,6 +9,7 @@ import spock.lang.Shared
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.client.resource.LocationClientResource
 import tw.edu.ncu.cc.location.client.resource.MockServerResource
+import tw.edu.ncu.cc.location.data.location.Location
 import tw.edu.ncu.cc.location.data.unit.Unit
 
 class NCUSynLocationClient_UnitNameTest extends Specification {
@@ -57,18 +58,22 @@ class NCUSynLocationClient_UnitNameTest extends Specification {
         given:
             def locationClient = clientResource.getClient()
         when:
-            Set<Unit> units = locationClient.getUnits( "ncucc" )
+            def units = locationClient.getUnits( "ncucc" )
         then:
-            def unitArr = units.toArray( new Unit[units.size()] )
-        and:
-            unitArr[ 0 ].getUnitCode() == "code"
-            unitArr[ 0 ].getChineseName() == "cc"
-            unitArr[ 0 ].getEnglishName() == "cc"
-            unitArr[ 0 ].getShortName() == "c"
-            unitArr[ 0 ].getFullName() == "ncucc"
-            unitArr[ 0 ].getUrl() == "gamer.com"
-            unitArr[ 0 ].getLocation().getLat() == 5
-            unitArr[ 0 ].getLocation().getLng() == 10
+            units.contains(
+                new Unit(
+                        unitCode: "code",
+                        chineseName: "cc",
+                        englishName: "cc",
+                        shortName: "c",
+                        fullName: "ncucc",
+                        url: "gamer.com",
+                        location: new Location(
+                                lat: 5,
+                                lng: 10
+                        )
+                )
+            )
     }
 
 

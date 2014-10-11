@@ -1,6 +1,5 @@
 package tw.edu.ncu.cc.location.server.service
 
-import groovy.json.JsonSlurper
 import org.junit.ClassRule
 import spock.lang.Shared
 import spock.lang.Specification
@@ -16,6 +15,7 @@ import tw.edu.ncu.cc.location.server.resource.IndexResource
 import tw.edu.ncu.cc.location.server.resource.PersistSessionResource
 import tw.edu.ncu.cc.location.server.resource.SessionResource
 
+import static HttpResource.JSON
 import static tw.edu.ncu.cc.location.server.resource.HttpResource.requestJSON
 
 class WordServiceIntegrationTest extends Specification {
@@ -48,7 +48,7 @@ class WordServiceIntegrationTest extends Specification {
         when:
             def response = requestJSON( "/keyword/國泰樹" )
         then:
-            response.result.contains( new JsonSlurper().parseText(
+            response.result.contains( JSON(
                     '''
                     {
                         "word" : "國泰樹-第一棵",
@@ -57,7 +57,7 @@ class WordServiceIntegrationTest extends Specification {
                     '''
             ) )
         and:
-            response.result.contains( new JsonSlurper().parseText(
+            response.result.contains( JSON(
                     '''
                     {
                         "word" : "國泰樹-第二棵",
@@ -71,7 +71,7 @@ class WordServiceIntegrationTest extends Specification {
         when:
             def response = requestJSON( "/keyword/緊急" )
         then:
-            response.result.contains( new JsonSlurper().parseText(
+            response.result.contains( JSON(
                     '''
                     {
                         "word" : "緊急電話",

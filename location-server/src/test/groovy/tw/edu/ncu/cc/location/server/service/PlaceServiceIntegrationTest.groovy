@@ -2,7 +2,6 @@ package tw.edu.ncu.cc.location.server.service
 
 import com.vividsolutions.jts.geom.Coordinate
 import com.vividsolutions.jts.geom.GeometryFactory
-import groovy.json.JsonSlurper
 import org.junit.ClassRule
 import spock.lang.Shared
 import spock.lang.Specification
@@ -14,8 +13,7 @@ import tw.edu.ncu.cc.location.server.resource.HttpResource
 import tw.edu.ncu.cc.location.server.resource.PersistSessionResource
 import tw.edu.ncu.cc.location.server.resource.SessionResource
 
-import static HttpResource.requestJSON
-import static HttpResource.requestString
+import static tw.edu.ncu.cc.location.server.resource.HttpResource.*
 
 class PlaceServiceIntegrationTest extends Specification {
 
@@ -41,7 +39,7 @@ class PlaceServiceIntegrationTest extends Specification {
         when:
             def response = requestJSON( "/place/type/EMERGENCY_TEL" )
         then:
-            response.result.contains( new JsonSlurper().parseText(
+            response.result.contains( JSON(
                     '''
                     {
                         "chineseName": "tel1",
@@ -58,7 +56,7 @@ class PlaceServiceIntegrationTest extends Specification {
         when:
             def response = requestJSON( "/place/type/SCENE" )
         then:
-            response.result.contains( new JsonSlurper().parseText(
+            response.result.contains( JSON(
                     '''
                     {
                         "chineseName": "scene2",
@@ -73,7 +71,7 @@ class PlaceServiceIntegrationTest extends Specification {
                     '''
             ) )
         and:
-            response.result.contains( new JsonSlurper().parseText(
+            response.result.contains( JSON(
                     '''
                     {
                         "chineseName": "scene2",
@@ -100,7 +98,7 @@ class PlaceServiceIntegrationTest extends Specification {
         when:
             def response = requestJSON( "/place/name/scene2" )
         then:
-            response.result.contains( new JsonSlurper().parseText(
+            response.result.contains( JSON(
                     '''
                     {
                         "chineseName": "scene2",
@@ -115,7 +113,7 @@ class PlaceServiceIntegrationTest extends Specification {
                     '''
             ) )
         and:
-            response.result.contains( new JsonSlurper().parseText(
+            response.result.contains( JSON(
                     '''
                     {
                         "chineseName": "scene2",

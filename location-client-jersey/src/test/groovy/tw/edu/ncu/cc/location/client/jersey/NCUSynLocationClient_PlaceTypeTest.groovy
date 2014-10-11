@@ -9,6 +9,7 @@ import spock.lang.Shared
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.client.resource.LocationClientResource
 import tw.edu.ncu.cc.location.client.resource.MockServerResource
+import tw.edu.ncu.cc.location.data.location.Location
 import tw.edu.ncu.cc.location.data.place.Place
 import tw.edu.ncu.cc.location.data.place.PlaceType
 
@@ -57,16 +58,20 @@ class NCUSynLocationClient_PlaceTypeTest extends Specification {
         given:
             def locationClient = clientResource.getClient()
         when:
-            Set<Place> places = locationClient.getPlaces( PlaceType.SCENE )
+            def places = locationClient.getPlaces( PlaceType.SCENE )
         then:
-            def placeArr = places.toArray( new Place[places.size()] )
-        and:
-            placeArr[ 0 ].getChineseName() == "home"
-            placeArr[ 0 ].getEnglishName() == "home"
-            placeArr[ 0 ].getPictureName() == "tree.jpg"
-            placeArr[ 0 ].getType() == PlaceType.SCENE
-            placeArr[ 0 ].getLocation().getLat() == 2
-            placeArr[ 0 ].getLocation().getLng() == 4
+            places.contains(
+                    new Place(
+                            chineseName: "home",
+                            englishName: "home",
+                            pictureName: "tree.jpg",
+                            type: PlaceType.SCENE,
+                            location: new Location(
+                                    lat: 2,
+                                    lng: 4
+                            )
+                    )
+            )
     }
 
 }

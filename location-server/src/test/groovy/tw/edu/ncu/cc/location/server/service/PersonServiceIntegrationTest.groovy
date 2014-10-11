@@ -1,6 +1,5 @@
 package tw.edu.ncu.cc.location.server.service
 
-import groovy.json.JsonSlurper
 import org.junit.ClassRule
 import spock.lang.Shared
 import spock.lang.Specification
@@ -14,8 +13,7 @@ import tw.edu.ncu.cc.location.server.resource.HttpResource
 import tw.edu.ncu.cc.location.server.resource.PersistSessionResource
 import tw.edu.ncu.cc.location.server.resource.SessionResource
 
-import static HttpResource.requestJSON
-import static HttpResource.requestString
+import static tw.edu.ncu.cc.location.server.resource.HttpResource.*
 
 class PersonServiceIntegrationTest extends Specification {
 
@@ -45,7 +43,7 @@ class PersonServiceIntegrationTest extends Specification {
         when:
             def response = requestJSON( "/person/name/name1" )
         then:
-            response.result.contains( new JsonSlurper().parseText(
+            response.result.contains( JSON(
                     '''
                     {
                         "chineseName" : "name1",
