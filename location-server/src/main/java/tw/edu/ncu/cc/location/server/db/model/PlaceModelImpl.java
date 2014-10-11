@@ -39,7 +39,7 @@ public class PlaceModelImpl extends HibernateAccessTool implements PlaceModel {
                         PlaceEntity.class,
                         getSession()
                                 .createQuery( "from PlaceEntity where type = :typeOrdinal" )
-                                .setInteger( "typeOrdinal", type.ordinal() )
+                                .setString( "typeOrdinal", type.value() )
                 )
         );
     }

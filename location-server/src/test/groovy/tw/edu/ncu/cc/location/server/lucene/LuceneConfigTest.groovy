@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 class LuceneConfigTest extends Specification {
 
-    private LuceneConfig luceneConfig
+    LuceneConfig luceneConfig
 
     def setup() {
         luceneConfig = new LuceneConfig()

@@ -1,14 +1,14 @@
 package tw.edu.ncu.cc.location.server.tool.convert;
 
 import com.vividsolutions.jts.geom.Point;
-import tw.edu.ncu.cc.location.data.location.Position;
+import tw.edu.ncu.cc.location.data.location.Location;
 
-public class Point_PositionConverter implements Converter< Point, Position > {
+public class Point_PositionConverter implements Converter< Point, Location> {
     @Override
-    public Position convertFrom( Point point ) {
-        Position position = new Position();
-        position.setLat( point.getY() );
-        position.setLng( point.getX() );
-        return position;
+    public Location convertFrom( Point point ) {
+        Location location = new Location();
+        location.setLat( point.getY() );
+        location.setLng( point.getX() );
+        return location;
     }
 }
