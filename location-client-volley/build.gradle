@@ -10,5 +10,9 @@ buildscript {
 
 dependencies {
     compile project(":location-client-tool")
+    compile 'com.mcxiaoke.volley:library:1.0.6'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.google.android:android:4.1.1.4'
+
     testCompile 'org.mock-server:mockserver-netty:3.6.2'
 }

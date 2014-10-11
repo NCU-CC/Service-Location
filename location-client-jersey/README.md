@@ -18,7 +18,7 @@ location.server_address = http://127.0.0.1:8080/location-Service
 
 ### Build a *LocationClient* using *LocationConfig*
 ```
-LocationClient client = new NCULocationClient( config )
+SyncLocationClient client = new NCULocationClient( config )
 ```
 
 ### Call methods on *LocationClient* to fetch data from server
