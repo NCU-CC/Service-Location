@@ -22,8 +22,6 @@ import tw.edu.ncu.cc.location.data.place.PlaceType;
 import tw.edu.ncu.cc.location.data.unit.Unit;
 import tw.edu.ncu.cc.location.data.wrapper.ResultWrapper;
 
-import java.lang.reflect.Type;
-
 @SuppressWarnings( "unused" )
 public class NCUAsyncLocationClient implements AsynLocationClient {
 
@@ -37,36 +35,45 @@ public class NCUAsyncLocationClient implements AsynLocationClient {
 
     @Override
     public void getPlaces( String placeName, ResponseListener<Place> responseListener ) {
-        sendRequest( "/place/name/" + placeName , responseListener );
+        sendRequest(
+                "/place/name/" + placeName, responseListener, new TypeToken< ResultWrapper<Place> >(){}
+        );
     }
 
     @Override
     public void getPlaces( PlaceType placeType, ResponseListener<Place> responseListener ) {
-        sendRequest( "/place/type/" + placeType , responseListener );
+        sendRequest(
+                "/place/type/" + placeType, responseListener, new TypeToken< ResultWrapper<Place> >(){}
+        );
     }
 
     @Override
     public void getPeople( String peopleName, ResponseListener<Person> responseListener ) {
-        sendRequest( "/person/name/" + peopleName , responseListener );
+        sendRequest(
+                "/person/name/" + peopleName, responseListener, new TypeToken< ResultWrapper<Person> >(){}
+        );
     }
 
     @Override
     public void getUnits( String unitName, ResponseListener<Unit> responseListener ) {
-        sendRequest( "/unit/name/" + unitName , responseListener );
+        sendRequest(
+                "/unit/name/" + unitName, responseListener, new TypeToken< ResultWrapper<Unit> >(){}
+        );
     }
 
     @Override
     public void getWords( String keyword, ResponseListener<Word> responseListener ) {
-        sendRequest( "/keyword/" + keyword , responseListener );
+        sendRequest(
+                "/keyword/" + keyword, responseListener, new TypeToken< ResultWrapper<Word> >(){}
+        );
     }
 
-    private <T> void sendRequest( String path, final ResponseListener<T> responseListener ) {
-        queue.add( new StringRequest( Request.Method.GET, Uri.encode( baseURL + path ),
+    private <T> void sendRequest( String path, final ResponseListener<T> responseListener, final TypeToken typeToken ) {
+        queue.add( new StringRequest( Request.Method.GET, baseURL + Uri.encode( path ),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse( String response ) {
-                        Type typeOfResult = new TypeToken< ResultWrapper<T> >(){}.getType();
-                        ResultWrapper<T> wrapper = new Gson().fromJson( response, typeOfResult );
+                        ResultWrapper<T> wrapper = new Gson().fromJson( response, typeToken.getType() );
                         responseListener.onResponse( ResponseConverter.convert( wrapper ) );
                     }
                 },
