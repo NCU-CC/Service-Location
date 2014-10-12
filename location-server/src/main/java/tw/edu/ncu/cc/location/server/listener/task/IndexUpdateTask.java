@@ -1,11 +1,16 @@
 package tw.edu.ncu.cc.location.server.listener.task;
 
+import org.apache.lucene.index.IndexWriter;
 import org.glassfish.hk2.api.ServiceHandle;
-import org.glassfish.hk2.api.ServiceLocator;
 import tw.edu.ncu.cc.location.data.keyword.WordType;
+import tw.edu.ncu.cc.location.server.db.HibernateUtil;
 import tw.edu.ncu.cc.location.server.db.data.PersonEntity;
 import tw.edu.ncu.cc.location.server.db.data.PlaceEntity;
 import tw.edu.ncu.cc.location.server.db.data.UnitEntity;
+import tw.edu.ncu.cc.location.server.db.model.PersonModelImpl;
+import tw.edu.ncu.cc.location.server.db.model.PlaceModelImpl;
+import tw.edu.ncu.cc.location.server.db.model.UnitModelImpl;
+import tw.edu.ncu.cc.location.server.db.model.WordPersistModelImpl;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.PersonModel;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.PlaceModel;
 import tw.edu.ncu.cc.location.server.db.model.abstracts.UnitModel;
@@ -14,33 +19,42 @@ import tw.edu.ncu.cc.location.server.lucene.LuceneWord;
 
 public class IndexUpdateTask implements Runnable {
 
-    private ServiceLocator locator;
+    private HibernateUtil hibernateUtil;
+    private ServiceHandle<IndexWriter> writerHandler;
 
-    private ServiceHandle<PlaceModel>  placeModelHandle;
-    private ServiceHandle<PersonModel> personModelHandle;
-    private ServiceHandle<UnitModel>   unitModelHandle;
-    private ServiceHandle<WordPersistModel>   wordModelHandle;
+    private PlaceModelImpl  placeModel  = new PlaceModelImpl();
+    private PersonModelImpl personModel = new PersonModelImpl();
+    private UnitModelImpl   unitModel   = new UnitModelImpl();
+    private WordPersistModelImpl wordPersistModel = new WordPersistModelImpl();
 
-    public IndexUpdateTask( ServiceLocator locator ) {
-        this.locator = locator;
+    public IndexUpdateTask( HibernateUtil hibernateUtil, ServiceHandle<IndexWriter> writerHandler ) {
+        this.hibernateUtil = hibernateUtil;
+        this.writerHandler = writerHandler;
     }
 
     @Override
     public void run() {
-        WordPersistModel wordPersistModel = initAllModel();
-        clearIndexes( wordPersistModel );
-        indexPlaces ( wordPersistModel, placeModelHandle.getService() );
-        indexPeople ( wordPersistModel, personModelHandle.getService() );
-        indexUnits  ( wordPersistModel, unitModelHandle.getService() );
-        destroyAllModel();
+        try {
+            initAllModel();
+            clearIndexes( wordPersistModel );
+            indexPlaces ( wordPersistModel, placeModel );
+            indexPeople ( wordPersistModel, personModel );
+            indexUnits  ( wordPersistModel, unitModel );
+        }finally {
+            destroyAllModel();
+        }
     }
 
-    private WordPersistModel initAllModel() {
-        placeModelHandle  = locator.getServiceHandle( PlaceModel.class );
-        personModelHandle = locator.getServiceHandle( PersonModel.class );
-        unitModelHandle   = locator.getServiceHandle( UnitModel.class );
-        wordModelHandle   = locator.getServiceHandle( WordPersistModel.class );
-        return wordModelHandle.getService();
+    private void initAllModel() {
+        placeModel.setSession( hibernateUtil.currentSession() );
+        personModel.setSession( hibernateUtil.currentSession() );
+        unitModel.setSession( hibernateUtil.currentSession() );
+        wordPersistModel.setIndexWriter( writerHandler.getService() );
+    }
+
+    private void destroyAllModel() {
+        writerHandler.destroy();
+        hibernateUtil.closeSession();
     }
 
     public static void clearIndexes( WordPersistModel wordPersistModel ) {
@@ -75,13 +89,6 @@ public class IndexUpdateTask implements Runnable {
             word.setType( WordType.UNIT );
             wordPersistModel.persistWords( word );
         }
-    }
-
-    private void destroyAllModel() {
-        placeModelHandle.destroy();
-        personModelHandle.destroy();
-        unitModelHandle.destroy();
-        wordModelHandle.destroy();
     }
 
 }

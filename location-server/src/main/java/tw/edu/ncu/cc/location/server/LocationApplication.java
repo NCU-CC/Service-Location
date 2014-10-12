@@ -4,6 +4,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.search.IndexSearcher;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.process.internal.RequestScoped;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.hibernate.Session;
 import tw.edu.ncu.cc.location.server.db.HibernateUtil;
@@ -41,7 +42,7 @@ public class LocationApplication extends ResourceConfig {
                 bindFactory( IndexSearcherFactory.class ).to( IndexSearcher.class );
 
                 bindFactory( HibernateUtilFactory.class ).to( HibernateUtil.class ).in( Singleton.class );
-                bindFactory( HibernateSessionFactory.class ).to( Session.class );
+                bindFactory( HibernateSessionFactory.class ).to( Session.class ).in( RequestScoped.class );
 
             }
         } );
