@@ -5,10 +5,10 @@ import spock.lang.Shared
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.data.place.PlaceType
 import tw.edu.ncu.cc.location.server.db.data.PlaceEntity
-import tw.edu.ncu.cc.location.server.db.model.PlaceModelImpl
-import tw.edu.ncu.cc.location.server.db.model.WordPersistModelImpl
-import tw.edu.ncu.cc.location.server.db.model.abstracts.PlaceModel
-import tw.edu.ncu.cc.location.server.db.model.abstracts.WordPersistModel
+import tw.edu.ncu.cc.location.server.db.model.PlaceModel
+import tw.edu.ncu.cc.location.server.db.model.WordPersistModel
+import tw.edu.ncu.cc.location.server.db.model.impl.PlaceModelImpl
+import tw.edu.ncu.cc.location.server.db.model.impl.WordPersistModelImpl
 import tw.edu.ncu.cc.location.server.listener.task.IndexUpdateTask
 import tw.edu.ncu.cc.location.server.resource.HttpResource
 import tw.edu.ncu.cc.location.server.resource.IndexResource

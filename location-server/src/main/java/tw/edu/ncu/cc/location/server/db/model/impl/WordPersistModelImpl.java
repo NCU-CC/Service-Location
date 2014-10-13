@@ -1,10 +1,10 @@
-package tw.edu.ncu.cc.location.server.db.model;
+package tw.edu.ncu.cc.location.server.db.model.impl;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
-import tw.edu.ncu.cc.location.server.db.model.abstracts.WordPersistModel;
-import tw.edu.ncu.cc.location.server.db.model.base.LuceneWriteTool;
+import tw.edu.ncu.cc.location.server.db.model.WordPersistModel;
+import tw.edu.ncu.cc.location.server.db.model.tool.LuceneWriteTool;
 import tw.edu.ncu.cc.location.server.lucene.LuceneWord;
 
 import java.io.IOException;

@@ -5,6 +5,8 @@ import spock.lang.Shared
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.server.db.data.PersonEntity
 import tw.edu.ncu.cc.location.server.db.data.UnitEntity
+import tw.edu.ncu.cc.location.server.db.model.impl.PersonModelImpl
+import tw.edu.ncu.cc.location.server.db.model.impl.UnitModelImpl
 import tw.edu.ncu.cc.location.server.resource.SessionResource
 import tw.edu.ncu.cc.location.server.resource.UnitSessionResource
 

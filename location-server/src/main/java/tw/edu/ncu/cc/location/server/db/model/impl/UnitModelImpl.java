@@ -1,8 +1,8 @@
-package tw.edu.ncu.cc.location.server.db.model;
+package tw.edu.ncu.cc.location.server.db.model.impl;
 
 import tw.edu.ncu.cc.location.server.db.data.UnitEntity;
-import tw.edu.ncu.cc.location.server.db.model.abstracts.UnitModel;
-import tw.edu.ncu.cc.location.server.db.model.base.HibernateAccessTool;
+import tw.edu.ncu.cc.location.server.db.model.UnitModel;
+import tw.edu.ncu.cc.location.server.db.model.tool.HibernateAccessTool;
 
 import java.util.HashSet;
 import java.util.Set;

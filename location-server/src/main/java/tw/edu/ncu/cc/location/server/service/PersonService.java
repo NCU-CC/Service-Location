@@ -2,7 +2,7 @@ package tw.edu.ncu.cc.location.server.service;
 
 import tw.edu.ncu.cc.location.data.person.Person;
 import tw.edu.ncu.cc.location.data.wrapper.ResultWrapper;
-import tw.edu.ncu.cc.location.server.db.model.abstracts.PersonModel;
+import tw.edu.ncu.cc.location.server.db.model.PersonModel;
 import tw.edu.ncu.cc.location.server.response.ServerPersonWrapper;
 
 import javax.inject.Inject;

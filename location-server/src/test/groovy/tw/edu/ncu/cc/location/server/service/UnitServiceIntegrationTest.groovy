@@ -6,7 +6,7 @@ import org.junit.ClassRule
 import spock.lang.Shared
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.server.db.data.UnitEntity
-import tw.edu.ncu.cc.location.server.db.model.UnitModelImpl
+import tw.edu.ncu.cc.location.server.db.model.impl.UnitModelImpl
 import tw.edu.ncu.cc.location.server.resource.HttpResource
 import tw.edu.ncu.cc.location.server.resource.PersistSessionResource
 import tw.edu.ncu.cc.location.server.resource.SessionResource

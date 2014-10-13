@@ -9,7 +9,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.hibernate.Session;
 import tw.edu.ncu.cc.location.server.db.HibernateUtil;
 import tw.edu.ncu.cc.location.server.db.model.*;
-import tw.edu.ncu.cc.location.server.db.model.abstracts.*;
+import tw.edu.ncu.cc.location.server.db.model.impl.*;
 import tw.edu.ncu.cc.location.server.factory.*;
 import tw.edu.ncu.cc.location.server.listener.LuceneInitListener;
 import tw.edu.ncu.cc.location.server.lucene.LuceneConfig;

@@ -1,9 +1,9 @@
-package tw.edu.ncu.cc.location.server.db.model;
+package tw.edu.ncu.cc.location.server.db.model.impl;
 
 import tw.edu.ncu.cc.location.data.place.PlaceType;
 import tw.edu.ncu.cc.location.server.db.data.PlaceEntity;
-import tw.edu.ncu.cc.location.server.db.model.abstracts.PlaceModel;
-import tw.edu.ncu.cc.location.server.db.model.base.HibernateAccessTool;
+import tw.edu.ncu.cc.location.server.db.model.PlaceModel;
+import tw.edu.ncu.cc.location.server.db.model.tool.HibernateAccessTool;
 
 import java.util.HashSet;
 import java.util.Set;

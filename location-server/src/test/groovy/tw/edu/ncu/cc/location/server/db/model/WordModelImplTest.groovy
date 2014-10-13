@@ -4,6 +4,8 @@ import org.junit.Rule
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.data.keyword.Word
 import tw.edu.ncu.cc.location.data.keyword.WordType
+import tw.edu.ncu.cc.location.server.db.model.impl.WordPersistModelImpl
+import tw.edu.ncu.cc.location.server.db.model.impl.WordRetriveModelImpl
 import tw.edu.ncu.cc.location.server.lucene.LuceneWord
 import tw.edu.ncu.cc.location.server.resource.IndexResource
 

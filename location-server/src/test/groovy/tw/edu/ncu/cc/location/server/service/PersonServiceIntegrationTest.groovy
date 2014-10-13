@@ -5,10 +5,10 @@ import spock.lang.Shared
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.server.db.data.PersonEntity
 import tw.edu.ncu.cc.location.server.db.data.UnitEntity
-import tw.edu.ncu.cc.location.server.db.model.PersonModelImpl
-import tw.edu.ncu.cc.location.server.db.model.UnitModelImpl
-import tw.edu.ncu.cc.location.server.db.model.abstracts.PersonModel
-import tw.edu.ncu.cc.location.server.db.model.abstracts.UnitModel
+import tw.edu.ncu.cc.location.server.db.model.PersonModel
+import tw.edu.ncu.cc.location.server.db.model.UnitModel
+import tw.edu.ncu.cc.location.server.db.model.impl.PersonModelImpl
+import tw.edu.ncu.cc.location.server.db.model.impl.UnitModelImpl
 import tw.edu.ncu.cc.location.server.resource.HttpResource
 import tw.edu.ncu.cc.location.server.resource.PersistSessionResource
 import tw.edu.ncu.cc.location.server.resource.SessionResource
