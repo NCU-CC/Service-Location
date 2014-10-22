@@ -33,9 +33,9 @@ class WordServiceIntegrationTest extends Specification {
         PlaceModel placeModel = new PlaceModelImpl()
         placeModel.setSession( sessionResource.getSession() )
         placeModel.persistPlace(
-                new PlaceEntity( PlaceType.SCENE, "國泰樹-第一棵" ),
-                new PlaceEntity( PlaceType.SCENE, "國泰樹-第二棵" ),
-                new PlaceEntity( PlaceType.EMERGENCY_TEL, "緊急電話" )
+                new PlaceEntity( PlaceType.OTHER, "國泰樹-第一棵" ),
+                new PlaceEntity( PlaceType.OTHER, "國泰樹-第二棵" ),
+                new PlaceEntity( PlaceType.EMERGENCY, "緊急電話" )
         )
 
         WordPersistModel wordPersistModel = new WordPersistModelImpl()

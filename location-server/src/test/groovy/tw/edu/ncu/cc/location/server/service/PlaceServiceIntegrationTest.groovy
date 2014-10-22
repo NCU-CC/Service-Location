@@ -29,15 +29,15 @@ class PlaceServiceIntegrationTest extends Specification {
         PlaceModel placeModel = new PlaceModelImpl()
         placeModel.setSession( sessionResource.getSession() )
         placeModel.persistPlace(
-                new PlaceEntity( PlaceType.SCENE, "scene2", geometryFactory.createPoint( new Coordinate( 1.0, 1.0 ) )),
-                new PlaceEntity( PlaceType.SCENE, "scene2", geometryFactory.createPoint( new Coordinate( 2.0, 2.0 ) )),
-                new PlaceEntity( PlaceType.EMERGENCY_TEL, "tel1" )
+                new PlaceEntity( PlaceType.OTHER, "scene2", geometryFactory.createPoint( new Coordinate( 1.0, 1.0 ) )),
+                new PlaceEntity( PlaceType.OTHER, "scene2", geometryFactory.createPoint( new Coordinate( 2.0, 2.0 ) )),
+                new PlaceEntity( PlaceType.EMERGENCY, "tel1" )
         )
     }
 
     def "server can return all places by type 1"() {
         when:
-            def response = requestJSON( "/place/type/EMERGENCY_TEL" )
+            def response = requestJSON( "/place/type/EMERGENCY" )
         then:
             response.result.contains( JSON(
                     '''
@@ -45,7 +45,7 @@ class PlaceServiceIntegrationTest extends Specification {
                         "chineseName": "tel1",
                         "englishName" : null,
                         "pictureName" : null,
-                        "type" : "EMERGENCY_TEL",
+                        "type" : "EMERGENCY",
                         "location" : null
                     }
                     '''
@@ -54,7 +54,7 @@ class PlaceServiceIntegrationTest extends Specification {
 
     def "server can return all places by type 2"() {
         when:
-            def response = requestJSON( "/place/type/SCENE" )
+            def response = requestJSON( "/place/type/OTHER" )
         then:
             response.result.contains( JSON(
                     '''
@@ -62,7 +62,7 @@ class PlaceServiceIntegrationTest extends Specification {
                         "chineseName": "scene2",
                         "englishName" : null,
                         "pictureName" : null,
-                        "type" : "SCENE",
+                        "type" : "OTHER",
                         "location" : {
                             "lat":1.0,
                             "lng":1.0
@@ -77,7 +77,7 @@ class PlaceServiceIntegrationTest extends Specification {
                         "chineseName": "scene2",
                         "englishName" : null,
                         "pictureName" : null,
-                        "type" : "SCENE",
+                        "type" : "OTHER",
                         "location" : {
                             "lat":2.0,
                             "lng":2.0
@@ -104,7 +104,7 @@ class PlaceServiceIntegrationTest extends Specification {
                         "chineseName": "scene2",
                         "englishName" : null,
                         "pictureName" : null,
-                        "type" : "SCENE",
+                        "type" : "OTHER",
                         "location" : {
                             "lat":1.0,
                             "lng":1.0
@@ -119,7 +119,7 @@ class PlaceServiceIntegrationTest extends Specification {
                         "chineseName": "scene2",
                         "englishName" : null,
                         "pictureName" : null,
-                        "type" : "SCENE",
+                        "type" : "OTHER",
                         "location" : {
                             "lat":2.0,
                             "lng":2.0

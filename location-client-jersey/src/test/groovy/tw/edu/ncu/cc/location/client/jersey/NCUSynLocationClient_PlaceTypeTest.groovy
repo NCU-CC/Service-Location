@@ -26,7 +26,7 @@ class NCUSynLocationClient_PlaceTypeTest extends Specification {
         serverResource.getMockServer().when(
                 HttpRequest.request()
                         .withMethod( "GET" )
-                        .withPath( "/place/type/SCENE" )
+                        .withPath( "/place/type/OTHER" )
         ).respond(
                 HttpResponse.response()
                         .withStatusCode( 200 )
@@ -41,7 +41,7 @@ class NCUSynLocationClient_PlaceTypeTest extends Specification {
                                     "chineseName":"home",
                                     "englishName":"home",
                                     "pictureName":"tree.jpg",
-                                    "type":"SCENE",
+                                    "type":"OTHER",
                                     "location":{
                                         "lat":2,
                                         "lng":4
@@ -58,14 +58,14 @@ class NCUSynLocationClient_PlaceTypeTest extends Specification {
         given:
             def locationClient = clientResource.getClient()
         when:
-            def places = locationClient.getPlaces( PlaceType.SCENE )
+            def places = locationClient.getPlaces( PlaceType.OTHER )
         then:
             places.contains(
                     new Place(
                             chineseName: "home",
                             englishName: "home",
                             pictureName: "tree.jpg",
-                            type: PlaceType.SCENE,
+                            type: PlaceType.OTHER,
                             location: new Location(
                                     lat: 2,
                                     lng: 4
