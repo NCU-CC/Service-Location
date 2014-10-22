@@ -7,14 +7,14 @@ import tw.edu.ncu.cc.location.server.db.HibernateUtil;
 import tw.edu.ncu.cc.location.server.db.data.PersonEntity;
 import tw.edu.ncu.cc.location.server.db.data.PlaceEntity;
 import tw.edu.ncu.cc.location.server.db.data.UnitEntity;
-import tw.edu.ncu.cc.location.server.db.model.PersonModelImpl;
-import tw.edu.ncu.cc.location.server.db.model.PlaceModelImpl;
-import tw.edu.ncu.cc.location.server.db.model.UnitModelImpl;
-import tw.edu.ncu.cc.location.server.db.model.WordPersistModelImpl;
-import tw.edu.ncu.cc.location.server.db.model.abstracts.PersonModel;
-import tw.edu.ncu.cc.location.server.db.model.abstracts.PlaceModel;
-import tw.edu.ncu.cc.location.server.db.model.abstracts.UnitModel;
-import tw.edu.ncu.cc.location.server.db.model.abstracts.WordPersistModel;
+import tw.edu.ncu.cc.location.server.db.model.PersonModel;
+import tw.edu.ncu.cc.location.server.db.model.PlaceModel;
+import tw.edu.ncu.cc.location.server.db.model.UnitModel;
+import tw.edu.ncu.cc.location.server.db.model.WordPersistModel;
+import tw.edu.ncu.cc.location.server.db.model.impl.PersonModelImpl;
+import tw.edu.ncu.cc.location.server.db.model.impl.PlaceModelImpl;
+import tw.edu.ncu.cc.location.server.db.model.impl.UnitModelImpl;
+import tw.edu.ncu.cc.location.server.db.model.impl.WordPersistModelImpl;
 import tw.edu.ncu.cc.location.server.lucene.LuceneWord;
 
 public class IndexUpdateTask implements Runnable {

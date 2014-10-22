@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.db.model.base;
+package tw.edu.ncu.cc.location.server.db.model.tool;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;

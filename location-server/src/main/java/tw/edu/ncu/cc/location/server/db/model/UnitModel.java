@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.db.model.abstracts;
+package tw.edu.ncu.cc.location.server.db.model;
 
 import tw.edu.ncu.cc.location.server.db.data.UnitEntity;
 

@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.db.model.base;
+package tw.edu.ncu.cc.location.server.db.model.tool;
 
 import org.hibernate.Query;
 import org.hibernate.Session;

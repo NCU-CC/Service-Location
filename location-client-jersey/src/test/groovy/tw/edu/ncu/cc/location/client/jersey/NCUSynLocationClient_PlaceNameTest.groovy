@@ -40,7 +40,7 @@ class NCUSynLocationClient_PlaceNameTest extends Specification {
                                     "chineseName":"home",
                                     "englishName":"home",
                                     "pictureName":"123.png",
-                                    "type":"SCENE",
+                                    "type":"OTHER",
                                     "location":{
                                         "lat":1,
                                         "lng":2
@@ -64,7 +64,7 @@ class NCUSynLocationClient_PlaceNameTest extends Specification {
                             chineseName: "home",
                             englishName: "home",
                             pictureName: "123.png",
-                            type: PlaceType.SCENE,
+                            type: PlaceType.OTHER,
                             location: new Location(
                                     lat: 1,
                                     lng: 2

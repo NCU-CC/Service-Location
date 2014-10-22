@@ -79,7 +79,6 @@ public class PersonEntity {
 
     @JoinColumn( name = "primary_unit_no" )
     @OneToOne( fetch = FetchType.LAZY )
-//    @JoinColumn( name = "primary_unit_no", referencedColumnName = "unit_no" )
     public UnitEntity getPrimaryUnit() {
         return primaryUnit;
     }
@@ -90,7 +89,6 @@ public class PersonEntity {
 
     @JoinColumn( name = "secondary_unit_no" )
     @OneToOne( fetch = FetchType.LAZY )
-//    @JoinColumn( name = "secondary_unit_no", referencedColumnName = "unit_no" )
     public UnitEntity getSecondaryUnit() {
         return secondaryUnit;
     }

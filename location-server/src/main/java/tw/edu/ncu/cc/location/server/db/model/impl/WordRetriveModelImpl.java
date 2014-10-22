@@ -1,11 +1,11 @@
-package tw.edu.ncu.cc.location.server.db.model;
+package tw.edu.ncu.cc.location.server.db.model.impl;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.queryparser.classic.ParseException;
 import tw.edu.ncu.cc.location.data.keyword.Word;
 import tw.edu.ncu.cc.location.data.keyword.WordType;
-import tw.edu.ncu.cc.location.server.db.model.abstracts.WordRetriveModel;
-import tw.edu.ncu.cc.location.server.db.model.base.LuceneReadTool;
+import tw.edu.ncu.cc.location.server.db.model.WordRetriveModel;
+import tw.edu.ncu.cc.location.server.db.model.tool.LuceneReadTool;
 
 import java.io.IOException;
 import java.util.HashSet;

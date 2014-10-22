@@ -9,7 +9,7 @@ import org.glassfish.jersey.server.monitoring.RequestEvent;
 import org.glassfish.jersey.server.monitoring.RequestEventListener;
 import tw.edu.ncu.cc.location.data.keyword.WordType;
 import tw.edu.ncu.cc.location.server.db.HibernateUtil;
-import tw.edu.ncu.cc.location.server.db.model.WordPersistModelImpl;
+import tw.edu.ncu.cc.location.server.db.model.impl.WordPersistModelImpl;
 import tw.edu.ncu.cc.location.server.listener.task.IndexUpdateTask;
 import tw.edu.ncu.cc.location.server.lucene.LuceneWord;
 
