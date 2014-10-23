@@ -1,6 +1,7 @@
 package tw.edu.ncu.cc.location.server.resource;
 
 import org.hibernate.Session;
+import org.hibernate.StatelessSession;
 import org.junit.rules.ExternalResource;
 import tool.HibernateUtilTestFactory;
 import tw.edu.ncu.cc.location.server.db.HibernateUtil;
@@ -24,4 +25,8 @@ public class UnitSessionResource extends ExternalResource implements SessionReso
         return hibernateUtil.currentSession();
     }
 
+    @Override
+    public StatelessSession getStatelessSession() {
+        return hibernateUtil.currentStatelessSession();
+    }
 }

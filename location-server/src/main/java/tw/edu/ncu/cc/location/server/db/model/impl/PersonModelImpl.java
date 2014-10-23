@@ -41,13 +41,4 @@ public class PersonModelImpl extends HibernateAccessTool implements PersonModel 
         );
     }
 
-    @Override
-    public Set<PersonEntity> getAllPeople() {
-        return new HashSet<>(
-                getObjects(
-                        PersonEntity.class,
-                        getSession().createQuery( "from PersonEntity" )
-                )
-        );
-    }
 }

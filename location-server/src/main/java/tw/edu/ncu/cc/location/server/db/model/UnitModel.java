@@ -8,5 +8,4 @@ public interface UnitModel {
     public void persistUnits( UnitEntity... unitEntities );
     public UnitEntity getUnit( Integer id );
     public Set<UnitEntity> getUnits( String fullName );
-    public Set<UnitEntity> getAllUnits();
 }

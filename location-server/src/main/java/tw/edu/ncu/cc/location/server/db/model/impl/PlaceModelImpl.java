@@ -44,13 +44,4 @@ public class PlaceModelImpl extends HibernateAccessTool implements PlaceModel {
         );
     }
 
-    @Override
-    public Set<PlaceEntity> getAllPlaces() {
-        return new HashSet<>(
-                getObjects(
-                        PlaceEntity.class,
-                        getSession().createQuery( "from PlaceEntity" )
-                )
-        );
-    }
 }
