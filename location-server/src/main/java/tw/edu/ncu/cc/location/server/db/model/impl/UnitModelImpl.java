@@ -31,14 +31,4 @@ public class UnitModelImpl extends HibernateAccessTool implements UnitModel {
         );
     }
 
-    @Override
-    public Set<UnitEntity> getAllUnits() {
-        return new HashSet<>(
-                getObjects(
-                        UnitEntity.class,
-                        getSession().createQuery( "from UnitEntity" )
-                )
-        );
-    }
-
 }

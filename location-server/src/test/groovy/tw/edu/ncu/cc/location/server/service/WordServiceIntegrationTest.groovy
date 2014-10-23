@@ -41,7 +41,7 @@ class WordServiceIntegrationTest extends Specification {
         WordPersistModel wordPersistModel = new WordPersistModelImpl()
         wordPersistModel.setIndexWriter( indexResource.getIndexWriter() )
 
-        IndexUpdateTask.indexPlaces ( wordPersistModel, placeModel );
+        IndexUpdateTask.indexPlaces ( wordPersistModel, sessionResource.getStatelessSession() );
     }
 
     def "server can return origin word of given keyword 1"() {
