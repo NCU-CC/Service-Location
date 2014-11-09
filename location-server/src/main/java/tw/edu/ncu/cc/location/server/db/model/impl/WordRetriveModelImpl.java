@@ -8,15 +8,15 @@ import tw.edu.ncu.cc.location.server.db.model.WordRetriveModel;
 import tw.edu.ncu.cc.location.server.db.model.tool.LuceneReadTool;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 public class WordRetriveModelImpl extends LuceneReadTool implements WordRetriveModel {
 
     @Override
-    public Set<Word> getWords( String keyword ) {
+    public List<Word> getWords( String keyword ) {
         try {
-            Set<Word> words = new HashSet<>();
+            List<Word> words = new LinkedList<>();
             for( Document document : searchDocuments( "index", keyword, 3 ) ) {
                 Word word = new Word();
                 word.setWord( document.get( "word" ) );
