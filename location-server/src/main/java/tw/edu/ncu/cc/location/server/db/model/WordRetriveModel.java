@@ -2,8 +2,8 @@ package tw.edu.ncu.cc.location.server.db.model;
 
 import tw.edu.ncu.cc.location.data.keyword.Word;
 
-import java.util.Set;
+import java.util.List;
 
 public interface WordRetriveModel {
-    public Set<Word> getWords( String keyword );
+    public List<Word> getWords( String keyword );
 }
