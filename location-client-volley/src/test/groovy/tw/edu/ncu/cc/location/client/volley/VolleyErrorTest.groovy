@@ -9,7 +9,7 @@ class VolleyErrorTest extends Specification {
 
     class VolleyResponseListener implements ResponseListener<String> {
         @Override
-        void onResponse( Set<String> responses ) {
+        void onResponse( List<String> responses ) {
 
         }
         @Override
