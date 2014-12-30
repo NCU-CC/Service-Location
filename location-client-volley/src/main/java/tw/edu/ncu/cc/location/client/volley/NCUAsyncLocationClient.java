@@ -48,6 +48,13 @@ public class NCUAsyncLocationClient implements AsynLocationClient {
     }
 
     @Override
+    public void getPlaceUnits( String placeName, ResponseListener< Unit > responseListener ) {
+        sendRequest(
+                "/place/name/" + Uri.encode( placeName ) + "/units", responseListener, new TypeToken< ResultWrapper<Unit> >(){}
+        );
+    }
+
+    @Override
     public void getPeople( String peopleName, ResponseListener<Person> responseListener ) {
         sendRequest(
                 "/person/name/" + Uri.encode( peopleName ), responseListener, new TypeToken< ResultWrapper<Person> >(){}

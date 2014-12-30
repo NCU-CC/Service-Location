@@ -2,10 +2,12 @@ package tw.edu.ncu.cc.location.server.service;
 
 import tw.edu.ncu.cc.location.data.place.Place;
 import tw.edu.ncu.cc.location.data.place.PlaceType;
+import tw.edu.ncu.cc.location.data.unit.Unit;
 import tw.edu.ncu.cc.location.data.wrapper.ResultWrapper;
 import tw.edu.ncu.cc.location.server.db.data.PlaceEntity;
 import tw.edu.ncu.cc.location.server.db.model.PlaceModel;
 import tw.edu.ncu.cc.location.server.response.ServerPlaceWrapper;
+import tw.edu.ncu.cc.location.server.response.ServerUnitWrapper;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -35,6 +37,13 @@ public class PlaceService {
     @Produces("application/json;charset=utf-8")
     public ResultWrapper<Place> getPlaceByName( @PathParam("name") String name ) {
         return new ServerPlaceWrapper( placeModel.getPlaces( name ) );
+    }
+
+    @GET
+    @Path( "name/{name}/units" )
+    @Produces("application/json;charset=utf-8")
+    public ResultWrapper<Unit> getPlaceUnits( @PathParam("name") String name ) {
+        return new ServerUnitWrapper( placeModel.getUnits( name ) );
     }
 
 }
