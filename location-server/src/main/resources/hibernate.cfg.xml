@@ -8,6 +8,7 @@
         <mapping class="tw.edu.ncu.cc.location.server.db.data.PersonEntity"/>
         <mapping class="tw.edu.ncu.cc.location.server.db.data.UnitEntity"/>
         <mapping class="tw.edu.ncu.cc.location.server.db.data.PlaceEntity"/>
+        <mapping class="tw.edu.ncu.cc.location.server.db.data.PlaceUnitEntity"/>
 
     </session-factory>
 </hibernate-configuration>
