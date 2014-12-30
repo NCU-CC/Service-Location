@@ -5,6 +5,7 @@ import org.hibernate.annotations.Type;
 import tw.edu.ncu.cc.location.data.place.PlaceType;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table( name = "Place" )
@@ -16,6 +17,7 @@ public class PlaceEntity {
     private String pictureName;
     private PlaceType type;
     private Point location;
+    private List< PlaceUnitEntity > placeUnits;
 
     public PlaceEntity() {}
 
@@ -92,6 +94,15 @@ public class PlaceEntity {
         this.location = location;
     }
 
+    @OneToMany( mappedBy = "place" )
+    public List< PlaceUnitEntity > getPlaceUnits() {
+        return placeUnits;
+    }
+
+    public void setPlaceUnits( List< PlaceUnitEntity > placeUnits ) {
+        this.placeUnits = placeUnits;
+    }
+
     @Override
     public boolean equals( Object o ) {
         if ( this == o ) return true;
@@ -100,11 +111,12 @@ public class PlaceEntity {
         PlaceEntity that = ( PlaceEntity ) o;
 
         if ( id != that.id ) return false;
-        if ( type != that.type ) return false;
         if ( chineseName != null ? !chineseName.equals( that.chineseName ) : that.chineseName != null ) return false;
         if ( englishName != null ? !englishName.equals( that.englishName ) : that.englishName != null ) return false;
         if ( location != null ? !location.equals( that.location ) : that.location != null ) return false;
         if ( pictureName != null ? !pictureName.equals( that.pictureName ) : that.pictureName != null ) return false;
+        if ( placeUnits != null ? !placeUnits.equals( that.placeUnits ) : that.placeUnits != null ) return false;
+        if ( type != that.type ) return false;
 
         return true;
     }
@@ -115,8 +127,10 @@ public class PlaceEntity {
         result = 31 * result + ( chineseName != null ? chineseName.hashCode() : 0 );
         result = 31 * result + ( englishName != null ? englishName.hashCode() : 0 );
         result = 31 * result + ( pictureName != null ? pictureName.hashCode() : 0 );
-        result = 31 * result + type.ordinal();
+        result = 31 * result + ( type != null ? type.hashCode() : 0 );
         result = 31 * result + ( location != null ? location.hashCode() : 0 );
+        result = 31 * result + ( placeUnits != null ? placeUnits.hashCode() : 0 );
         return result;
     }
+
 }

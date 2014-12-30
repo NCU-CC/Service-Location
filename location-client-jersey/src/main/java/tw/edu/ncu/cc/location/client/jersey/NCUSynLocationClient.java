@@ -14,7 +14,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
-import java.util.Set;
+import java.util.List;
 
 public class NCUSynLocationClient implements SyncLocationClient {
 
@@ -25,7 +25,7 @@ public class NCUSynLocationClient implements SyncLocationClient {
     }
 
     @Override
-    public Set<Place> getPlaces( String placeName ) {
+    public List<Place> getPlaces( String placeName ) {
         return ResponseConverter.convert(
                 target.path( "/place/name/" + placeName )
                         .request( MediaType.APPLICATION_JSON_TYPE )
@@ -34,7 +34,7 @@ public class NCUSynLocationClient implements SyncLocationClient {
     }
 
     @Override
-    public Set<Place> getPlaces( PlaceType placeType ) {
+    public List<Place> getPlaces( PlaceType placeType ) {
         return ResponseConverter.convert(
                 target.path( "/place/type/" + placeType.value() )
                         .request( MediaType.APPLICATION_JSON_TYPE )
@@ -43,7 +43,7 @@ public class NCUSynLocationClient implements SyncLocationClient {
     }
 
     @Override
-    public Set<Person> getPeople( String peopleName ) {
+    public List<Person> getPeople( String peopleName ) {
         return ResponseConverter.convert(
                 target.path( "/person/name/" + peopleName )
                         .request( MediaType.APPLICATION_JSON_TYPE )
@@ -52,7 +52,7 @@ public class NCUSynLocationClient implements SyncLocationClient {
     }
 
     @Override
-    public Set<Unit> getUnits( String unitName ) {
+    public List<Unit> getUnits( String unitName ) {
         return ResponseConverter.convert(
                 target.path( "/unit/name/" + unitName )
                         .request( MediaType.APPLICATION_JSON_TYPE )
@@ -61,7 +61,7 @@ public class NCUSynLocationClient implements SyncLocationClient {
     }
 
     @Override
-    public Set<Word> getWords( String keyword ) {
+    public List<Word> getWords( String keyword ) {
         return ResponseConverter.convert(
                 target.path( "/keyword/" + keyword )
                     .request( MediaType.APPLICATION_JSON_TYPE )
