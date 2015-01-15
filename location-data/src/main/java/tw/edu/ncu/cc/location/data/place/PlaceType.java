@@ -35,8 +35,5 @@ public enum PlaceType {
     public String getCName() {
         return this.cName;
     }
-
-    public boolean isNeed() {
-        return this.isNeed;
-    }
+	
 }
