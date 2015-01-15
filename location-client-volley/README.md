@@ -3,26 +3,26 @@ location data consumer on android volley
 
 ### Build a *LocationConfig*
 - build by yourself
-```
+```Java
 LocationConfig config = new NCULocationConfig();
 config.setServerAddress( "http://127.0.0.1:8080/location-Service" )
 ```
 - build by properties file in resource path
-```
+```Java
 LocationConfig config = new NCULocationConfig().configure( "settings.properties" );
 ```
-```
+```Java
 #properties in config file
 location.server_address = http://127.0.0.1:8080/location-Service
 ```
 
 ### Build a *LocationClient* using *LocationConfig*
-```
+```Java
 AsynLocationClient client = new NCULocationClient( config, androidContext )
 ```
 
 ### Build a *ResponseListener*
-```
+```Java
 class VolleyResponseListener implements ResponseListener<T> {
         @Override
         void onResponse( Set<T> responses ) {
