@@ -93,4 +93,8 @@ public class NCUAsyncLocationClient implements AsynLocationClient {
         ) );
     }
 
+	public RequestQueue getQueue() {
+        return queue;
+    }
+	
 }
