@@ -2,9 +2,9 @@ package tw.edu.ncu.cc.location.server.response;
 
 import tw.edu.ncu.cc.location.data.place.Place;
 import tw.edu.ncu.cc.location.data.wrapper.ResultWrapper;
-import tw.edu.ncu.cc.location.server.db.data.PlaceEntity;
-import tw.edu.ncu.cc.location.server.tool.Type;
-import tw.edu.ncu.cc.location.server.tool.convert.PlaceEntity_PlaceConverter;
+import tw.edu.ncu.cc.location.server.converter.PlaceEntity_PlaceConverter;
+import tw.edu.ncu.cc.location.server.converter.Type;
+import tw.edu.ncu.cc.location.server.entity.PlaceEntity;
 
 import java.util.Set;
 

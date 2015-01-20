@@ -7,12 +7,12 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.hibernate.Session;
-import tw.edu.ncu.cc.location.server.db.HibernateUtil;
-import tw.edu.ncu.cc.location.server.db.model.*;
-import tw.edu.ncu.cc.location.server.db.model.impl.*;
 import tw.edu.ncu.cc.location.server.factory.*;
 import tw.edu.ncu.cc.location.server.listener.LuceneInitListener;
 import tw.edu.ncu.cc.location.server.lucene.LuceneConfig;
+import tw.edu.ncu.cc.location.server.service.*;
+import tw.edu.ncu.cc.location.server.service.impl.*;
+import tw.edu.ncu.cc.location.server.service.tool.HibernateUtil;
 
 import javax.inject.Singleton;
 
@@ -29,12 +29,12 @@ public class LocationApplication extends ResourceConfig {
             @Override
             protected void configure() {
 
-                bind( PersonModelImpl.class ).to( PersonModel.class );
-                bind( UnitModelImpl.class ).to( UnitModel.class );
-                bind( PlaceModelImpl.class ).to( PlaceModel.class );
+                bind( PersonServiceImpl.class ).to( PersonService.class );
+                bind( UnitServiceImpl.class ).to( UnitService.class );
+                bind( PlaceServiceImpl.class ).to( PlaceService.class );
 
-                bind( WordPersistModelImpl.class ).to( WordPersistModel.class );
-                bind( WordRetriveModelImpl.class ).to( WordRetriveModel.class );
+                bind( WordPersistServiceImpl.class ).to( WordPersistService.class );
+                bind( WordRetriveServiceImpl.class ).to( WordRetriveService.class );
 
                 bindFactory( LuceneConfigFactory.class ).to( LuceneConfig.class ).in( Singleton.class );
 

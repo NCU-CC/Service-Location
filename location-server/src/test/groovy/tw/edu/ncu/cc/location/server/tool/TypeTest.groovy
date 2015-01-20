@@ -1,7 +1,8 @@
 package tw.edu.ncu.cc.location.server.tool
 
 import spock.lang.Specification
-import tw.edu.ncu.cc.location.server.tool.convert.Converter
+import tw.edu.ncu.cc.location.server.converter.Converter
+import tw.edu.ncu.cc.location.server.converter.Type
 
 
 class TypeTest extends Specification {

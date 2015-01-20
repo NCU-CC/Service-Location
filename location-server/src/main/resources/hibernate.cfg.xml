@@ -5,10 +5,10 @@
 <hibernate-configuration>
     <session-factory>
 
-        <mapping class="tw.edu.ncu.cc.location.server.db.data.PersonEntity"/>
-        <mapping class="tw.edu.ncu.cc.location.server.db.data.UnitEntity"/>
-        <mapping class="tw.edu.ncu.cc.location.server.db.data.PlaceEntity"/>
-        <mapping class="tw.edu.ncu.cc.location.server.db.data.PlaceUnitEntity"/>
+        <mapping class="tw.edu.ncu.cc.location.server.entity.PersonEntity"/>
+        <mapping class="tw.edu.ncu.cc.location.server.entity.UnitEntity"/>
+        <mapping class="tw.edu.ncu.cc.location.server.entity.PlaceEntity"/>
+        <mapping class="tw.edu.ncu.cc.location.server.entity.PlaceUnitEntity"/>
 
     </session-factory>
 </hibernate-configuration>

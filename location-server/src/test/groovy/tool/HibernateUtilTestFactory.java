@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import tw.edu.ncu.cc.location.server.db.HibernateUtil;
+import tw.edu.ncu.cc.location.server.service.tool.HibernateUtil;
 
 public class HibernateUtilTestFactory implements Factory<HibernateUtil> {
 

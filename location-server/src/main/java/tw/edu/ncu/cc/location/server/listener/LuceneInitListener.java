@@ -8,10 +8,10 @@ import org.glassfish.jersey.server.monitoring.ApplicationEventListener;
 import org.glassfish.jersey.server.monitoring.RequestEvent;
 import org.glassfish.jersey.server.monitoring.RequestEventListener;
 import tw.edu.ncu.cc.location.data.keyword.WordType;
-import tw.edu.ncu.cc.location.server.db.HibernateUtil;
-import tw.edu.ncu.cc.location.server.db.model.impl.WordPersistModelImpl;
 import tw.edu.ncu.cc.location.server.listener.task.IndexUpdateTask;
 import tw.edu.ncu.cc.location.server.lucene.LuceneWord;
+import tw.edu.ncu.cc.location.server.service.impl.WordPersistServiceImpl;
+import tw.edu.ncu.cc.location.server.service.tool.HibernateUtil;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.Context;
@@ -50,7 +50,7 @@ public class LuceneInitListener implements ApplicationEventListener {
         ServiceHandle<IndexWriter> writerHandle = locator.getServiceHandle( IndexWriter.class );
 
         try {
-            WordPersistModelImpl wordModel = new WordPersistModelImpl();
+            WordPersistServiceImpl wordModel = new WordPersistServiceImpl();
             wordModel.setIndexWriter( writerHandle.getService() );
             wordModel.persistWords(
                     new LuceneWord( testFieldIndex, testFieldValue, WordType.PLACE )

@@ -3,8 +3,8 @@ package tw.edu.ncu.cc.location.server.resource;
 import org.hibernate.Session;
 import org.hibernate.StatelessSession;
 import org.junit.rules.ExternalResource;
-import tw.edu.ncu.cc.location.server.db.HibernateUtil;
 import tw.edu.ncu.cc.location.server.factory.HibernateUtilFactory;
+import tw.edu.ncu.cc.location.server.service.tool.HibernateUtil;
 
 public class PersistSessionResource extends ExternalResource implements SessionResource {
 

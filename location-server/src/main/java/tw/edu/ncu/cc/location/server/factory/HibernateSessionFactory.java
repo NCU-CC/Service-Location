@@ -2,7 +2,7 @@ package tw.edu.ncu.cc.location.server.factory;
 
 import org.glassfish.hk2.api.Factory;
 import org.hibernate.Session;
-import tw.edu.ncu.cc.location.server.db.HibernateUtil;
+import tw.edu.ncu.cc.location.server.service.tool.HibernateUtil;
 
 import javax.inject.Inject;
 

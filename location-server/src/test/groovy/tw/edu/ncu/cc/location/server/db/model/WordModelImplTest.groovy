@@ -4,22 +4,22 @@ import org.junit.Rule
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.data.keyword.Word
 import tw.edu.ncu.cc.location.data.keyword.WordType
-import tw.edu.ncu.cc.location.server.db.model.impl.WordPersistModelImpl
-import tw.edu.ncu.cc.location.server.db.model.impl.WordRetriveModelImpl
 import tw.edu.ncu.cc.location.server.lucene.LuceneWord
 import tw.edu.ncu.cc.location.server.resource.IndexResource
+import tw.edu.ncu.cc.location.server.service.impl.WordPersistServiceImpl
+import tw.edu.ncu.cc.location.server.service.impl.WordRetriveServiceImpl
 
 class WordModelImplTest extends Specification {
 
     @Rule
     IndexResource indexResource = new IndexResource()
 
-    WordPersistModelImpl wordPersistModel
-    WordRetriveModelImpl wordRetriveModel
+    WordPersistServiceImpl wordPersistModel
+    WordRetriveServiceImpl wordRetriveModel
 
     def setup() {
-        wordPersistModel = new WordPersistModelImpl()
-        wordRetriveModel = new WordRetriveModelImpl()
+        wordPersistModel = new WordPersistServiceImpl()
+        wordRetriveModel = new WordRetriveServiceImpl()
     }
 
     def "they can handle word persistence, reader must init after write done"() {

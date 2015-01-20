@@ -1,26 +1,12 @@
 package tw.edu.ncu.cc.location.server.service;
 
-import tw.edu.ncu.cc.location.data.person.Person;
-import tw.edu.ncu.cc.location.data.wrapper.ResultWrapper;
-import tw.edu.ncu.cc.location.server.db.model.PersonModel;
-import tw.edu.ncu.cc.location.server.response.ServerPersonWrapper;
+import tw.edu.ncu.cc.location.server.entity.PersonEntity;
 
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import java.util.Set;
 
-@Path( "person" )
-public class PersonService {
-
-    @Inject PersonModel personModel;
-
-    @GET
-    @Path( "name/{name}" )
-    @Produces("application/json;charset=utf-8")
-    public ResultWrapper<Person> getPersonLocationByName( @PathParam( "name" ) String name ) {
-        return new ServerPersonWrapper( personModel.getPeople( name ) );
-    }
-
+public interface PersonService {
+    public void persistPeople( PersonEntity... personEntities );
+    public PersonEntity getPerson( Integer id );
+    public PersonEntity getPerson( String chineseName );
+    public Set<PersonEntity> getPeople( String chineseName );
 }

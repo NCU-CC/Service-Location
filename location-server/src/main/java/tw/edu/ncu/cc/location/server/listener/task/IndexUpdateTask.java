@@ -6,20 +6,20 @@ import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
 import org.hibernate.StatelessSession;
 import tw.edu.ncu.cc.location.data.keyword.WordType;
-import tw.edu.ncu.cc.location.server.db.HibernateUtil;
-import tw.edu.ncu.cc.location.server.db.data.PersonEntity;
-import tw.edu.ncu.cc.location.server.db.data.PlaceEntity;
-import tw.edu.ncu.cc.location.server.db.data.UnitEntity;
-import tw.edu.ncu.cc.location.server.db.model.WordPersistModel;
-import tw.edu.ncu.cc.location.server.db.model.impl.WordPersistModelImpl;
+import tw.edu.ncu.cc.location.server.entity.PersonEntity;
+import tw.edu.ncu.cc.location.server.entity.PlaceEntity;
+import tw.edu.ncu.cc.location.server.entity.UnitEntity;
 import tw.edu.ncu.cc.location.server.lucene.LuceneWord;
+import tw.edu.ncu.cc.location.server.service.WordPersistService;
+import tw.edu.ncu.cc.location.server.service.impl.WordPersistServiceImpl;
+import tw.edu.ncu.cc.location.server.service.tool.HibernateUtil;
 
 public class IndexUpdateTask implements Runnable {
 
     private HibernateUtil hibernateUtil;
     private ServiceHandle<IndexWriter> writerHandler;
 
-    private WordPersistModelImpl wordPersistModel = new WordPersistModelImpl();
+    private WordPersistServiceImpl wordPersistModel = new WordPersistServiceImpl();
 
     public IndexUpdateTask( HibernateUtil hibernateUtil, ServiceHandle<IndexWriter> writerHandler ) {
         this.hibernateUtil = hibernateUtil;
@@ -48,11 +48,11 @@ public class IndexUpdateTask implements Runnable {
         hibernateUtil.closeSession();
     }
 
-    public static void clearIndexes( WordPersistModel wordPersistModel ) {
-        wordPersistModel.clearAllWords();
+    public static void clearIndexes( WordPersistService wordPersistService ) {
+        wordPersistService.clearAllWords();
     }
 
-    public static void indexPlaces( WordPersistModel wordPersistModel, StatelessSession session ) {
+    public static void indexPlaces( WordPersistService wordPersistService, StatelessSession session ) {
         ScrollableResults results = getScrollResult( PlaceEntity.class.getSimpleName(), session );
         while ( results.next() ) {
             PlaceEntity place = ( PlaceEntity ) results.get()[0];
@@ -60,11 +60,11 @@ public class IndexUpdateTask implements Runnable {
             word.setIndex( place.getChineseName() + " " + place.getEnglishName() );
             word.setWord ( place.getChineseName() );
             word.setType ( WordType.PLACE );
-            wordPersistModel.persistWords( word );
+            wordPersistService.persistWords( word );
         }
     }
 
-    public static void indexPeople( WordPersistModel wordPersistModel, StatelessSession session ) {
+    public static void indexPeople( WordPersistService wordPersistService, StatelessSession session ) {
         ScrollableResults results = getScrollResult( PersonEntity.class.getSimpleName(), session );
         while ( results.next() ) {
             PersonEntity person = ( PersonEntity ) results.get()[0];
@@ -72,11 +72,11 @@ public class IndexUpdateTask implements Runnable {
             word.setIndex( person.getChineseName() + " " + person.getEnglishName() );
             word.setWord ( person.getChineseName() );
             word.setType ( WordType.PERSON );
-            wordPersistModel.persistWords( word );
+            wordPersistService.persistWords( word );
         }
     }
 
-    public static void indexUnits( WordPersistModel wordPersistModel, StatelessSession session ) {
+    public static void indexUnits( WordPersistService wordPersistService, StatelessSession session ) {
         ScrollableResults results = getScrollResult( UnitEntity.class.getSimpleName(), session );
         while ( results.next() ) {
             UnitEntity unit = ( UnitEntity ) results.get()[0];
@@ -84,7 +84,7 @@ public class IndexUpdateTask implements Runnable {
             word.setIndex( unit.getFullName() + " " + unit.getEnglishName() );
             word.setWord( unit.getFullName() );
             word.setType( WordType.UNIT );
-            wordPersistModel.persistWords( word );
+            wordPersistService.persistWords( word );
         }
     }
 

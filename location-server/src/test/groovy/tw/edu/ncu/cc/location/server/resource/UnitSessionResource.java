@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.StatelessSession;
 import org.junit.rules.ExternalResource;
 import tool.HibernateUtilTestFactory;
-import tw.edu.ncu.cc.location.server.db.HibernateUtil;
+import tw.edu.ncu.cc.location.server.service.tool.HibernateUtil;
 
 public class UnitSessionResource extends ExternalResource implements SessionResource {
 
