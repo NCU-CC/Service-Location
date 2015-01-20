@@ -1,7 +1,7 @@
 
 allprojects{
     group   = 'tw.edu.ncu.cc'
-    version = '0.1.1-SNAPSHOT'
+    version = '0.2.1-SNAPSHOT'
 }
 
 subprojects{
@@ -21,7 +21,7 @@ subprojects{
 
     dependencies {
         testCompile "org.codehaus.groovy:groovy:2.3.6"
-        testCompile "org.spockframework:spock-core:1.0-groovy-2.0-SNAPSHOT"
+        testCompile "org.spockframework:spock-core:1.0-groovy-2.3-SNAPSHOT"
     }
 
 }
