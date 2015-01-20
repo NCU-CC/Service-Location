@@ -10,7 +10,7 @@
             <set>
                 <bean class="tw.edu.ncu.cc.location.server.converter.PersonEntity_PersonConverter"/>
                 <bean class="tw.edu.ncu.cc.location.server.converter.PlaceEntity_PlaceConverter"/>
-                <bean class="tw.edu.ncu.cc.location.server.converter.Point_PositionConverter"/>
+                <bean class="tw.edu.ncu.cc.location.server.converter.Point_LocationConverter"/>
                 <bean class="tw.edu.ncu.cc.location.server.converter.UnitEntity_UnitConverter"/>
             </set>
         </property>

@@ -1,11 +1,17 @@
 package tw.edu.ncu.cc.location.server.converter;
 
+import com.vividsolutions.jts.geom.Point;
+import org.springframework.core.convert.converter.Converter;
+import tw.edu.ncu.cc.location.data.location.Location;
 import tw.edu.ncu.cc.location.data.unit.Unit;
 import tw.edu.ncu.cc.location.server.entity.UnitEntity;
 
 public class UnitEntity_UnitConverter implements Converter< UnitEntity, Unit > {
+
+    private Converter< Point, Location > converter = new Point_LocationConverter();
+
     @Override
-    public Unit convertFrom( UnitEntity unitEntity ) {
+    public Unit convert( UnitEntity unitEntity ) {
         Unit unit = new Unit();
         unit.setUnitCode( unitEntity.getUnitCode() );
         unit.setChineseName( unitEntity.getChineseName() );
@@ -13,9 +19,11 @@ public class UnitEntity_UnitConverter implements Converter< UnitEntity, Unit > {
         unit.setShortName( unitEntity.getShortName() );
         unit.setFullName( unitEntity.getFullName() );
         unit.setUrl( unitEntity.getUrl() );
-        unit.setLocation(
-            Type.convert( unitEntity.getLocation(), new Point_PositionConverter() )
-        );
+
+        if( unitEntity.getLocation() != null ) {
+            unit.setLocation( converter.convert( unitEntity.getLocation() ) );
+        }
         return unit;
     }
+
 }

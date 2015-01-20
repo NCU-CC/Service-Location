@@ -16,6 +16,8 @@
 
     <tx:annotation-driven />
 
+    <import resource="spring-converter.xml"/>
+
     <import resource="develope/spring/application.xml"/>
     <import resource="production/spring/application.xml"/>
 
