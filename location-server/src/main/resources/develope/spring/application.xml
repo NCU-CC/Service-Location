@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans profile="dev"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="database.xml"/>
+
+    <bean class="tw.edu.ncu.cc.location.server.service.impl.WordServiceImpl">
+        <constructor-arg value="lucene/index"/>
+    </bean>
+
+</beans>
