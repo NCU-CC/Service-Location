@@ -28,7 +28,8 @@ public class PlaceServiceImpl extends EntityManagerContainer implements PlaceSer
         return getEntityManager()
                 .createQuery(
                         "SELECT p FROM PlaceEntity p " +
-                        "WHERE p.type = :placeType ", PlaceEntity.class )
+                        "WHERE p.type = :placeType " +
+                        "ORDER BY p.chineseName", PlaceEntity.class )
                 .setParameter( "placeType", type )
                 .getResultList();
     }
