@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.lucene;
+package tw.edu.ncu.cc.location.server.data;
 
 import tw.edu.ncu.cc.location.data.keyword.Word;
 import tw.edu.ncu.cc.location.data.keyword.WordType;

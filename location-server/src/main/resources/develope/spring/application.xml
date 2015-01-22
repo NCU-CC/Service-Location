@@ -8,4 +8,8 @@
 
     <import resource="database.xml"/>
 
+    <bean class="tw.edu.ncu.cc.location.server.service.impl.WordServiceImpl">
+        <constructor-arg value="lucene/index"/>
+    </bean>
+
 </beans>

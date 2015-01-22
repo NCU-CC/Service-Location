@@ -13,6 +13,7 @@
         <property name="locations">
             <list>
                 <value>classpath:production/database.properties</value>
+                <value>classpath:production/lucene.properties</value>
             </list>
         </property>
     </bean>
@@ -21,5 +22,9 @@
     <util:properties id="hibernteProperties" location="classpath:production/hibernate.properties"/>
 
     <import resource="database.xml"/>
+
+    <bean class="tw.edu.ncu.cc.location.server.service.impl.WordServiceImpl">
+        <constructor-arg value="${lucene.index.path}"/>
+    </bean>
 
 </beans>
