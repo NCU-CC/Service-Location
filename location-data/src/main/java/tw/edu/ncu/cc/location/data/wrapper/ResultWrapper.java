@@ -4,6 +4,10 @@ public class ResultWrapper<T> {
 
     private T[] result;
 
+    public ResultWrapper( T[] result ) {
+        this.result = result;
+    }
+
     public T[] getResult() {
         return result;
     }

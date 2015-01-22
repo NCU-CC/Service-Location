@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import tw.edu.ncu.cc.location.data.keyword.Word;
+import tw.edu.ncu.cc.location.data.wrapper.ResultWrapper;
 import tw.edu.ncu.cc.location.server.exception.handler.APIExceptionHandler;
 import tw.edu.ncu.cc.location.server.service.WordService;
 
@@ -31,11 +32,13 @@ public class WordController extends APIExceptionHandler {
     }
 
     @RequestMapping( value = "{word}" )
-    public Word[] getKeyWord( @PathVariable( "word" ) String word ) {
-        return ( Word[] ) conversionService.convert(
-                wordService.getWords( word ),
-                TypeDescriptor.collection( List.class, TypeDescriptor.valueOf( Word.class ) ),
-                TypeDescriptor.array( TypeDescriptor.valueOf( Word.class ) )
+    public ResultWrapper getKeyWord( @PathVariable( "word" ) String word ) {
+        return new ResultWrapper<> (
+                ( Word[] ) conversionService.convert(
+                    wordService.getWords( word ),
+                    TypeDescriptor.collection( List.class, TypeDescriptor.valueOf( Word.class ) ),
+                    TypeDescriptor.array( TypeDescriptor.valueOf( Word.class ) )
+                )
         );
     }
 

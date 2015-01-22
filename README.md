@@ -3,7 +3,6 @@ A web service for providing location information
 
 ### Module
 - location-server : location provider
-- location-jersey : location consumer in jersey
 - location-volley : location consumer in android volley
 - location-tool   : location consumer tool
 - location-data   : location data

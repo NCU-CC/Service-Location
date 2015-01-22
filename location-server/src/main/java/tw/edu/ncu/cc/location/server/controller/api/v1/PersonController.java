@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import tw.edu.ncu.cc.location.data.person.Person;
+import tw.edu.ncu.cc.location.data.wrapper.ResultWrapper;
 import tw.edu.ncu.cc.location.server.entity.PersonEntity;
 import tw.edu.ncu.cc.location.server.exception.handler.APIExceptionHandler;
 import tw.edu.ncu.cc.location.server.service.PersonService;
@@ -32,11 +33,13 @@ public class PersonController extends APIExceptionHandler {
     }
 
     @RequestMapping( value = "name/{name}" )
-    public Person[] getPersonLocationByName( @PathVariable( "name" ) String name ) {
-        return ( Person[] ) conversionService.convert(
-                personService.getPeople( name ),
-                TypeDescriptor.collection( List.class, TypeDescriptor.valueOf( PersonEntity.class ) ),
-                TypeDescriptor.array( TypeDescriptor.valueOf( Person.class ) )
+    public ResultWrapper getPersonLocationByName( @PathVariable( "name" ) String name ) {
+        return new ResultWrapper<>(
+                ( Person[] ) conversionService.convert(
+                    personService.getPeople( name ),
+                    TypeDescriptor.collection( List.class, TypeDescriptor.valueOf( PersonEntity.class ) ),
+                    TypeDescriptor.array( TypeDescriptor.valueOf( Person.class ) )
+                )
         );
     }
 
