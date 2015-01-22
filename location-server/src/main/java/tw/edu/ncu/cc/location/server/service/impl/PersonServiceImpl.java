@@ -1,44 +1,33 @@
 package tw.edu.ncu.cc.location.server.service.impl;
 
+import org.springframework.stereotype.Service;
 import tw.edu.ncu.cc.location.server.entity.PersonEntity;
 import tw.edu.ncu.cc.location.server.service.PersonService;
-import tw.edu.ncu.cc.location.server.service.tool.HibernateAccessTool;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-public class PersonServiceImpl extends HibernateAccessTool implements PersonService {
+@Service
+public class PersonServiceImpl extends EntityManagerContainer implements PersonService {
 
     @Override
-    public void persistPeople( PersonEntity... personEntities ) {
-        persistObjects( ( Object[] ) personEntities );
+    public List< PersonEntity > getPeople( String chineseName ) {
+        return getEntityManager()
+                .createQuery(
+                        "SELECT p from PersonEntity p " +
+                        "LEFT JOIN FETCH p.primaryUnit " +
+                        "LEFT JOIN FETCH p.secondaryUnit " +
+                        "WHERE p.chineseName = :cname ", PersonEntity.class )
+                .setParameter( "cname", chineseName )
+                .getResultList();
     }
 
     @Override
-    public PersonEntity getPerson( Integer id ) {
-        return ( PersonEntity ) getObject( id, PersonEntity.class );
-    }
-
-    @Override
-    public PersonEntity getPerson( String chineseName ) {
-        return getObject(
-                PersonEntity.class,
-                getSession()
-                        .createQuery( "from PersonEntity where chineseName = :cname" )
-                        .setString( "cname", chineseName )
-        );
-    }
-
-    @Override
-    public Set<PersonEntity> getPeople( String chineseName ) {
-        return new HashSet<>(
-                getObjects(
-                    PersonEntity.class,
-                    getSession()
-                            .createQuery( "from PersonEntity where chineseName = :cname" )
-                            .setString( "cname", chineseName )
-                )
-        );
+    public List< PersonEntity > getPeople( int offset, int max ) {
+        return getEntityManager()
+                .createQuery( "SELECT p FROM PersonEntity p", PersonEntity.class )
+                .setFirstResult( offset )
+                .setMaxResults( max )
+                .getResultList();
     }
 
 }
