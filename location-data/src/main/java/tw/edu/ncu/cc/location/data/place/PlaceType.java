@@ -28,12 +28,8 @@ public enum PlaceType {
         return name();
     }
 
-    public static PlaceType fromValue( String string ) {
-        return valueOf( string );
-    }
-
     public String getCName() {
         return this.cName;
     }
-	
+
 }
