@@ -19,18 +19,6 @@ public class PlaceEntity {
     private Point location;
     private List< PlaceUnitEntity > placeUnits;
 
-    public PlaceEntity() {}
-
-    public PlaceEntity( PlaceType type, String chineseName ) {
-        this( type, chineseName, null );
-    }
-
-    public PlaceEntity( PlaceType type, String chineseName, Point location ) {
-        this.type = type;
-        this.location = location;
-        this.chineseName = chineseName;
-    }
-
     @Id
     @GeneratedValue
     @Column( name = "id" )
@@ -101,36 +89,6 @@ public class PlaceEntity {
 
     public void setPlaceUnits( List< PlaceUnitEntity > placeUnits ) {
         this.placeUnits = placeUnits;
-    }
-
-    @Override
-    public boolean equals( Object o ) {
-        if ( this == o ) return true;
-        if ( o == null || getClass() != o.getClass() ) return false;
-
-        PlaceEntity that = ( PlaceEntity ) o;
-
-        if ( id != that.id ) return false;
-        if ( chineseName != null ? !chineseName.equals( that.chineseName ) : that.chineseName != null ) return false;
-        if ( englishName != null ? !englishName.equals( that.englishName ) : that.englishName != null ) return false;
-        if ( location != null ? !location.equals( that.location ) : that.location != null ) return false;
-        if ( pictureName != null ? !pictureName.equals( that.pictureName ) : that.pictureName != null ) return false;
-        if ( placeUnits != null ? !placeUnits.equals( that.placeUnits ) : that.placeUnits != null ) return false;
-        if ( type != that.type ) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + ( chineseName != null ? chineseName.hashCode() : 0 );
-        result = 31 * result + ( englishName != null ? englishName.hashCode() : 0 );
-        result = 31 * result + ( pictureName != null ? pictureName.hashCode() : 0 );
-        result = 31 * result + ( type != null ? type.hashCode() : 0 );
-        result = 31 * result + ( location != null ? location.hashCode() : 0 );
-        result = 31 * result + ( placeUnits != null ? placeUnits.hashCode() : 0 );
-        return result;
     }
 
 }

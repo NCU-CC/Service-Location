@@ -52,28 +52,4 @@ public class PlaceUnitEntity {
         this.place = place;
     }
 
-    @Override
-    public boolean equals( Object o ) {
-        if ( this == o ) return true;
-        if ( o == null || getClass() != o.getClass() ) return false;
-
-        PlaceUnitEntity that = ( PlaceUnitEntity ) o;
-
-        if ( id != that.id ) return false;
-        if ( place != null ? !place.equals( that.place ) : that.place != null ) return false;
-        if ( unit != null ? !unit.equals( that.unit ) : that.unit != null ) return false;
-        if ( unitName != null ? !unitName.equals( that.unitName ) : that.unitName != null ) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + ( unitName != null ? unitName.hashCode() : 0 );
-        result = 31 * result + ( unit != null ? unit.hashCode() : 0 );
-        result = 31 * result + ( place != null ? place.hashCode() : 0 );
-        return result;
-    }
-
 }

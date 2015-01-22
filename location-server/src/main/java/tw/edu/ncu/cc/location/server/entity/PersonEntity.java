@@ -15,17 +15,6 @@ public class PersonEntity {
     private UnitEntity secondaryUnit;
     private String officePhone;
 
-    public PersonEntity() {}
-
-    public PersonEntity( String personalNo, String chineseName, String title,
-                         UnitEntity primaryUnit, UnitEntity secondaryUnit ) {
-        this.personalNo = personalNo;
-        this.chineseName = chineseName;
-        this.title = title;
-        this.primaryUnit = primaryUnit;
-        this.secondaryUnit = secondaryUnit;
-    }
-
     @Id
     @GeneratedValue
     @Column( name = "id" )
@@ -77,8 +66,8 @@ public class PersonEntity {
         this.title = title;
     }
 
-    @JoinColumn( name = "primary_unit_no" )
     @OneToOne( fetch = FetchType.LAZY )
+    @JoinColumn( name = "primary_unit_no" )
     public UnitEntity getPrimaryUnit() {
         return primaryUnit;
     }
@@ -87,8 +76,8 @@ public class PersonEntity {
         this.primaryUnit = primaryUnit;
     }
 
-    @JoinColumn( name = "secondary_unit_no" )
     @OneToOne( fetch = FetchType.LAZY )
+    @JoinColumn( name = "secondary_unit_no" )
     public UnitEntity getSecondaryUnit() {
         return secondaryUnit;
     }
@@ -107,37 +96,4 @@ public class PersonEntity {
         this.officePhone = officePhone;
     }
 
-    @Override
-    public boolean equals( Object o ) {
-        if ( this == o ) return true;
-        if ( o == null || getClass() != o.getClass() ) return false;
-
-        PersonEntity that = ( PersonEntity ) o;
-
-        if ( id != that.id ) return false;
-        if ( chineseName != null ? !chineseName.equals( that.chineseName ) : that.chineseName != null ) return false;
-        if ( englishName != null ? !englishName.equals( that.englishName ) : that.englishName != null ) return false;
-        if ( officePhone != null ? !officePhone.equals( that.officePhone ) : that.officePhone != null ) return false;
-        if ( personalNo != null ? !personalNo.equals( that.personalNo ) : that.personalNo != null ) return false;
-        if ( primaryUnit != null ? !primaryUnit.equals( that.primaryUnit ) : that.primaryUnit != null )
-            return false;
-        if ( secondaryUnit != null ? !secondaryUnit.equals( that.secondaryUnit ) : that.secondaryUnit != null )
-            return false;
-        if ( title != null ? !title.equals( that.title ) : that.title != null ) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + ( personalNo != null ? personalNo.hashCode() : 0 );
-        result = 31 * result + ( chineseName != null ? chineseName.hashCode() : 0 );
-        result = 31 * result + ( englishName != null ? englishName.hashCode() : 0 );
-        result = 31 * result + ( title != null ? title.hashCode() : 0 );
-        result = 31 * result + ( primaryUnit != null ? primaryUnit.hashCode() : 0 );
-        result = 31 * result + ( secondaryUnit != null ? secondaryUnit.hashCode() : 0 );
-        result = 31 * result + ( officePhone != null ? officePhone.hashCode() : 0 );
-        return result;
-    }
 }

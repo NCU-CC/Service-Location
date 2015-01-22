@@ -17,20 +17,6 @@ public class UnitEntity {
     private String url;
     private Point location;
 
-    public UnitEntity() {}
-
-    public UnitEntity( String unitCode, String chineseName, String shortName, String fullName ) {
-        this( unitCode, chineseName, shortName, fullName, null );
-    }
-
-    public UnitEntity( String unitCode, String chineseName, String shortName, String fullName, Point location ) {
-        this.unitCode = unitCode;
-        this.chineseName = chineseName;
-        this.shortName = shortName;
-        this.fullName = fullName;
-        this.location = location;
-    }
-
     @Id
     @Column( name = "unit_no" )
     public String getUnitCode() {
@@ -102,34 +88,4 @@ public class UnitEntity {
         this.location = location;
     }
 
-    @Override
-    public boolean equals( Object o ) {
-        if ( this == o ) return true;
-        if ( o == null || getClass() != o.getClass() ) return false;
-
-        UnitEntity that = ( UnitEntity ) o;
-
-        if ( chineseName != null ? !chineseName.equals( that.chineseName ) : that.chineseName != null ) return false;
-        if ( englishName != null ? !englishName.equals( that.englishName ) : that.englishName != null ) return false;
-        if ( fullName != null ? !fullName.equals( that.fullName ) : that.fullName != null ) return false;
-        if ( location != null ? !location.equals( that.location ) : that.location != null ) return false;
-        if ( shortName != null ? !shortName.equals( that.shortName ) : that.shortName != null ) return false;
-        if ( unitCode != null ? !unitCode.equals( that.unitCode ) : that.unitCode != null ) return false;
-        if ( url != null ? !url.equals( that.url ) : that.url != null ) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 1;
-        result = 31 * result + ( unitCode != null ? unitCode.hashCode() : 0 );
-        result = 31 * result + ( chineseName != null ? chineseName.hashCode() : 0 );
-        result = 31 * result + ( englishName != null ? englishName.hashCode() : 0 );
-        result = 31 * result + ( shortName != null ? shortName.hashCode() : 0 );
-        result = 31 * result + ( fullName != null ? fullName.hashCode() : 0 );
-        result = 31 * result + ( url != null ? url.hashCode() : 0 );
-        result = 31 * result + ( location != null ? location.hashCode() : 0 );
-        return result;
-    }
 }
