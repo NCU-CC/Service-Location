@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import tw.edu.ncu.cc.location.data.keyword.Word;
-import tw.edu.ncu.cc.location.server.exception.handler.APIExceptionHandler;
 import tw.edu.ncu.cc.location.server.service.WordService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping( value = "api/v2/keyword", method = RequestMethod.GET )
-public class WordControllerV2 extends APIExceptionHandler {
+public class WordControllerV2 {
 
     private WordService wordService;
     private ConversionService conversionService;

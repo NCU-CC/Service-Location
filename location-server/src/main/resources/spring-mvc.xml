@@ -12,6 +12,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 
     <context:component-scan base-package="tw.edu.ncu.cc.location.server.controller" />
+    <context:component-scan base-package="tw.edu.ncu.cc.location.server.exception" />
 
     <mvc:annotation-driven/>
 
