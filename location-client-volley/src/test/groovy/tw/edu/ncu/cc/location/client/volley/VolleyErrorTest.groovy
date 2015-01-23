@@ -7,9 +7,9 @@ import tw.edu.ncu.cc.location.client.tool.response.ResponseListener
 
 class VolleyErrorTest extends Specification {
 
-    class VolleyResponseListener implements ResponseListener<String> {
+    class VolleyResponseListener implements ResponseListener< String > {
         @Override
-        void onResponse( List<String> responses ) {
+        void onResponse( List< String > responses ) {
 
         }
         @Override
