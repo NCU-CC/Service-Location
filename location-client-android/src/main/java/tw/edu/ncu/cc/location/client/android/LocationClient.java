@@ -23,12 +23,12 @@ import tw.edu.ncu.cc.location.data.unit.Unit;
 import java.util.Arrays;
 
 @SuppressWarnings( "unused" )
-public class NCUAsyncLocationClient implements AsynLocationClient {
+public class LocationClient implements AsynLocationClient {
 
     private RequestQueue queue;
     private String baseURL;
 
-    public NCUAsyncLocationClient( LocationConfig config, Context context ) {
+    public LocationClient( LocationConfig config, Context context ) {
         this.baseURL = config.getServerAddress();
         this.queue = Volley.newRequestQueue( context );
     }
