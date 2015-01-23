@@ -12,14 +12,13 @@ import tw.edu.ncu.cc.location.data.place.PlaceType;
 import tw.edu.ncu.cc.location.data.unit.Unit;
 import tw.edu.ncu.cc.location.server.entity.PlaceEntity;
 import tw.edu.ncu.cc.location.server.entity.UnitEntity;
-import tw.edu.ncu.cc.location.server.exception.handler.APIExceptionHandler;
 import tw.edu.ncu.cc.location.server.service.PlaceService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping( value = "api/v2/place", method = RequestMethod.GET )
-public class PlaceControllerV2 extends APIExceptionHandler {
+public class PlaceControllerV2 {
 
     private PlaceService placeService;
     private ConversionService conversionService;

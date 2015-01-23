@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import tw.edu.ncu.cc.location.data.unit.Unit;
 import tw.edu.ncu.cc.location.data.wrapper.ResultWrapper;
 import tw.edu.ncu.cc.location.server.entity.UnitEntity;
-import tw.edu.ncu.cc.location.server.exception.handler.APIExceptionHandler;
 import tw.edu.ncu.cc.location.server.service.UnitService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping( value = "unit", method = RequestMethod.GET )
-public class UnitController extends APIExceptionHandler {
+public class UnitController {
 
     private UnitService unitService;
     private ConversionService conversionService;
