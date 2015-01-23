@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.client.volley
+package tw.edu.ncu.cc.location.client.android
 
 import com.android.volley.VolleyError
 import spock.lang.Specification
