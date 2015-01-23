@@ -1,7 +1,7 @@
 ## Location-Client-Android
 location data consumer on android volley
 
-### Build a *LocationConfig*
+### Build a **LocationConfig**
 - build by yourself
 ```Java
 LocationConfig config = new NCULocationConfig();
@@ -16,12 +16,12 @@ LocationConfig config = new NCULocationConfig().configure( "settings.properties"
 location.server_address = http://127.0.0.1:8080/location-Service/api/v2
 ```
 
-### Build a *LocationClient* using *LocationConfig*
+### Build a **LocationClient** using **LocationConfig**
 ```Java
-AsynLocationClient client = new NCULocationClient( config, androidContext )
+LocationClient client = new LocationClient( config, androidContext )
 ```
 
-### Build a *ResponseListener*
+### Build a **ResponseListener**
 ```Java
 class VolleyResponseListener implements ResponseListener<T> {
         @Override
@@ -35,7 +35,7 @@ class VolleyResponseListener implements ResponseListener<T> {
 }
 ```
 
-### Call methods on *AsynLocationClient* to fetch data from server
+### Call methods on **LocationClient** to fetch data from server
 - ``` client.getPlaces( "chineseName", new VolleyResponseListener<Place>() ) ```
 - ``` client.getPlaces( PlaceType.SCENE, new VolleyResponseListener<Place>() ) ```
 - ``` client.getPlaceUnits( "chineseName", new VolleyResponseListener<Unit>() ) ```
