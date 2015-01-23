@@ -29,6 +29,13 @@ class PlaceControllerV2Test extends IntegrationSpecification {
             ) )
     }
 
+    def "it can get place info by place type 2"() {
+        expect:
+            server()
+                    .perform( get( "/api/v2/place/type/NOT_EXIST" ).accept( "application/json" ) )
+                    .andExpect( status().isBadRequest(  ) )
+    }
+
     def "it can get place info by chinese name"() {
         when:
             def response = JSON( server()
