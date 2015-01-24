@@ -22,7 +22,7 @@ public class PersonServiceImpl extends EntityManagerContainer implements PersonS
     }
 
     @Override
-    public List< PersonEntity > getPeople( int offset, int max ) {
+    public List< PersonEntity > getPeopleToBeIndexed( int offset, int max ) {
         return getEntityManager()
                 .createQuery( "SELECT p FROM PersonEntity p", PersonEntity.class )
                 .setFirstResult( offset )

@@ -15,12 +15,12 @@ class PersonServiceImplTest extends SpringSpecification {
             people.get( 0 ).title == "TITLE1"
     }
 
-    def "it can get peolple by pagination"() {
+    def "it can get peolple to be indexed by pagination"() {
         given:
             def page = 0
             def per = 1
         when:
-            def people = personService.getPeople( page, per );
+            def people = personService.getPeopleToBeIndexed( page, per );
         then:
             people.get( 0 ).title == "TITLE1"
     }

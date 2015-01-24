@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface UnitService {
     public List< UnitEntity > getUnits( String fullName );
-    public List< UnitEntity > getUnits( int offset, int max );
+    public List< UnitEntity > getUnitsToBeIndexed( int offset, int max );
 }

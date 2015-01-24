@@ -25,14 +25,14 @@ class PlaceServiceImplTest extends SpringSpecification {
             places.get( 1 ).englishName == "EPLACE2"
     }
 
-    def "it can get places by pagination"() {
+    def "it can get places to be indexed by pagination"() {
         given:
             def page = 0
             def per = 1
         when:
-            def places = placeService.getPlaces( page, per )
+            def places = placeService.getPlacesToBeIndexed( page, per )
         then:
-            places.get( 0 ).englishName == "EPLACE1"
+            places.get( 0 ).englishName == "EPLACE3"
     }
 
     def "it can get units in unit with specified chinese name 1"() {
