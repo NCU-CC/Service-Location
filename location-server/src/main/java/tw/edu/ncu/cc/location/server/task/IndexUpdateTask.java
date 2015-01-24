@@ -46,6 +46,7 @@ public class IndexUpdateTask extends EntityManagerContainer {
 
     @Scheduled( initialDelay = 0, fixedDelay = 1000 * 60 * 60 * 24 )
     public void run() {
+        clearIndexes();
         indexPlaces ();
         indexPeople ();
         indexUnits();
