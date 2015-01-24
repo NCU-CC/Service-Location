@@ -39,7 +39,14 @@ public class PlaceServiceImpl extends EntityManagerContainer implements PlaceSer
     @Override
     public List< PlaceEntity > getPlacesToBeIndexed( int offset, int max ) {
         return getEntityManager()
-                .createQuery( "SELECT p FROM PlaceEntity p ", PlaceEntity.class )
+                .createQuery(
+                        "SELECT p FROM PlaceEntity p " +
+                        "WHERE p.type = 'RESTAURANT' " +
+                        "OR p.type = 'SPORT_RECREATION' " +
+                        "OR p.type = 'ADMINISTRATION'" +
+                        "OR p.type = 'RESEARCH' " +
+                        "OR p.type = 'DORMITORY' " +
+                        "OR p.type = 'OTHER' ", PlaceEntity.class )
                 .setFirstResult( offset )
                 .setMaxResults( max )
                 .getResultList();

@@ -32,7 +32,7 @@ class PlaceServiceImplTest extends SpringSpecification {
         when:
             def places = placeService.getPlacesToBeIndexed( page, per )
         then:
-            places.get( 0 ).englishName == "EPLACE1"
+            places.get( 0 ).englishName == "EPLACE3"
     }
 
     def "it can get units in unit with specified chinese name 1"() {
