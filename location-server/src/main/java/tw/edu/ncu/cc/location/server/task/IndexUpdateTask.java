@@ -57,7 +57,7 @@ public class IndexUpdateTask extends EntityManagerContainer {
 
     private void indexPlaces() {
         List< PlaceEntity > places;
-        for ( int offset = 0;( places = placeService.getPlaces( offset, 100 ) ).size() > 0 ; offset += 100 ) {
+        for ( int offset = 0;( places = placeService.getPlacesToBeIndexed( offset, 100 ) ).size() > 0 ; offset += 100 ) {
             for ( PlaceEntity place : places ) {
                 LuceneWord word = new LuceneWord();
                 word.setIndex( place.getChineseName() + " " + place.getEnglishName() );
@@ -73,7 +73,7 @@ public class IndexUpdateTask extends EntityManagerContainer {
 
     private void indexPeople() {
         List< PersonEntity > people;
-        for ( int offset = 0;( people = personService.getPeople( offset, 100 ) ).size() > 0 ; offset += 100 ) {
+        for ( int offset = 0;( people = personService.getPeopleToBeIndexed( offset, 100 ) ).size() > 0 ; offset += 100 ) {
             for ( PersonEntity person : people ) {
                 LuceneWord word = new LuceneWord();
                 word.setIndex( person.getChineseName() + " " + person.getEnglishName() );
@@ -89,7 +89,7 @@ public class IndexUpdateTask extends EntityManagerContainer {
 
     private void indexUnits() {
         List< UnitEntity > units;
-        for ( int offset = 0;( units = unitService.getUnits( offset, 100 ) ).size() > 0 ; offset += 100 ) {
+        for ( int offset = 0;( units = unitService.getUnitsToBeIndexed( offset, 100 ) ).size() > 0 ; offset += 100 ) {
             for ( UnitEntity unit : units ) {
                 LuceneWord word = new LuceneWord();
                 word.setIndex( unit.getFullName() + " " + unit.getEnglishName() );

@@ -16,12 +16,12 @@ class UnitServiceImplTest extends SpringSpecification {
             units.get( 0 ).englishName == "EUNIT2"
     }
 
-    def "it can get units by pagination"() {
+    def "it can get units to be indexed by pagination"() {
         given:
             def page = 0
             def per = 1
         when:
-            def units = unitService.getUnits( page, per )
+            def units = unitService.getUnitsToBeIndexed( page, per )
         then:
             units.get( 0 ).englishName == "EUNIT1"
     }

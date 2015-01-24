@@ -9,6 +9,6 @@ import java.util.List;
 public interface PlaceService {
     public List< PlaceEntity > getPlaces( String chineseName );
     public List< PlaceEntity > getPlaces( PlaceType type );
-    public List< PlaceEntity > getPlaces( int offset, int max );
+    public List< PlaceEntity > getPlacesToBeIndexed( int offset, int max );
     public List< UnitEntity >  getUnits( String chineseName );
 }

@@ -20,7 +20,7 @@ public class UnitServiceImpl extends EntityManagerContainer implements UnitServi
     }
 
     @Override
-    public List< UnitEntity > getUnits( int offset, int max ) {
+    public List< UnitEntity > getUnitsToBeIndexed( int offset, int max ) {
         return getEntityManager()
                 .createQuery( "SELECT u FROM UnitEntity u ", UnitEntity.class )
                 .setFirstResult( offset )
