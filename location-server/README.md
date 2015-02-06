@@ -13,13 +13,13 @@ A restful web service written in Java
 - jettyStop   : stop the server started by command above
 
 ## Packages
-- controller : spring mvc controller
-- converter  : spring type converter
+- controller : spring controller
+- converter  : spring converter
 - data       : internal processing data
 - entity     : hibernate orm bean
 - exception  : spring exception handler
-- interceptor: spring mvc interceptor
-- service    : spring core service
+- interceptor: spring interceptor
+- service    : spring service
 - task       : spring task
 
 ## Resources

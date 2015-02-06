@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class APIExceptionHandler {
+public class ApplicationExceptionHandler {
 
     private Logger logger = LoggerFactory.getLogger( this.getClass() );
 

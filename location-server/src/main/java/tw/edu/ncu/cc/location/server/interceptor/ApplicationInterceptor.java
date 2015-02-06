@@ -7,7 +7,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LoggerInterceptor extends HandlerInterceptorAdapter {
+public class ApplicationInterceptor extends HandlerInterceptorAdapter {
 
     private Logger logger = LoggerFactory.getLogger( this.getClass() );
 
