@@ -17,7 +17,7 @@
     <mvc:annotation-driven/>
 
     <mvc:interceptors>
-        <bean class="tw.edu.ncu.cc.location.server.interceptor.LoggerInterceptor"/>
+        <bean class="tw.edu.ncu.cc.location.server.interceptor.ApplicationInterceptor"/>
     </mvc:interceptors>
 
 </beans>
