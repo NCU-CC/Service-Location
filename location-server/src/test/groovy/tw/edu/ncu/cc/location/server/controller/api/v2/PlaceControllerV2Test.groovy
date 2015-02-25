@@ -39,7 +39,7 @@ class PlaceControllerV2Test extends IntegrationSpecification {
     def "it can get place info by chinese name"() {
         when:
             def response = JSON( server()
-                    .perform( get( "/api/v2/place/name/CPLACE2" ).accept( "application/json" ) )
+                    .perform( get( "/api/v2/place/name/CPLACE3" ).accept( "application/json" ) )
                     .andExpect( status().isOk() )
                     .andReturn()
             );
@@ -47,10 +47,10 @@ class PlaceControllerV2Test extends IntegrationSpecification {
             response.contains( JSON(
                     '''
                     {
-                        "chineseName" : "CPLACE2",
-                        "englishName" : "EPLACE2",
+                        "chineseName" : "CPLACE3",
+                        "englishName" : "EPLACE3",
                         "pictureName" : null,
-                        "type" : "WHEELCHAIR_RAMP",
+                        "type" : "RESEARCH",
                         "location" : null
                     }
                     '''
