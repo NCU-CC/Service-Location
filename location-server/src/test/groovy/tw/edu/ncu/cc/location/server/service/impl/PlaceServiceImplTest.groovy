@@ -10,11 +10,19 @@ class PlaceServiceImplTest extends SpringSpecification {
     @Autowired
     private PlaceServiceImpl placeService
 
-    def "it can get places by chinese name"() {
+    //RESTAURANT SPORT_RECREATION ADMINISTRATION RESEARCH DORMITORY OTHER
+    def "it can get places of specified type by chinese name 1"() {
+        when:
+            def places = placeService.getPlaces( "CPLACE3" )
+        then:
+            places.get( 0 ).englishName == "EPLACE3"
+    }
+
+    def "it can get places of specified type by chinese name 2"() {
         when:
             def places = placeService.getPlaces( "CPLACE1" )
         then:
-            places.get( 0 ).englishName == "EPLACE1"
+            places.size() == 0
     }
 
     def "it can get places by place type"() {

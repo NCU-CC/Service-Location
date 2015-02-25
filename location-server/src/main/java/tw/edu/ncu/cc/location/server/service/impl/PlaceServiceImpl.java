@@ -20,7 +20,14 @@ public class PlaceServiceImpl extends EntityManagerContainer implements PlaceSer
         return getEntityManager()
                 .createQuery(
                         "SELECT p FROM PlaceEntity p " +
-                        "WHERE p.chineseName = :cname ", PlaceEntity.class )
+                        "WHERE p.chineseName = :cname " +
+                        "AND  ( p.type = 'RESTAURANT' " +
+                            "OR p.type = 'SPORT_RECREATION' " +
+                            "OR p.type = 'ADMINISTRATION'" +
+                            "OR p.type = 'RESEARCH' " +
+                            "OR p.type = 'DORMITORY' " +
+                            "OR p.type = 'OTHER' " +
+                        ")", PlaceEntity.class )
                 .setParameter( "cname", chineseName )
                 .getResultList();
     }
