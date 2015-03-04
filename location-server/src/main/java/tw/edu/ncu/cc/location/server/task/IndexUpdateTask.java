@@ -78,7 +78,7 @@ public class IndexUpdateTask extends EntityManagerContainer {
             for ( PersonEntity person : people ) {
                 LuceneWord word = new LuceneWord();
                 word.setIndex( person.getChineseName() + " " + person.getEnglishName() );
-                word.setWord ( person.getChineseName() );
+                word.setWord ( person.getChineseName() + ", " + person.getEnglishName() );
                 word.setType ( WordType.PERSON );
                 wordService.persistWords( word );
             }
