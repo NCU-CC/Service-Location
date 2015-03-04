@@ -61,7 +61,7 @@ public class IndexUpdateTask extends EntityManagerContainer {
         for ( int offset = 0;( places = placeService.getPlacesToBeIndexed( offset, 100 ) ).size() > 0 ; offset += 100 ) {
             for ( PlaceEntity place : places ) {
                 LuceneWord word = new LuceneWord();
-                word.setIndex( place.getChineseName() + " " + place.getEnglishName() );
+                word.setIndex( place.getChineseName() + " " + ensureNotNull( place.getEnglishName() ) );
                 word.setWord ( place.getChineseName() );
                 word.setType ( WordType.PLACE );
                 wordService.persistWords( word );
@@ -77,8 +77,8 @@ public class IndexUpdateTask extends EntityManagerContainer {
         for ( int offset = 0;( people = personService.getPeopleToBeIndexed( offset, 100 ) ).size() > 0 ; offset += 100 ) {
             for ( PersonEntity person : people ) {
                 LuceneWord word = new LuceneWord();
-                word.setIndex( person.getChineseName() + " " + person.getEnglishName() );
-                word.setWord ( person.getChineseName() + ", " + person.getEnglishName() );
+                word.setIndex( person.getChineseName() + " "  + ensureNotNull( person.getEnglishName() ) );
+                word.setWord ( person.getChineseName() + ", " + ensureNotNull( person.getEnglishName() ) );
                 word.setType ( WordType.PERSON );
                 wordService.persistWords( word );
             }
@@ -93,7 +93,7 @@ public class IndexUpdateTask extends EntityManagerContainer {
         for ( int offset = 0;( units = unitService.getUnitsToBeIndexed( offset, 100 ) ).size() > 0 ; offset += 100 ) {
             for ( UnitEntity unit : units ) {
                 LuceneWord word = new LuceneWord();
-                word.setIndex( unit.getFullName() + " " + unit.getEnglishName() );
+                word.setIndex( unit.getFullName() + " " + ensureNotNull( unit.getEnglishName() ) );
                 word.setWord( unit.getFullName() );
                 word.setType( WordType.UNIT );
                 wordService.persistWords( word );
@@ -102,6 +102,10 @@ public class IndexUpdateTask extends EntityManagerContainer {
                 break;
             }
         }
+    }
+
+    private String ensureNotNull( String s ) {
+        return s == null ? "" : s ;
     }
 
 }
