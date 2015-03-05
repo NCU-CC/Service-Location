@@ -9,7 +9,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.akhikhl.gretty:gretty:1.1.7'
+        classpath 'org.akhikhl.gretty:gretty:1.1.9'
     }
 }
 
@@ -30,7 +30,6 @@ dependencies {
             'org.hibernate:hibernate-spatial:4.3',
             'org.apache.lucene:lucene-queryparser:4.10.0',
             'org.apache.lucene:lucene-analyzers-smartcn:4.10.0',
-            'org.aspectj:aspectjweaver:1.8.4',
             'net.sf.ehcache:ehcache:2.9.0',
             'com.zaxxer:HikariCP-java6:2.3.1'
 
@@ -40,8 +39,7 @@ dependencies {
             'com.h2database:h2:1.4.181',
             'org.slf4j:slf4j-log4j12:1.7.7'
 
-    testCompile 'org.spockframework:spock-spring:1.0-groovy-2.3-SNAPSHOT',
-                'com.jayway.jsonpath:json-path-assert:0.9.1'
+    testCompile 'org.spockframework:spock-spring:1.0-groovy-2.3'
 
 }
 
