@@ -3,7 +3,7 @@ package tw.edu.ncu.cc.location.server.service.impl
 import org.springframework.beans.factory.annotation.Autowired
 import specification.SpringSpecification
 import tw.edu.ncu.cc.location.data.keyword.WordType
-import tw.edu.ncu.cc.location.server.data.LuceneWord
+import tw.edu.ncu.cc.location.server.helper.data.LuceneWord
 import tw.edu.ncu.cc.location.server.service.WordService
 
 class WordServiceImplTest extends SpringSpecification {
