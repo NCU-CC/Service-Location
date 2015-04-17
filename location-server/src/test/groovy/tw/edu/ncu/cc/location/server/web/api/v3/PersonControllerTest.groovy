@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.controller.api.v2
+package tw.edu.ncu.cc.location.server.web.api.v3
 
 import specification.IntegrationSpecification
 
@@ -6,14 +6,20 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 
-class PersonControllerV2Test extends IntegrationSpecification {
+class PersonControllerTest extends IntegrationSpecification {
 
-    def "it can get person info by chinese name"() {
+    def "it should provide person info by chinese name 1"() {
         when:
-            def response = JSON( server()
-                    .perform( get( "/api/v2/person/name/CPERSON1" ).accept( "application/json" ) )
-                    .andExpect( status().isOk() )
-                    .andReturn()
+            def response = JSON(
+                    server()
+                        .perform(
+                            get( "/v3/people?name=CPERSON1" )
+                            .accept( "application/json" )
+                        )
+                        .andExpect(
+                            status().isOk()
+                        )
+                        .andReturn()
             );
         then:
             response.contains( JSON(
@@ -44,6 +50,18 @@ class PersonControllerV2Test extends IntegrationSpecification {
                     }
                     '''
             ) )
+    }
+
+    def "it should response error message when no parameters represented"() {
+        expect:
+            server()
+                .perform(
+                    get( "/v3/people" )
+                    .accept( "application/json" )
+                )
+                .andExpect(
+                    status().isBadRequest()
+                )
     }
 
 }
