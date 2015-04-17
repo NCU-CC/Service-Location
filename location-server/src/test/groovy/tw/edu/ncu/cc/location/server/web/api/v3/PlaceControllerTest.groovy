@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.controller.api.v2
+package tw.edu.ncu.cc.location.server.web.api.v3
 
 import specification.IntegrationSpecification
 
@@ -6,12 +6,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 
-class PlaceControllerV2Test extends IntegrationSpecification {
+class PlaceControllerTest extends IntegrationSpecification {
 
     def "it can get place info by place type"() {
         when:
             def response = JSON( server()
-                    .perform( get( "/api/v2/place/type/WHEELCHAIR_RAMP" ).accept( "application/json" ) )
+                    .perform( get( "/v3/places?type=WHEELCHAIR_RAMP" ).accept( "application/json" ) )
                     .andExpect( status().isOk() )
                     .andReturn()
             );
@@ -32,14 +32,14 @@ class PlaceControllerV2Test extends IntegrationSpecification {
     def "it can get place info by place type 2"() {
         expect:
             server()
-                    .perform( get( "/api/v2/place/type/NOT_EXIST" ).accept( "application/json" ) )
+                    .perform( get( "/v3/places?type=NOT_EXIST" ).accept( "application/json" ) )
                     .andExpect( status().isBadRequest(  ) )
     }
 
     def "it can get place info by chinese name"() {
         when:
             def response = JSON( server()
-                    .perform( get( "/api/v2/place/name/CPLACE3" ).accept( "application/json" ) )
+                    .perform( get( "/v3/places?name=CPLACE3" ).accept( "application/json" ) )
                     .andExpect( status().isOk() )
                     .andReturn()
             );
@@ -57,27 +57,16 @@ class PlaceControllerV2Test extends IntegrationSpecification {
             ) )
     }
 
-    def "it can get units in place by chinese name of place"() {
-        when:
-            def response = JSON( server()
-                    .perform( get( "/api/v2/place/name/CPLACE2/units" ).accept( "application/json" ) )
-                    .andExpect( status().isOk() )
-                    .andReturn()
-            );
-        then:
-            response.contains( JSON(
-                    '''
-                    {
-                        "unitCode"   : "A110",
-                        "chineseName": "CUNIT2",
-                        "englishName": "EUNIT2",
-                        "shortName"  : "U2",
-                        "fullName"   : "FUNIT2",
-                        "url" : "http://www.example.com",
-                        "location" : null
-                    }
-                    '''
-            ) )
+    def "it should response error message when no parameters represented"() {
+        expect:
+            server()
+                .perform(
+                    get( "/v3/places" )
+                    .accept( "application/json" )
+                )
+                .andExpect(
+                    status().isBadRequest()
+                )
     }
 
 }

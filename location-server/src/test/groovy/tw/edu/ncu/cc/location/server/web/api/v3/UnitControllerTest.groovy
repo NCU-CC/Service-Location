@@ -1,0 +1,75 @@
+package tw.edu.ncu.cc.location.server.web.api.v3
+
+import specification.IntegrationSpecification
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+
+
+class UnitControllerTest extends IntegrationSpecification {
+
+    def "it can get units by full name"() {
+        when:
+            def response = JSON( server()
+                    .perform( get( "/v3/units?name=FUNIT1" ).accept( "application/json" ) )
+                    .andExpect( status().isOk() )
+                    .andReturn()
+            );
+        then:
+            response.contains( JSON(
+                    '''
+                    {
+                        "unitCode"   : "A100",
+                        "chineseName": "CUNIT1",
+                        "englishName": "EUNIT1",
+                        "shortName"  : "U1",
+                        "fullName"   : "FUNIT1",
+                        "url" : "http://www.example.com",
+                        "location" : null
+                    }
+                    '''
+            ) )
+    }
+
+    def "it can get units in place by chinese name of place"() {
+        when:
+            def response = JSON( server()
+                    .perform(
+                        get( "/v3/units?placeName=CPLACE2" )
+                        .with( apiToken() )
+                        .accept( "application/json" )
+                    )
+                    .andExpect(
+                        status().isOk()
+                    )
+                    .andReturn()
+            );
+        then:
+            response.contains( JSON(
+                    '''
+                    {
+                        "unitCode"   : "A110",
+                        "chineseName": "CUNIT2",
+                        "englishName": "EUNIT2",
+                        "shortName"  : "U2",
+                        "fullName"   : "FUNIT2",
+                        "url" : "http://www.example.com",
+                        "location" : null
+                    }
+                    '''
+            ) )
+    }
+
+    def "it should response error message when no parameters represented"() {
+        expect:
+            server()
+                .perform(
+                    get( "/v3/units" )
+                    .accept( "application/json" )
+                )
+                .andExpect(
+                    status().isBadRequest()
+                )
+    }
+
+}
