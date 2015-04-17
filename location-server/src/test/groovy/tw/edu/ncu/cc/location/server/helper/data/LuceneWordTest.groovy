@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.data
+package tw.edu.ncu.cc.location.server.helper.data
 
 import spock.lang.Specification
 import tw.edu.ncu.cc.location.data.keyword.WordType
