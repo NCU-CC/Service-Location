@@ -1,0 +1,22 @@
+logging:
+  level: DEBUG
+
+spring:
+  datasource:
+    initialize: true
+    schema: classpath:test/schema.sql
+    data: classpath:test/data.sql
+    sql-script-encoding: UTF-8
+  jpa:
+    generate-ddl: false
+    database-platform: org.hibernate.spatial.dialect.h2geodb.GeoDBDialect
+    hibernate:
+      ddl-auto: none
+
+liquibase:
+  enabled: false
+
+custom:
+  lucene:
+    index:
+      path: lucene/index
