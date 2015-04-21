@@ -17,11 +17,16 @@ buildscript {
 
 repositories {
     maven { url "http://www.hibernatespatial.org/repository" }
+    flatDir {
+        dirs '../lib'
+    }
 }
 
 dependencies {
 
     compile project(":location-data")
+    compile name: 'oauth-resource-0.4.0'
+    compile name: 'oauth-data-0.4.0'
 
     compile 'org.springframework.security:spring-security-config:4.0.0.RELEASE' ,
             'org.springframework.security:spring-security-test:4.0.0.RELEASE',
