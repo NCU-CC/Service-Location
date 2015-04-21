@@ -4,14 +4,31 @@ import specification.IntegrationSpecification
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import static tw.edu.ncu.cc.oauth.resource.test.ApiAuthMockMvcRequestPostProcessors.apiToken
 
 
 class UnitControllerTest extends IntegrationSpecification {
 
+    def "it should provide api token to use api"() {
+        expect:
+            server()
+                    .perform(
+                        get( "/v3/units?name=FUNIT1" )
+                        .accept( "application/json" )
+                    )
+                    .andExpect(
+                        status().isBadRequest()
+                    )
+    }
+
     def "it can get units by full name"() {
         when:
             def response = JSON( server()
-                    .perform( get( "/v3/units?name=FUNIT1" ).accept( "application/json" ) )
+                    .perform(
+                        get( "/v3/units?name=FUNIT1" )
+                        .with( apiToken() )
+                        .accept( "application/json" )
+                    )
                     .andExpect( status().isOk() )
                     .andReturn()
             );
@@ -65,6 +82,7 @@ class UnitControllerTest extends IntegrationSpecification {
             server()
                 .perform(
                     get( "/v3/units" )
+                    .with( apiToken() )
                     .accept( "application/json" )
                 )
                 .andExpect(

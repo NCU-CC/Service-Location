@@ -4,9 +4,21 @@ import specification.IntegrationSpecification
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-
+import static tw.edu.ncu.cc.oauth.resource.test.ApiAuthMockMvcRequestPostProcessors.apiToken
 
 class PersonControllerTest extends IntegrationSpecification {
+
+    def "it should provide api token to use api"() {
+        expect:
+            server()
+                    .perform(
+                            get( "/v3/people?name=CPERSON1" )
+                            .accept( "application/json" )
+                    )
+                    .andExpect(
+                            status().isBadRequest()
+                    )
+    }
 
     def "it should provide person info by chinese name 1"() {
         when:
@@ -14,6 +26,7 @@ class PersonControllerTest extends IntegrationSpecification {
                     server()
                         .perform(
                             get( "/v3/people?name=CPERSON1" )
+                            .with( apiToken() )
                             .accept( "application/json" )
                         )
                         .andExpect(
@@ -57,6 +70,7 @@ class PersonControllerTest extends IntegrationSpecification {
             server()
                 .perform(
                     get( "/v3/people" )
+                    .with( apiToken() )
                     .accept( "application/json" )
                 )
                 .andExpect(
