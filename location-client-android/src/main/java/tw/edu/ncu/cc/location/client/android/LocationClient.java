@@ -40,42 +40,42 @@ public class LocationClient implements AsynLocationClient {
     @Override
     public void getPlaces( String placeName, ResponseListener< Place > responseListener ) {
         sendRequest(
-                "/place/name/" + Uri.encode( placeName ), responseListener
+                "/v3/places?name=" + Uri.encode( placeName ), responseListener
         );
     }
 
     @Override
     public void getPlaces( PlaceType placeType, ResponseListener< Place > responseListener ) {
         sendRequest(
-                "/place/type/" + Uri.encode( placeType.value() ), responseListener
+                "/v3/places?type=" + Uri.encode( placeType.value() ), responseListener
         );
     }
 
     @Override
     public void getPlaceUnits( String placeName, ResponseListener< Unit > responseListener ) {
         sendRequest(
-                "/place/name/" + Uri.encode( placeName ) + "/units", responseListener
+                "/v3/units?placeName=" + Uri.encode( placeName ) , responseListener
         );
     }
 
     @Override
     public void getPeople( String peopleName, ResponseListener< Person > responseListener ) {
         sendRequest(
-                "/person/name/" + Uri.encode( peopleName ), responseListener
+                "/v3/people?name=" + Uri.encode( peopleName ), responseListener
         );
     }
 
     @Override
     public void getUnits( String unitName, ResponseListener< Unit > responseListener ) {
         sendRequest(
-                "/unit/name/" + Uri.encode( unitName ), responseListener
+                "/v3/units?name=" + Uri.encode( unitName ), responseListener
         );
     }
 
     @Override
     public void getWords( String keyword, ResponseListener< Word > responseListener ) {
         sendRequest(
-                "/keyword/" + Uri.encode( keyword ), responseListener
+                "/v3/search?q=" + Uri.encode( keyword ), responseListener
         );
     }
 
