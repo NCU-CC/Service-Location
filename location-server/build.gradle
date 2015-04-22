@@ -1,6 +1,7 @@
-description = "jersey server for ncu location service"
+description = "server for ncu location service"
 
 apply plugin: 'war'
+apply plugin: 'spring-boot'
 apply plugin: 'org.akhikhl.gretty'
 
 buildscript {
@@ -9,35 +10,42 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.akhikhl.gretty:gretty:1.1.9'
+        classpath 'org.akhikhl.gretty:gretty:1.1.8'
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.2.RELEASE'
     }
 }
 
 repositories {
     maven { url "http://www.hibernatespatial.org/repository" }
+    flatDir {
+        dirs '../lib'
+    }
 }
 
 dependencies {
 
     compile project(":location-data")
+    compile name: 'oauth-resource-0.4.0'
+    compile name: 'oauth-data-0.4.0'
 
-    compile 'org.springframework:spring-orm:4.1.1.RELEASE',
-            'org.springframework:spring-webmvc:4.1.1.RELEASE',
-            'org.springframework:spring-test:4.1.1.RELEASE',
-            'org.springframework:spring-context-support:4.1.1.RELEASE',
-            'com.fasterxml.jackson.core:jackson-databind:2.4.3',
-            'org.hibernate:hibernate-entitymanager:4.3.6.Final',
+    compile 'org.springframework.security:spring-security-config:4.0.0.RELEASE' ,
+            'org.springframework.security:spring-security-test:4.0.0.RELEASE',
+            'org.springframework:spring-context-support:4.1.5.RELEASE',
+            'org.springframework.boot:spring-boot-starter-test:1.2.2.RELEASE',
+            'org.springframework.boot:spring-boot-starter-security:1.2.2.RELEASE',
+            'org.springframework.boot:spring-boot-starter-data-jpa:1.2.2.RELEASE',
+            'org.springframework.boot:spring-boot-starter-web:1.2.2.RELEASE',
             'org.hibernate:hibernate-spatial:4.3',
             'org.apache.lucene:lucene-queryparser:4.10.0',
             'org.apache.lucene:lucene-analyzers-smartcn:4.10.0',
+            'org.liquibase:liquibase-core:3.3.2',
             'net.sf.ehcache:ehcache:2.9.0',
             'com.zaxxer:HikariCP-java6:2.3.1'
 
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 
     runtime 'mysql:mysql-connector-java:5.1.32',
-            'com.h2database:h2:1.4.181',
-            'org.slf4j:slf4j-log4j12:1.7.7'
+            'com.h2database:h2:1.4.181'
 
     testCompile 'org.spockframework:spock-spring:1.0-groovy-2.3'
 
@@ -48,5 +56,9 @@ war{
 }
 
 gretty {
-    jvmArgs = ["-Dspring.profiles.active=production"]
+    springBoot = true
+    springBootVersion = '1.2.2.RELEASE'
+    springBootMainClass = 'tw.edu.ncu.cc.location.server.Application'
+    httpsEnabled = true
+    httpsPort = 5278
 }

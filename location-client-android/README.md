@@ -5,7 +5,7 @@ location data consumer on android volley
 - build by yourself
 ```Java
 LocationConfig config = new NCULocationConfig();
-config.setServerAddress( "http://127.0.0.1:8080/location-Service/api/v2" )
+config.setServerAddress( "http://127.0.0.1:8080/location-Service" )
 ```
 - build by properties file in resource path
 ```Java
@@ -13,7 +13,7 @@ LocationConfig config = new NCULocationConfig().configure( "settings.properties"
 ```
 ```Java
 #properties in config file
-location.server_address = http://127.0.0.1:8080/location-Service/api/v2
+location.server_address = http://127.0.0.1:8080/location-Service
 ```
 
 ### Build a **LocationClient** using **LocationConfig**

@@ -2,6 +2,7 @@ package tw.edu.ncu.cc.location.server.service.impl
 
 import org.springframework.beans.factory.annotation.Autowired
 import specification.SpringSpecification
+import tw.edu.ncu.cc.location.server.service.UnitServiceImpl
 
 
 class UnitServiceImplTest extends SpringSpecification {
@@ -11,19 +12,25 @@ class UnitServiceImplTest extends SpringSpecification {
 
     def "it can get units by full name"() {
         when:
-            def units = unitService.getUnits( "FUNIT2" )
+            def units = unitService.getUnitsByFullName( "FUNIT2" )
         then:
             units.get( 0 ).englishName == "EUNIT2"
     }
 
-    def "it can get units to be indexed by pagination"() {
-        given:
-            def page = 0
-            def per = 1
+    def "it can get units in unit with specified chinese name 1"() {
         when:
-            def units = unitService.getUnitsToBeIndexed( page, per )
+            def units = unitService.getUnitsByPlaceChineseName( "CPLACE1" )
         then:
-            units.get( 0 ).englishName == "EUNIT1"
+            units.get( 0 ).chineseName == "CUNIT1"
+            units.get( 0 ).englishName == null
+    }
+
+    def "it can get units in unit with specified chinese name 2"() {
+        when:
+            def units = unitService.getUnitsByPlaceChineseName( "CPLACE2" )
+        then:
+            units.get( 0 ).chineseName == "CUNIT2"
+            units.get( 0 ).englishName == "EUNIT2"
     }
 
 }
