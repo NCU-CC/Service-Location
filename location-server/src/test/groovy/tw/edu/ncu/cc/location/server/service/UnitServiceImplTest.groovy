@@ -1,9 +1,7 @@
-package tw.edu.ncu.cc.location.server.service.impl
+package tw.edu.ncu.cc.location.server.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import specification.SpringSpecification
-import tw.edu.ncu.cc.location.server.service.UnitServiceImpl
-
 
 class UnitServiceImplTest extends SpringSpecification {
 
