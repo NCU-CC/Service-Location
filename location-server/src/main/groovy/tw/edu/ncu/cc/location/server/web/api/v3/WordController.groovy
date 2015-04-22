@@ -26,7 +26,7 @@ public class WordController {
     public ResponseEntity search( @RequestParam( "q" ) String word ) {
         new ResponseEntity<>(
                 conversionService.convert(
-                        wordService.getWords( word ),
+                        wordService.getWordsByKeyword( word ),
                         TypeDescriptor.collection( List.class, TypeDescriptor.valueOf( Word.class ) ),
                         TypeDescriptor.array( TypeDescriptor.valueOf( Word.class ) )
                 ),

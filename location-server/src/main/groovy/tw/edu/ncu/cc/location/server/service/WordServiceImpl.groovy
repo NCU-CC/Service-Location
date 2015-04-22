@@ -74,7 +74,7 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public List<Word> getWords( String keyword ) {
+    public List<Word> getWordsByKeyword( String keyword ) {
         try {
             List<Word> words = new LinkedList<>()
             for ( Document document : searchDocuments( "index", keyword, 3 ) ) {

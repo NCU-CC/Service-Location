@@ -17,12 +17,12 @@ public class PlaceServiceImpl implements PlaceService {
     def PlaceUnitRepository placeUnitRepository
 
     @Override
-    public List< PlaceEntity > getPlaces( String chineseName ) {
+    public List< PlaceEntity > getPlacesByChineseName( String chineseName ) {
         placeRepository.findShowablePlaceByChineseName( chineseName )
     }
 
     @Override
-    public List< PlaceEntity > getPlaces( PlaceType type ) {
+    public List< PlaceEntity > getPlacesByPlaceType( PlaceType type ) {
         placeRepository.findByTypeOrderByChineseNameAsc( type )
     }
 

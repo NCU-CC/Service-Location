@@ -13,7 +13,7 @@ class UnitControllerTest extends IntegrationSpecification {
         expect:
             server()
                     .perform(
-                        get( "/v3/units?name=FUNIT1" )
+                        get( "/v3/units?fname=FUNIT1" )
                         .accept( "application/json" )
                     )
                     .andExpect(
@@ -25,7 +25,7 @@ class UnitControllerTest extends IntegrationSpecification {
         when:
             def response = JSON( server()
                     .perform(
-                        get( "/v3/units?name=FUNIT1" )
+                        get( "/v3/units?fname=FUNIT1" )
                         .with( apiToken() )
                         .accept( "application/json" )
                     )

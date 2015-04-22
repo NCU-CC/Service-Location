@@ -25,7 +25,7 @@ public class UnitController {
     def ConversionService conversionService
 
     @RequestMapping
-    public ResponseEntity index( @RequestParam( value = "name", required = false ) String name,
+    public ResponseEntity index( @RequestParam( value = "fname", required = false ) String name,
                                  @RequestParam( value = "placeName", required = false ) String placeName ) {
         if( name == null && placeName == null ) {
             throw new MissingServletRequestParameterException( "name or placeName", "" )

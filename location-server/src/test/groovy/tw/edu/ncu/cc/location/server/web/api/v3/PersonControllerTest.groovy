@@ -12,7 +12,7 @@ class PersonControllerTest extends IntegrationSpecification {
         expect:
             server()
                     .perform(
-                            get( "/v3/people?name=CPERSON1" )
+                            get( "/v3/faculties?cname=CPERSON1" )
                             .accept( "application/json" )
                     )
                     .andExpect(
@@ -20,12 +20,12 @@ class PersonControllerTest extends IntegrationSpecification {
                     )
     }
 
-    def "it should provide person info by chinese name 1"() {
+    def "it should provide faculty info by chinese name 1"() {
         when:
             def response = JSON(
                     server()
                         .perform(
-                            get( "/v3/people?name=CPERSON1" )
+                            get( "/v3/faculties?cname=CPERSON1" )
                             .with( apiToken() )
                             .accept( "application/json" )
                         )
@@ -69,7 +69,7 @@ class PersonControllerTest extends IntegrationSpecification {
         expect:
             server()
                 .perform(
-                    get( "/v3/people" )
+                    get( "/v3/faculties" )
                     .with( apiToken() )
                     .accept( "application/json" )
                 )
