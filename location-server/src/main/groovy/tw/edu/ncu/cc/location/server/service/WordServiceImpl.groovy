@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import tw.edu.ncu.cc.location.data.keyword.Word
 import tw.edu.ncu.cc.location.data.keyword.WordType
-import tw.edu.ncu.cc.location.server.helper.data.LuceneWord
 
 import javax.annotation.PreDestroy
 
@@ -43,14 +42,14 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public void persistWords( LuceneWord... words ) {
+    public void persistWords( Word... words ) {
         try {
             Document[] documents = new Document[words.length]
             for ( int i = 0; i < words.length; i++ ) {
                 documents[ i ] = new Document()
-                documents[ i ].add( new TextField( "index", words[ i ].getIndex(), Field.Store.NO ) )
-                documents[ i ].add( new TextField( "word", words[ i ].getWord(), Field.Store.YES ) )
-                documents[ i ].add( new TextField( "type", words[ i ].getType().name(), Field.Store.YES ) )
+                documents[ i ].add( new TextField( "index", words[ i ].getIndex(), Field.Store.YES ) )
+                documents[ i ].add( new TextField( "word",  words[ i ].getWord(),  Field.Store.YES ) )
+                documents[ i ].add( new TextField( "type",  words[ i ].getType().name(), Field.Store.YES ) )
             }
             persistDocuments( "word", documents )
         } catch ( IOException e ) {
@@ -80,8 +79,9 @@ public class WordServiceImpl implements WordService {
             List<Word> words = new LinkedList<>()
             for ( Document document : searchDocuments( "index", keyword, 3 ) ) {
                 Word word = new Word()
-                word.setWord( document.get( "word" ) )
-                word.setType( WordType.valueOf( document.get( "type" ) ) )
+                word.setIndex( document.get( "index" ) )
+                word.setWord ( document.get( "word" ) )
+                word.setType ( WordType.valueOf( document.get( "type" ) ) )
                 words.add( word )
             }
             return words;

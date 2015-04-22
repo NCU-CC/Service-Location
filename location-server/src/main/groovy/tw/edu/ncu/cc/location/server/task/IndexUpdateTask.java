@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import tw.edu.ncu.cc.location.data.keyword.Word;
 import tw.edu.ncu.cc.location.data.keyword.WordType;
 import tw.edu.ncu.cc.location.server.entity.PersonEntity;
 import tw.edu.ncu.cc.location.server.entity.PlaceEntity;
 import tw.edu.ncu.cc.location.server.entity.UnitEntity;
-import tw.edu.ncu.cc.location.server.helper.data.LuceneWord;
 import tw.edu.ncu.cc.location.server.repository.PersonRepository;
 import tw.edu.ncu.cc.location.server.repository.PlaceRepository;
 import tw.edu.ncu.cc.location.server.repository.UnitRepository;
@@ -47,10 +47,10 @@ public class IndexUpdateTask {
         List< PlaceEntity > places;
         for ( int offset = 0; ( places = placeRepository.findShowablePlace( new PageRequest( offset, 100 ) ).getContent() ).size() > 0; offset += 100 ) {
             for ( PlaceEntity place : places ) {
-                LuceneWord word = new LuceneWord();
-                word.setIndex( place.getChineseName() + "" + decorate( place.getEnglishName(), " " ) );
-                word.setWord( place.getChineseName() );
-                word.setType( WordType.PLACE );
+                Word word = new Word();
+                word.setIndex( place.getChineseName() + appendPrefixIfNotNull( " | ", place.getEnglishName() ) );
+                word.setWord ( place.getChineseName() );
+                word.setType ( WordType.PLACE );
                 wordService.persistWords( word );
             }
 
@@ -66,10 +66,10 @@ public class IndexUpdateTask {
         List< PersonEntity > people;
         for ( int offset = 0; ( people = personRepository.findAll( new PageRequest( offset, 100 ) ).getContent() ).size() > 0; offset += 100 ) {
             for ( PersonEntity person : people ) {
-                LuceneWord word = new LuceneWord();
-                word.setIndex( person.getChineseName() + decorate( person.getEnglishName(), " " ) );
-                word.setWord( person.getChineseName() + decorate( person.getEnglishName(), ", " ) );
-                word.setType( WordType.PERSON );
+                Word word = new Word();
+                word.setIndex( person.getChineseName() + appendPrefixIfNotNull( " | ", person.getEnglishName() ) );
+                word.setWord ( person.getChineseName() );
+                word.setType ( WordType.PERSON );
                 wordService.persistWords( word );
             }
 
@@ -85,10 +85,10 @@ public class IndexUpdateTask {
         List< UnitEntity > units;
         for ( int offset = 0; ( units = unitRepository.findAll( new PageRequest( offset, 100 ) ).getContent() ).size() > 0; offset += 100 ) {
             for ( UnitEntity unit : units ) {
-                LuceneWord word = new LuceneWord();
-                word.setIndex( unit.getFullName() + decorate( unit.getEnglishName(), " " ) );
-                word.setWord( unit.getFullName() );
-                word.setType( WordType.UNIT );
+                Word word = new Word();
+                word.setIndex( unit.getFullName() + appendPrefixIfNotNull( " | ", unit.getEnglishName() ) );
+                word.setWord ( unit.getFullName() );
+                word.setType ( WordType.UNIT );
                 wordService.persistWords( word );
             }
 
@@ -100,7 +100,7 @@ public class IndexUpdateTask {
 
     }
 
-    private static String decorate( String s, String prefix ) {
+    private static String appendPrefixIfNotNull( String prefix, String s ) {
         return s == null ? "" : prefix + s;
     }
 
