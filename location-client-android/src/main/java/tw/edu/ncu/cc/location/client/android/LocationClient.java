@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import tw.edu.ncu.cc.location.client.tool.AsynLocationClient;
 import tw.edu.ncu.cc.location.client.tool.config.LocationConfig;
 import tw.edu.ncu.cc.location.client.tool.response.ResponseListener;
+import tw.edu.ncu.cc.location.data.building.Building;
 import tw.edu.ncu.cc.location.data.keyword.Word;
 import tw.edu.ncu.cc.location.data.person.Person;
 import tw.edu.ncu.cc.location.data.place.Place;
@@ -38,9 +39,9 @@ public class LocationClient implements AsynLocationClient {
     }
 
     @Override
-    public void getPlaces( String placeName, ResponseListener< Place > responseListener ) {
+    public void getPlaces( String cname, ResponseListener< Place > responseListener ) {
         sendRequest(
-                "/v3/places?name=" + Uri.encode( placeName ), responseListener
+                "/v3/places?cname=" + Uri.encode( cname ), responseListener
         );
     }
 
@@ -52,23 +53,30 @@ public class LocationClient implements AsynLocationClient {
     }
 
     @Override
-    public void getPlaceUnits( String placeName, ResponseListener< Unit > responseListener ) {
+    public void getBuildings( ResponseListener< Building > responseListener ) {
         sendRequest(
-                "/v3/units?placeName=" + Uri.encode( placeName ) , responseListener
+                "/v3/buildings", responseListener
         );
     }
 
     @Override
-    public void getPeople( String peopleName, ResponseListener< Person > responseListener ) {
+    public void getBuildingUnits( String buildingChineseName, ResponseListener< Unit > responseListener ) {
         sendRequest(
-                "/v3/people?name=" + Uri.encode( peopleName ), responseListener
+                "/v3/units?building_cname=" + Uri.encode( buildingChineseName ) , responseListener
         );
     }
 
     @Override
-    public void getUnits( String unitName, ResponseListener< Unit > responseListener ) {
+    public void getPeople( String cname, ResponseListener< Person > responseListener ) {
         sendRequest(
-                "/v3/units?name=" + Uri.encode( unitName ), responseListener
+                "/v3/people?cname=" + Uri.encode( cname ), responseListener
+        );
+    }
+
+    @Override
+    public void getUnits( String fname, ResponseListener< Unit > responseListener ) {
+        sendRequest(
+                "/v3/units?fname=" + Uri.encode( fname ), responseListener
         );
     }
 
