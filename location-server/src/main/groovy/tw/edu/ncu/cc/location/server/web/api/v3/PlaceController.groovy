@@ -27,14 +27,14 @@ public class PlaceController {
 
     @RequestMapping
     public ResponseEntity index( @RequestParam( value = "type", required = false ) PlaceType type,
-                                 @RequestParam( value = "name", required = false ) String name ) {
+                                 @RequestParam( value = "cname", required = false ) String name ) {
         if( name == null && type == null ) {
-            throw new MissingServletRequestParameterException( "type or name", "" )
+            throw new MissingServletRequestParameterException( "type or cname", "" )
         }
         if( name != null ) {
             new ResponseEntity<>(
                     conversionService.convert(
-                            placeService.getPlaces( name ),
+                            placeService.getPlacesByChineseName( name ),
                             TypeDescriptor.collection( List.class, TypeDescriptor.valueOf( PlaceEntity.class ) ),
                             TypeDescriptor.array( TypeDescriptor.valueOf( Place.class ) )
                     ),
@@ -43,7 +43,7 @@ public class PlaceController {
         } else {
             new ResponseEntity<>(
                     conversionService.convert(
-                            placeService.getPlaces( type ),
+                            placeService.getPlacesByPlaceType( type ),
                             TypeDescriptor.collection( List.class, TypeDescriptor.valueOf( PlaceEntity.class ) ),
                             TypeDescriptor.array( TypeDescriptor.valueOf( Place.class ) )
                     ),

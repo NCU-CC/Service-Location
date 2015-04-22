@@ -63,7 +63,7 @@ class PlaceControllerTest extends IntegrationSpecification {
         when:
             def response = JSON( server()
                     .perform(
-                        get( "/v3/places?name=CPLACE3" )
+                        get( "/v3/places?cname=CPLACE3" )
                         .with( apiToken() )
                         .accept( "application/json" )
                     )

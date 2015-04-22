@@ -14,7 +14,7 @@ import tw.edu.ncu.cc.location.server.entity.PersonEntity
 import tw.edu.ncu.cc.location.server.service.PersonService
 
 @RestController
-@RequestMapping( value = "v3/people", method = RequestMethod.GET )
+@RequestMapping( value = "v3/faculties", method = RequestMethod.GET )
 public class PersonController {
 
     @Autowired
@@ -24,10 +24,10 @@ public class PersonController {
     def ConversionService conversionService
 
     @RequestMapping
-    public ResponseEntity index( @RequestParam( value = "name" ) String name ) {
+    public ResponseEntity index( @RequestParam( value = "cname" ) String name ) {
         new ResponseEntity<>(
                 conversionService.convert(
-                        personService.getPeople( name ),
+                        personService.getPeopleByChineseName( name ),
                         TypeDescriptor.collection( List.class, TypeDescriptor.valueOf( PersonEntity.class ) ),
                         TypeDescriptor.array( TypeDescriptor.valueOf( Person.class ) )
                 ),

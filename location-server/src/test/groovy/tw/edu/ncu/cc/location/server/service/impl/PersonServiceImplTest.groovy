@@ -11,7 +11,7 @@ class PersonServiceImplTest extends SpringSpecification {
 
     def "it can get people by chinese name"() {
         when:
-            def people = personService.getPeople( "CPERSON1" )
+            def people = personService.getPeopleByChineseName( "CPERSON1" )
         then:
             people.get( 0 ).title == "TITLE1"
     }

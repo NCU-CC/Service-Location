@@ -24,7 +24,7 @@ class WordServiceImplTest extends SpringSpecification {
         when:
             wordService.persistWords( word )
         and:
-            def words = wordService.getWords( "中央" )
+            def words = wordService.getWordsByKeyword( "中央" )
         then:
             words.size() != 0
         and:
@@ -45,7 +45,7 @@ class WordServiceImplTest extends SpringSpecification {
         when:
             wordService.clearAllWords()
         then:
-            wordService.getWords( "關鍵字" ).size() == 0
+            wordService.getWordsByKeyword( "關鍵字" ).size() == 0
     }
 
 }

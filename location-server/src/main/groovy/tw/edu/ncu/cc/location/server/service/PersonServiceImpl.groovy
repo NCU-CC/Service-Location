@@ -12,7 +12,7 @@ public class PersonServiceImpl implements PersonService {
     def PersonRepository personRepository
 
     @Override
-    public List< PersonEntity > getPeople( String chineseName ) {
+    public List< PersonEntity > getPeopleByChineseName( String chineseName ) {
         personRepository.findByChineseName( chineseName )
     }
 
