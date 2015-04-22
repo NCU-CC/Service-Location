@@ -26,9 +26,9 @@ public class UnitController {
 
     @RequestMapping
     public ResponseEntity index( @RequestParam( value = "fname", required = false ) String name,
-                                 @RequestParam( value = "placeName", required = false ) String placeName ) {
+                                 @RequestParam( value = "building_cname", required = false ) String placeName ) {
         if( name == null && placeName == null ) {
-            throw new MissingServletRequestParameterException( "name or placeName", "" )
+            throw new MissingServletRequestParameterException( "fname or building_cname", "" )
         }
 
         if( name != null ) {

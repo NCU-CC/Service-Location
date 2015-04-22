@@ -52,7 +52,7 @@ class UnitControllerTest extends IntegrationSpecification {
         when:
             def response = JSON( server()
                     .perform(
-                        get( "/v3/units?placeName=CPLACE2" )
+                        get( "/v3/units?building_cname=CPLACE2" )
                         .with( apiToken() )
                         .accept( "application/json" )
                     )
