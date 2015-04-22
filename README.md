@@ -2,7 +2,7 @@
 A web service for providing location information
 
 ### Module
-- location-server : location server
-- location-android: location client for android
-- location-tool   : location client tool
-- location-data   : location data
+- location-server        : location server
+- location-client-android: location client for android
+- location-client-tool   : location client tool
+- location-data          : location data
