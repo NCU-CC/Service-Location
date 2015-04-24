@@ -74,10 +74,10 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public List<Word> getWordsByKeyword( String keyword ) {
+    public List<Word> getWordsByKeyword( String keyword, int size ) {
         try {
             List<Word> words = new LinkedList<>()
-            for ( Document document : searchDocuments( "index", keyword, 3 ) ) {
+            for ( Document document : searchDocuments( "index", keyword, size ) ) {
                 Word word = new Word()
                 word.setIndex( document.get( "index" ) )
                 word.setWord ( document.get( "word" ) )
