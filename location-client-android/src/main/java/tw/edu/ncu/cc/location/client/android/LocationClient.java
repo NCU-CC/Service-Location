@@ -82,8 +82,13 @@ public class LocationClient implements AsynLocationClient {
 
     @Override
     public void getWords( String keyword, ResponseListener< Word > responseListener ) {
+        getWords( keyword, 3, responseListener );
+    }
+
+    @Override
+    public void getWords( String keyword, int size, ResponseListener< Word > responseListener ) {
         sendRequest(
-                "/v3/search?q=" + Uri.encode( keyword ), responseListener
+                "/v3/search?q=" + Uri.encode( keyword ) + "&size=" + size, responseListener
         );
     }
 

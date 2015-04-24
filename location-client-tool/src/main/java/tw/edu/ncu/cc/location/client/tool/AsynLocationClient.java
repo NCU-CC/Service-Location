@@ -20,5 +20,6 @@ public interface AsynLocationClient {
     void getUnits ( String fname, ResponseListener< Unit > responseListener );
 
     void getWords ( String keyword, ResponseListener< Word > responseListener );
+    void getWords ( String keyword, int size, ResponseListener< Word > responseListener );
 
 }

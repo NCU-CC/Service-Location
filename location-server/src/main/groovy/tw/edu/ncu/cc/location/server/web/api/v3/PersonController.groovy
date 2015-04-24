@@ -24,7 +24,7 @@ public class PersonController {
     def ConversionService conversionService
 
     @RequestMapping
-    public ResponseEntity index( @RequestParam( value = "cname" ) String name ) {
+    public ResponseEntity index( @RequestParam( value = "cname", required = true ) String name ) {
         new ResponseEntity<>(
                 conversionService.convert(
                         personService.getPeopleByChineseName( name ),

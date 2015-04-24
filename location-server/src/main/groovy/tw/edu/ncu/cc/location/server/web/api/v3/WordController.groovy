@@ -23,10 +23,11 @@ public class WordController {
     def ConversionService conversionService
 
     @RequestMapping
-    public ResponseEntity search( @RequestParam( "q" ) String word ) {
+    public ResponseEntity search( @RequestParam( value = "q", required = true ) String word,
+                                  @RequestParam( value = "size", defaultValue = "3", required = false ) int size ) {
         new ResponseEntity<>(
                 conversionService.convert(
-                        wordService.getWordsByKeyword( word ),
+                        wordService.getWordsByKeyword( word, size ),
                         TypeDescriptor.collection( List.class, TypeDescriptor.valueOf( Word.class ) ),
                         TypeDescriptor.array( TypeDescriptor.valueOf( Word.class ) )
                 ),

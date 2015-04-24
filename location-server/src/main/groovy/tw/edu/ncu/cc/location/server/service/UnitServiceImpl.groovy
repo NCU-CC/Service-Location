@@ -24,27 +24,37 @@ public class UnitServiceImpl implements UnitService {
     @Override
     public List< UnitEntity > getUnitsByPlaceChineseName( String chineseName ) {
         List< PlaceUnitEntity > placeUnits = placeUnitRepository.findByPlaceChineseName( chineseName )
-        List< UnitEntity > units = new ArrayList<>();
+        List< UnitEntity > units = findUnitsByPlaceUnits( placeUnits )
+
+        return inplaceSortUnitsByChineseNameAsc( units )
+    }
+
+    private static List< UnitEntity > findUnitsByPlaceUnits( List< PlaceUnitEntity > placeUnits ) {
+        List< UnitEntity > units = new ArrayList<>()
         for ( PlaceUnitEntity placeUnit : placeUnits ) {
             if( placeUnit.getUnit() == null ) {
-                UnitEntity unitEntity = new UnitEntity();
-                unitEntity.setChineseName( placeUnit.getUnitName() );
-                units.add( unitEntity );
+                UnitEntity unitEntity = new UnitEntity()
+                unitEntity.setChineseName( placeUnit.getUnitName() )
+                units.add( unitEntity )
             } else {
-                units.add( placeUnit.getUnit() );
+                units.add( placeUnit.getUnit() )
             }
         }
+        return units
+    }
+
+    private static List< UnitEntity > inplaceSortUnitsByChineseNameAsc( List< UnitEntity > units ) {
         units.sort( new Comparator< UnitEntity >() {
             @Override
             int compare( UnitEntity o1, UnitEntity o2 ) {
-                o1.chineseName.compareTo( o2.chineseName );
+                o1.chineseName.compareTo( o2.chineseName )
             }
             @Override
             boolean equals( Object obj ) {
                 return false
             }
         } )
-        return units;
+        return units
     }
 
 }
