@@ -44,7 +44,7 @@ public class UnitServiceImpl implements UnitService {
     }
 
     private static List< UnitEntity > inplaceSortUnitsByChineseNameAsc( List< UnitEntity > units ) {
-        units.sort( new Comparator< UnitEntity >() {
+        Collections.sort( units, new Comparator< UnitEntity >() {
             @Override
             int compare( UnitEntity o1, UnitEntity o2 ) {
                 o1.chineseName.compareTo( o2.chineseName )
