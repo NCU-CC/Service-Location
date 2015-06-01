@@ -12,8 +12,12 @@ import org.springframework.scheduling.annotation.EnableScheduling
 import tw.edu.ncu.cc.location.server.config.BeanConfig
 import tw.edu.ncu.cc.location.server.config.MvcConfig
 import tw.edu.ncu.cc.location.server.config.SecurityConfig
+import tw.edu.ncu.cc.springboot.config.hikaricp.EnableHikariConfiguration
+import tw.edu.ncu.cc.springboot.config.ssl.EnableSSLConfiguration
 
 
+@EnableSSLConfiguration
+@EnableHikariConfiguration
 @EnableScheduling
 @EnableJpaRepositories
 @EnableSpringDataWebSupport
