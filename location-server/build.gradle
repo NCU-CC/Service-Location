@@ -10,8 +10,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.akhikhl.gretty:gretty:1.1.8'
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.2.RELEASE'
+        classpath 'org.akhikhl.gretty:gretty:1.2.2'
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE'
     }
 }
 
@@ -25,29 +25,30 @@ repositories {
 dependencies {
 
     compile project(":location-data")
-    compile name: 'oauth-resource-0.4.0'
-    compile name: 'oauth-data-0.4.0'
+    compile name: 'oauth-resource-0.7.0'
+    compile name: 'oauth-data-0.7.0'
+    compile name: 'config-ssl-0.2.0'
+    compile name: 'config-hikaricp-0.2.2'
 
     compile 'org.springframework.security:spring-security-config:4.0.0.RELEASE' ,
             'org.springframework.security:spring-security-test:4.0.0.RELEASE',
-            'org.springframework:spring-context-support:4.1.5.RELEASE',
-            'org.springframework.boot:spring-boot-starter-test:1.2.2.RELEASE',
-            'org.springframework.boot:spring-boot-starter-security:1.2.2.RELEASE',
-            'org.springframework.boot:spring-boot-starter-data-jpa:1.2.2.RELEASE',
-            'org.springframework.boot:spring-boot-starter-web:1.2.2.RELEASE',
+            'org.springframework:spring-context-support:4.1.6.RELEASE',
+            'org.springframework.boot:spring-boot-starter-test:1.2.3.RELEASE',
+            'org.springframework.boot:spring-boot-starter-security:1.2.3.RELEASE',
+            'org.springframework.boot:spring-boot-starter-data-jpa:1.2.3.RELEASE',
+            'org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE',
             'org.hibernate:hibernate-spatial:4.3',
             'org.apache.lucene:lucene-queryparser:4.10.0',
             'org.apache.lucene:lucene-analyzers-smartcn:4.10.0',
-            'org.liquibase:liquibase-core:3.3.2',
-            'net.sf.ehcache:ehcache:2.9.0',
-            'com.zaxxer:HikariCP-java6:2.3.1'
+            'net.sf.ehcache:ehcache:2.10.0',
+            'com.zaxxer:HikariCP:2.3.7'
 
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 
-    runtime 'mysql:mysql-connector-java:5.1.32',
-            'com.h2database:h2:1.4.181'
+    runtime 'mysql:mysql-connector-java:5.1.35',
+            'com.h2database:h2:1.4.187'
 
-    testCompile 'org.spockframework:spock-spring:1.0-groovy-2.3'
+    testCompile 'org.spockframework:spock-spring:1.0-groovy-2.4'
 
 }
 
@@ -57,7 +58,7 @@ war{
 
 gretty {
     springBoot = true
-    springBootVersion = '1.2.2.RELEASE'
+    springBootVersion = '1.2.3.RELEASE'
     springBootMainClass = 'tw.edu.ncu.cc.location.server.Application'
     httpsEnabled = true
     httpsPort = 5278
