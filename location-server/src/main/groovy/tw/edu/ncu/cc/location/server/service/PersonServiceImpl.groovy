@@ -12,6 +12,11 @@ public class PersonServiceImpl implements PersonService {
     def PersonRepository personRepository
 
     @Override
+    PersonEntity findByPortalId( String portalId ) {
+        personRepository.findByPortalId( portalId )
+    }
+
+    @Override
     public List< PersonEntity > getPeopleByChineseName( String chineseName ) {
         personRepository.findByChineseName( chineseName )
     }
