@@ -8,4 +8,6 @@ interface PersonRepository extends JpaRepository< PersonEntity, Integer > {
 
     List< PersonEntity > findByChineseName( String cname )
 
+    PersonEntity findByPortalId( String portalId )
+
 }
