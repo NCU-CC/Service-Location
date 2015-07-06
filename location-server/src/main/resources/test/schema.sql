@@ -1,6 +1,7 @@
 
 CREATE TABLE IF NOT EXISTS Person (
   id                int(11)       NOT NULL,
+  portal_id         varchar(20)   NOT NULL,
   personal_no       varchar(35)   NOT NULL,
   cname             varchar(50)   NOT NULL,
   ename             varchar(50)   DEFAULT NULL,
