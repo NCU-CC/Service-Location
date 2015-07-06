@@ -1,7 +1,7 @@
 
-INSERT INTO Person (id, personal_no, cname, ename, title, primary_unit_no, secondary_unit_no, office_phone) VALUES
-(1, 'P1', 'CPERSON1', NULL, 'TITLE1', 'A100', 'A110', NULL),
-(2, 'P2', 'CPERSON2', 'EPERSON2', 'TITLE2', 'A100', 'A110', '100');
+INSERT INTO Person (id, portal_id, personal_no, cname, ename, title, primary_unit_no, secondary_unit_no, office_phone) VALUES
+(1, 'PORTAL1', 'P1', 'CPERSON1', NULL, 'TITLE1', 'A100', 'A110', NULL),
+(2, 'PORTAL2', 'P2', 'CPERSON2', 'EPERSON2', 'TITLE2', 'A100', 'A110', '100');
 
 INSERT INTO Place (id, cname, ename, picture_name, type, location) VALUES
 (1, 'CPLACE1', 'EPLACE1', NULL, 'WHEELCHAIR_RAMP', NULL),

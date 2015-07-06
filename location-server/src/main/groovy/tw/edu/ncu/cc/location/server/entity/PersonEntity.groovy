@@ -10,6 +10,9 @@ public class PersonEntity {
     @GeneratedValue
     def Integer id;
 
+    @Column( name = "portal_id" )
+    def String portalId;
+
     @Column( name = "personal_no" )
     def String personalNo;
 
