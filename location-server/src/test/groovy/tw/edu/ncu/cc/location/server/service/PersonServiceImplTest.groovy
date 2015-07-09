@@ -15,4 +15,11 @@ class PersonServiceImplTest extends SpringSpecification {
             people.get( 0 ).title == "TITLE1"
     }
 
+    def "it cam find person by portal id"() {
+        when:
+            def person = personService.findByPortalId( "PORTAL1" )
+        then:
+            person.portalId == "PORTAL1"
+    }
+
 }
