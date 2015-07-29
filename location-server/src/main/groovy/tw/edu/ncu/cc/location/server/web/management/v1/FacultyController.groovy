@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController
 import tw.edu.ncu.cc.location.data.person.Person
 import tw.edu.ncu.cc.location.server.service.PersonService
 
+import static tw.edu.ncu.cc.location.server.helper.ResourceHelper.nullNotFound
+
 @RestController
 @RequestMapping( value = "management/v1/faculties", method = RequestMethod.GET )
 public class FacultyController {
@@ -25,7 +27,7 @@ public class FacultyController {
     def show( @PathVariable( "portal_id" ) String portalId ) {
         new ResponseEntity<>(
                 conversionService.convert(
-                        personService.findByPortalId( portalId ), Person.class
+                        nullNotFound( personService.findByPortalId( portalId ) ), Person.class
                 ),
                 HttpStatus.OK
         )
