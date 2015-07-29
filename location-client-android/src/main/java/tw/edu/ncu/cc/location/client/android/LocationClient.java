@@ -41,42 +41,42 @@ public class LocationClient implements AsynLocationClient {
     @Override
     public void getPlaces( String cname, ResponseListener< Place > responseListener ) {
         sendRequest(
-                "/v3/places?cname=" + Uri.encode( cname ), responseListener
+                "/v1/places?cname=" + Uri.encode( cname ), responseListener
         );
     }
 
     @Override
     public void getPlaces( PlaceType placeType, ResponseListener< Place > responseListener ) {
         sendRequest(
-                "/v3/places?type=" + Uri.encode( placeType.value() ), responseListener
+                "/v1/places?type=" + Uri.encode( placeType.value() ), responseListener
         );
     }
 
     @Override
     public void getBuildings( ResponseListener< Building > responseListener ) {
         sendRequest(
-                "/v3/buildings", responseListener
+                "/v1/buildings", responseListener
         );
     }
 
     @Override
     public void getBuildingUnits( String buildingChineseName, ResponseListener< Unit > responseListener ) {
         sendRequest(
-                "/v3/units?building_cname=" + Uri.encode( buildingChineseName ) , responseListener
+                "/v1/units?building_cname=" + Uri.encode( buildingChineseName ) , responseListener
         );
     }
 
     @Override
     public void getPeople( String cname, ResponseListener< Person > responseListener ) {
         sendRequest(
-                "/v3/people?cname=" + Uri.encode( cname ), responseListener
+                "/v1/people?cname=" + Uri.encode( cname ), responseListener
         );
     }
 
     @Override
     public void getUnits( String fname, ResponseListener< Unit > responseListener ) {
         sendRequest(
-                "/v3/units?fname=" + Uri.encode( fname ), responseListener
+                "/v1/units?fname=" + Uri.encode( fname ), responseListener
         );
     }
 
@@ -88,7 +88,7 @@ public class LocationClient implements AsynLocationClient {
     @Override
     public void getWords( String keyword, int size, ResponseListener< Word > responseListener ) {
         sendRequest(
-                "/v3/search?q=" + Uri.encode( keyword ) + "&size=" + size, responseListener
+                "/v1/search?q=" + Uri.encode( keyword ) + "&size=" + size, responseListener
         );
     }
 

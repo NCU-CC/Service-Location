@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.web.api.v3
+package tw.edu.ncu.cc.location.server.web.api.v1
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.convert.ConversionService
@@ -16,7 +16,7 @@ import tw.edu.ncu.cc.location.server.entity.PlaceEntity
 import tw.edu.ncu.cc.location.server.service.PlaceService
 
 @RestController
-@RequestMapping( value = "v3/places", method = RequestMethod.GET )
+@RequestMapping( value = "v1/places", method = RequestMethod.GET )
 public class PlaceController {
 
     @Autowired

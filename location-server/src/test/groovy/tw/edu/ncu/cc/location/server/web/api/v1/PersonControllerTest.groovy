@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.web.api.v3
+package tw.edu.ncu.cc.location.server.web.api.v1
 
 import specification.IntegrationSpecification
 
@@ -12,7 +12,7 @@ class PersonControllerTest extends IntegrationSpecification {
         expect:
             server()
                     .perform(
-                            get( "/v3/faculties?cname=CPERSON1" )
+                            get( "/v1/faculties?cname=CPERSON1" )
                             .accept( "application/json" )
                     )
                     .andExpect(
@@ -25,7 +25,7 @@ class PersonControllerTest extends IntegrationSpecification {
             def response = JSON(
                     server()
                         .perform(
-                            get( "/v3/faculties?cname=CPERSON1" )
+                            get( "/v1/faculties?cname=CPERSON1" )
                             .with( apiToken() )
                             .accept( "application/json" )
                         )
@@ -69,7 +69,7 @@ class PersonControllerTest extends IntegrationSpecification {
         expect:
             server()
                 .perform(
-                    get( "/v3/faculties" )
+                    get( "/v1/faculties" )
                     .with( apiToken() )
                     .accept( "application/json" )
                 )

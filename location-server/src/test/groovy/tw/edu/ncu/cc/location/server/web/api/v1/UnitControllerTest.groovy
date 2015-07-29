@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.web.api.v3
+package tw.edu.ncu.cc.location.server.web.api.v1
 
 import specification.IntegrationSpecification
 
@@ -13,7 +13,7 @@ class UnitControllerTest extends IntegrationSpecification {
         expect:
             server()
                     .perform(
-                        get( "/v3/units?fname=FUNIT1" )
+                        get( "/v1/units?fname=FUNIT1" )
                         .accept( "application/json" )
                     )
                     .andExpect(
@@ -25,7 +25,7 @@ class UnitControllerTest extends IntegrationSpecification {
         when:
             def response = JSON( server()
                     .perform(
-                        get( "/v3/units?fname=FUNIT1" )
+                        get( "/v1/units?fname=FUNIT1" )
                         .with( apiToken() )
                         .accept( "application/json" )
                     )
@@ -52,7 +52,7 @@ class UnitControllerTest extends IntegrationSpecification {
         when:
             def response = JSON( server()
                     .perform(
-                        get( "/v3/units?building_cname=CPLACE2" )
+                        get( "/v1/units?building_cname=CPLACE2" )
                         .with( apiToken() )
                         .accept( "application/json" )
                     )
@@ -81,7 +81,7 @@ class UnitControllerTest extends IntegrationSpecification {
         expect:
             server()
                 .perform(
-                    get( "/v3/units" )
+                    get( "/v1/units" )
                     .with( apiToken() )
                     .accept( "application/json" )
                 )

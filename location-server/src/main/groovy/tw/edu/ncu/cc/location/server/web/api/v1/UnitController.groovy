@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.web.api.v3
+package tw.edu.ncu.cc.location.server.web.api.v1
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.convert.ConversionService
@@ -15,7 +15,7 @@ import tw.edu.ncu.cc.location.server.entity.UnitEntity
 import tw.edu.ncu.cc.location.server.service.UnitService
 
 @RestController
-@RequestMapping( value = "v3/units", method = RequestMethod.GET )
+@RequestMapping( value = "v1/units", method = RequestMethod.GET )
 public class UnitController {
 
     @Autowired

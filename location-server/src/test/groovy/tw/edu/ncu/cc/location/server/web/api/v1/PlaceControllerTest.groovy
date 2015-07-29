@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.web.api.v3
+package tw.edu.ncu.cc.location.server.web.api.v1
 
 import specification.IntegrationSpecification
 
@@ -13,7 +13,7 @@ class PlaceControllerTest extends IntegrationSpecification {
         expect:
             server()
                     .perform(
-                        get( "/v3/places?type=WHEELCHAIR_RAMP" )
+                        get( "/v1/places?type=WHEELCHAIR_RAMP" )
                         .accept( "application/json" )
                     )
                     .andExpect(
@@ -25,7 +25,7 @@ class PlaceControllerTest extends IntegrationSpecification {
         when:
             def response = JSON( server()
                     .perform(
-                        get( "/v3/places?type=WHEELCHAIR_RAMP" )
+                        get( "/v1/places?type=WHEELCHAIR_RAMP" )
                         .with( apiToken() )
                         .accept( "application/json" )
                     )
@@ -52,7 +52,7 @@ class PlaceControllerTest extends IntegrationSpecification {
         expect:
             server()
                     .perform(
-                        get( "/v3/places?type=NOT_EXIST" )
+                        get( "/v1/places?type=NOT_EXIST" )
                         .with( apiToken() )
                         .accept( "application/json" )
                     )
@@ -63,7 +63,7 @@ class PlaceControllerTest extends IntegrationSpecification {
         when:
             def response = JSON( server()
                     .perform(
-                        get( "/v3/places?cname=CPLACE3" )
+                        get( "/v1/places?cname=CPLACE3" )
                         .with( apiToken() )
                         .accept( "application/json" )
                     )
@@ -88,7 +88,7 @@ class PlaceControllerTest extends IntegrationSpecification {
         expect:
             server()
                 .perform(
-                    get( "/v3/places" )
+                    get( "/v1/places" )
                     .with( apiToken() )
                     .accept( "application/json" )
                 )
