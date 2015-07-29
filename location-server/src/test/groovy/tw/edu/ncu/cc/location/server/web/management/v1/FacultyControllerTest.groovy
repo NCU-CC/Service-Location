@@ -22,6 +22,14 @@ class FacultyControllerTest extends IntegrationSpecification {
             )
         then:
             response != null
+        expect:
+            server().perform(
+                    get( "/management/v1/faculties/USERIDNOTEXIST" )
+                            .with( apiToken().clientTrusted() )
+                            .accept( "application/json" )
+            ).andExpect(
+                    status().isNotFound()
+            )
     }
 
     def "it should not response for api token of none trusted client"() {
