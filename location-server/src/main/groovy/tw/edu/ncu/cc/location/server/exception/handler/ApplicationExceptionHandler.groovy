@@ -56,7 +56,9 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler( TypeMismatchException )
     public ResponseEntity badArgument( TypeMismatchException e ) {
         new ResponseEntity<>(
-                "bad argument:" + e.getValue() , HttpStatus.BAD_REQUEST
+                new ErrorObject(
+                        "bad argument:" + e.getValue()
+                ), HttpStatus.BAD_REQUEST
         )
     }
 
