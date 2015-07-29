@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.web.api.v3
+package tw.edu.ncu.cc.location.server.web.api.v1
 
 import specification.IntegrationSpecification
 
@@ -14,7 +14,7 @@ class BuildingControllerTest extends IntegrationSpecification {
             def response = JSON(
                     server()
                             .perform(
-                                get( "/v3/buildings" )
+                                get( "/v1/buildings" )
                                 .with( apiToken() )
                                 .accept( "application/json" )
                             )

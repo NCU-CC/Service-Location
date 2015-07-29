@@ -1,4 +1,4 @@
-package tw.edu.ncu.cc.location.server.web.api.v3
+package tw.edu.ncu.cc.location.server.web.api.v1
 
 import specification.IntegrationSpecification
 
@@ -21,7 +21,7 @@ class WordControllerTest extends IntegrationSpecification {
         when:
             def response = JSON( server()
                     .perform(
-                        get( "/v3/search?q=CPERSON2" )
+                        get( "/v1/search?q=CPERSON2" )
                         .with( apiToken() )
                         .accept( "application/json" )
                     )
