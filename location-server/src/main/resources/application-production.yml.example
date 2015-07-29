@@ -35,4 +35,5 @@ custom:
       path: lucene/index
 ncu:
   oauth:
+    api-token: your-api-token
     server-path: https://localhost/oauth
