@@ -25,8 +25,8 @@ repositories {
 dependencies {
 
     compile project(":location-data")
-    compile name: 'oauth-resource-1.0.0.0'
-    compile name: 'oauth-data-1.0.0'
+    compile name: 'oauth-resource-1.0.1.0'
+    compile name: 'oauth-data-1.0.1'
     compile name: 'config-hikaricp-0.2.2'
 
     compile 'org.springframework.security:spring-security-config:4.0.0.RELEASE' ,
