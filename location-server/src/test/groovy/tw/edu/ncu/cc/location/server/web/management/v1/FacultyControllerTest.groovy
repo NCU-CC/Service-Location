@@ -4,6 +4,7 @@ import specification.IntegrationSpecification
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import static tw.edu.ncu.cc.oauth.resource.test.ApiAuthMockMvcRequestPostProcessors.apiToken
 
 class FacultyControllerTest extends IntegrationSpecification {
 
@@ -13,6 +14,7 @@ class FacultyControllerTest extends IntegrationSpecification {
             def response = JSON(
                     server().perform(
                             get( "/management/v1/faculties/PORTAL1" )
+                                    .with( apiToken().clientTrusted() )
                                     .accept( "application/json" )
                     ).andExpect(
                             status().isOk()
@@ -20,6 +22,24 @@ class FacultyControllerTest extends IntegrationSpecification {
             )
         then:
             response != null
+    }
+
+    def "it should not response for api token of none trusted client"() {
+        expect:
+            server().perform(
+                    get( "/management/v1/faculties/PORTAL1" )
+                            .accept( "application/json" )
+            ).andExpect(
+                    status().isBadRequest()
+            )
+        and:
+            server().perform(
+                    get( "/management/v1/faculties/PORTAL1" )
+                            .with( apiToken() )
+                            .accept( "application/json" )
+            ).andExpect(
+                    status().isForbidden()
+            )
     }
 
 }
