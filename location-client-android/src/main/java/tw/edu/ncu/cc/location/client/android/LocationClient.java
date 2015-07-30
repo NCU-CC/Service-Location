@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import tw.edu.ncu.cc.location.client.tool.AsynLocationClient;
 import tw.edu.ncu.cc.location.client.tool.config.LocationConfig;
 import tw.edu.ncu.cc.location.client.tool.response.ResponseListener;
+import tw.edu.ncu.cc.location.data.building.Building;
 import tw.edu.ncu.cc.location.data.keyword.Word;
 import tw.edu.ncu.cc.location.data.person.Person;
 import tw.edu.ncu.cc.location.data.place.Place;
@@ -38,44 +39,56 @@ public class LocationClient implements AsynLocationClient {
     }
 
     @Override
-    public void getPlaces( String placeName, ResponseListener< Place > responseListener ) {
+    public void getPlaces( String cname, ResponseListener< Place > responseListener ) {
         sendRequest(
-                "/place/name/" + Uri.encode( placeName ), responseListener
+                "/v1/places?cname=" + Uri.encode( cname ), responseListener
         );
     }
 
     @Override
     public void getPlaces( PlaceType placeType, ResponseListener< Place > responseListener ) {
         sendRequest(
-                "/place/type/" + Uri.encode( placeType.value() ), responseListener
+                "/v1/places?type=" + Uri.encode( placeType.value() ), responseListener
         );
     }
 
     @Override
-    public void getPlaceUnits( String placeName, ResponseListener< Unit > responseListener ) {
+    public void getBuildings( ResponseListener< Building > responseListener ) {
         sendRequest(
-                "/place/name/" + Uri.encode( placeName ) + "/units", responseListener
+                "/v1/buildings", responseListener
         );
     }
 
     @Override
-    public void getPeople( String peopleName, ResponseListener< Person > responseListener ) {
+    public void getBuildingUnits( String buildingChineseName, ResponseListener< Unit > responseListener ) {
         sendRequest(
-                "/person/name/" + Uri.encode( peopleName ), responseListener
+                "/v1/units?building_cname=" + Uri.encode( buildingChineseName ) , responseListener
         );
     }
 
     @Override
-    public void getUnits( String unitName, ResponseListener< Unit > responseListener ) {
+    public void getPeople( String cname, ResponseListener< Person > responseListener ) {
         sendRequest(
-                "/unit/name/" + Uri.encode( unitName ), responseListener
+                "/v1/people?cname=" + Uri.encode( cname ), responseListener
+        );
+    }
+
+    @Override
+    public void getUnits( String fname, ResponseListener< Unit > responseListener ) {
+        sendRequest(
+                "/v1/units?fname=" + Uri.encode( fname ), responseListener
         );
     }
 
     @Override
     public void getWords( String keyword, ResponseListener< Word > responseListener ) {
+        getWords( keyword, 3, responseListener );
+    }
+
+    @Override
+    public void getWords( String keyword, int size, ResponseListener< Word > responseListener ) {
         sendRequest(
-                "/keyword/" + Uri.encode( keyword ), responseListener
+                "/v1/search?q=" + Uri.encode( keyword ) + "&size=" + size, responseListener
         );
     }
 
