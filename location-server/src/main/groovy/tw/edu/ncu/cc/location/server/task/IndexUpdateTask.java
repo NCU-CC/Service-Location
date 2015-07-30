@@ -44,45 +44,33 @@ public class IndexUpdateTask {
     }
 
     private void indexPlaces() {
-        List< PlaceEntity > places;
-        for ( int offset = 0; ( places = placeRepository.findShowablePlace( new PageRequest( offset, 100 ) ).getContent() ).size() > 0; offset += 100 ) {
-            for ( PlaceEntity place : places ) {
-                Word word = new Word();
-                word.setIndex( place.getChineseName() + appendPrefixIfNotNull( " | ", place.getEnglishName() ) );
-                word.setWord ( place.getChineseName() );
-                word.setType ( WordType.PLACE );
-                wordService.persistWords( word );
-            }
+        for ( PlaceEntity place : placeRepository.findAllShowablePlace() ) {
+            Word word = new Word();
+            word.setIndex( place.getChineseName() + appendPrefixIfNotNull( " | ", place.getEnglishName() ) );
+            word.setWord ( place.getChineseName() );
+            word.setType ( WordType.PLACE );
+            wordService.persistWords( word );
         }
-
     }
 
     private void indexPeople() {
-        List< PersonEntity > people;
-        for ( int offset = 0; ( people = personRepository.findAll( new PageRequest( offset, 100 ) ).getContent() ).size() > 0; offset += 100 ) {
-            for ( PersonEntity person : people ) {
-                Word word = new Word();
-                word.setIndex( person.getChineseName() + appendPrefixIfNotNull( " | ", person.getEnglishName() ) );
-                word.setWord ( person.getChineseName() );
-                word.setType ( WordType.PERSON );
-                wordService.persistWords( word );
-            }
+        for ( PersonEntity person : personRepository.findAll() ) {
+            Word word = new Word();
+            word.setIndex( person.getChineseName() + appendPrefixIfNotNull( " | ", person.getEnglishName() ) );
+            word.setWord ( person.getChineseName() );
+            word.setType ( WordType.PERSON );
+            wordService.persistWords( word );
         }
-
     }
 
     private void indexUnits() {
-        List< UnitEntity > units;
-        for ( int offset = 0; ( units = unitRepository.findAll( new PageRequest( offset, 100 ) ).getContent() ).size() > 0; offset += 100 ) {
-            for ( UnitEntity unit : units ) {
-                Word word = new Word();
-                word.setIndex( unit.getFullName() + appendPrefixIfNotNull( " | ", unit.getEnglishName() ) );
-                word.setWord ( unit.getFullName() );
-                word.setType ( WordType.UNIT );
-                wordService.persistWords( word );
-            }
+        for ( UnitEntity unit : unitRepository.findAll() ) {
+            Word word = new Word();
+            word.setIndex( unit.getFullName() + appendPrefixIfNotNull( " | ", unit.getEnglishName() ) );
+            word.setWord ( unit.getFullName() );
+            word.setType ( WordType.UNIT );
+            wordService.persistWords( word );
         }
-
     }
 
     private static String appendPrefixIfNotNull( String prefix, String s ) {
