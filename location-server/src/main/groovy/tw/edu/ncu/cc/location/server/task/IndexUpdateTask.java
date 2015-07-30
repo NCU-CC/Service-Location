@@ -53,11 +53,6 @@ public class IndexUpdateTask {
                 word.setType ( WordType.PLACE );
                 wordService.persistWords( word );
             }
-
-            if ( places.size() != 100 ) {
-                break;
-            }
-
         }
 
     }
@@ -72,11 +67,6 @@ public class IndexUpdateTask {
                 word.setType ( WordType.PERSON );
                 wordService.persistWords( word );
             }
-
-            if ( people.size() != 100 ) {
-                break;
-            }
-
         }
 
     }
@@ -91,11 +81,6 @@ public class IndexUpdateTask {
                 word.setType ( WordType.UNIT );
                 wordService.persistWords( word );
             }
-
-            if ( units.size() != 100 ) {
-                break;
-            }
-
         }
 
     }
