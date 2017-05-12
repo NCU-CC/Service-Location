@@ -4,10 +4,12 @@ import specification.IntegrationSpecification
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import static tw.edu.ncu.cc.oauth.resource.test.ApiAuthMockMvcRequestPostProcessors.apiToken
+import static tw.edu.ncu.cc.oauth.resource.test.ApiAuthMockMvcRequestPostProcessors.accessToken
 
 
 class UnitControllerTest extends IntegrationSpecification {
+
+    def token = accessToken().user( "user-uid" ).scope( "user.info.basic.read" )
 
     def "it should provide api token to use api"() {
         expect:
@@ -26,7 +28,7 @@ class UnitControllerTest extends IntegrationSpecification {
             def response = JSON( server()
                     .perform(
                         get( "/v1/units?fname=FUNIT1" )
-                        .with( apiToken() )
+                        .with( token )
                         .accept( "application/json" )
                     )
                     .andExpect( status().isOk() )
@@ -53,7 +55,7 @@ class UnitControllerTest extends IntegrationSpecification {
             def response = JSON( server()
                     .perform(
                         get( "/v1/units?building_cname=CPLACE2" )
-                        .with( apiToken() )
+                        .with( token )
                         .accept( "application/json" )
                     )
                     .andExpect(
@@ -82,7 +84,7 @@ class UnitControllerTest extends IntegrationSpecification {
             server()
                 .perform(
                     get( "/v1/units" )
-                    .with( apiToken() )
+                    .with( token )
                     .accept( "application/json" )
                 )
                 .andExpect(

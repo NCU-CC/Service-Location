@@ -4,9 +4,11 @@ import specification.IntegrationSpecification
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import static tw.edu.ncu.cc.oauth.resource.test.ApiAuthMockMvcRequestPostProcessors.apiToken
+import static tw.edu.ncu.cc.oauth.resource.test.ApiAuthMockMvcRequestPostProcessors.accessToken
 
 class WordControllerTest extends IntegrationSpecification {
+
+    def token = accessToken().user( "user-uid" ).scope( "user.info.basic.read" )
 
     def "it should provide api token to use api"() {
         setup:
@@ -22,7 +24,7 @@ class WordControllerTest extends IntegrationSpecification {
             def response = JSON( server()
                     .perform(
                         get( "/v1/search?q=CPERSON2" )
-                        .with( apiToken() )
+                        .with( token )
                         .accept( "application/json" )
                     )
                     .andExpect(

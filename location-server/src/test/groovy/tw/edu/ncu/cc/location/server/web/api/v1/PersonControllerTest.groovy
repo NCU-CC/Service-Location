@@ -4,9 +4,11 @@ import specification.IntegrationSpecification
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import static tw.edu.ncu.cc.oauth.resource.test.ApiAuthMockMvcRequestPostProcessors.apiToken
+import static tw.edu.ncu.cc.oauth.resource.test.ApiAuthMockMvcRequestPostProcessors.accessToken
 
 class PersonControllerTest extends IntegrationSpecification {
+
+    def token = accessToken().user( "user-uid" ).scope( "user.info.basic.read" )
 
     def "it should provide api token to use api"() {
         expect:
@@ -26,7 +28,7 @@ class PersonControllerTest extends IntegrationSpecification {
                     server()
                         .perform(
                             get( "/v1/faculties?cname=CPERSON1" )
-                            .with( apiToken() )
+                            .with( token )
                             .accept( "application/json" )
                         )
                         .andExpect(
@@ -70,7 +72,7 @@ class PersonControllerTest extends IntegrationSpecification {
             server()
                 .perform(
                     get( "/v1/faculties" )
-                    .with( apiToken() )
+                    .with( token )
                     .accept( "application/json" )
                 )
                 .andExpect(
