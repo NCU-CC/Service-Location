@@ -4,13 +4,10 @@ import specification.IntegrationSpecification
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-//import static tw.edu.ncu.cc.oauth.resource.test.ApiAuthMockMvcRequestPostProcessors.apiToken
-import static tw.edu.ncu.cc.oauth.resource.test.ApiAuthMockMvcRequestPostProcessors.accessToken
+import static tw.edu.ncu.cc.oauth.resource.test.ApiAuthMockMvcRequestPostProcessors.apiToken
 
 
 class BuildingControllerTest extends IntegrationSpecification {
-
-    def token = accessToken().user( "user-uid" ).scope( "user.info.basic.read" )
 
     def "it should provide all buildings"() {
         when:
@@ -18,7 +15,7 @@ class BuildingControllerTest extends IntegrationSpecification {
                     server()
                             .perform(
                                 get( "/v1/buildings" )
-                                .with( token )
+                                .with( apiToken() )
                                 .accept( "application/json" )
                             )
                             .andExpect(

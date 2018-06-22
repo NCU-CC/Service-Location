@@ -11,9 +11,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
-//import tw.edu.ncu.cc.oauth.resource.filter.ApiTokenDecisionFilter
+import tw.edu.ncu.cc.oauth.resource.filter.ApiTokenDecisionFilter
 import tw.edu.ncu.cc.oauth.resource.filter.TrustedApiTokenDecisionFilter
-import tw.edu.ncu.cc.oauth.resource.filter.AccessTokenDecisionFilter
 
 @EnableWebSecurity
 public class SecurityConfig {
@@ -23,8 +22,7 @@ public class SecurityConfig {
     public static class OauthGuard extends WebSecurityConfigurerAdapter {
 
         @Autowired
-        def AccessTokenDecisionFilter accessTokenDecisionFilter
-        //def ApiTokenDecisionFilter apiTokenDecisionFilter
+        def ApiTokenDecisionFilter apiTokenDecisionFilter
 
         @Override
         protected void configure( HttpSecurity http ) throws Exception {
@@ -34,7 +32,7 @@ public class SecurityConfig {
                     .antMatchers( HttpMethod.PUT, "/v*/**" )
                     .antMatchers( HttpMethod.DELETE, "/v*/**")
                     .and()
-                    .addFilterAfter( accessTokenDecisionFilter, UsernamePasswordAuthenticationFilter.class )
+                    .addFilterAfter( apiTokenDecisionFilter, UsernamePasswordAuthenticationFilter.class )
                     .csrf().disable()
         }
     }
@@ -44,7 +42,6 @@ public class SecurityConfig {
     public static class OauthTrustedClientGuard extends WebSecurityConfigurerAdapter {
 
         @Autowired
-        // def AccessTokenDecisionFilter accessTokenDecisionFilter
         def TrustedApiTokenDecisionFilter trustedApiTokenDecisionFilter
 
         @Override
